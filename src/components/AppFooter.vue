@@ -15,10 +15,14 @@ export default {
   </footer>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
+@use "../scss/helpers/variables" as *;
+
+
 footer {
-  background-color: #f8f8f8;
+  background-color: $primary-color;
   padding: 20px 0;
   width: 100%;
+  color: $light-color;
 }
 </style>
