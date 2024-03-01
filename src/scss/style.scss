@@ -1,6 +1,13 @@
 // Import Bootstrap's CSS
 @import "bootstrap/scss/bootstrap";
 
+//import helpers scss
+@import "helpers/_variables";
+@import "helpers/_mixins";
+@import "helpers/_functions";
+//import base scss
+@import "base/_typography";
+
 /* 
 ********
 DEBUG
