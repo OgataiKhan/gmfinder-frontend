@@ -1,10 +1,10 @@
 <script>
 
 export default {
-    name: 'AdvancedSearchPage',
+    name: 'GameMasterPage',
     data() {
         return {
-            msg: 'Welcome to Your Vue.js App Advanced search page!'
+            msg: 'Welcome to Your Vue.js App Game Master Page!'
         }
     }
 };
@@ -12,7 +12,7 @@ export default {
 </script>
 
 <template>
-    <div class="advanced-search flex-grow-1">
+    <div class="game-master-page flex-grow-1">
         <h1>{{ msg }}</h1>
     </div>
 </template>
@@ -20,7 +20,7 @@ export default {
 <style scoped lang="scss">
 @use "../scss/helpers/variables" as *;
 
-.advanced-search {
+.game-master-page {
     text-align: center;
     background-color: $light-color;
 

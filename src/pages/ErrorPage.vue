@@ -1,10 +1,10 @@
 <script>
 
 export default {
-    name: 'AdvancedSearchPage',
+    name: 'ErrorPage',
     data() {
         return {
-            msg: 'Welcome to Your Vue.js App Advanced search page!'
+            msg: 'Oops! The page you\'re looking for doesn\'t exist.'
         }
     }
 };
@@ -12,15 +12,17 @@ export default {
 </script>
 
 <template>
-    <div class="advanced-search flex-grow-1">
-        <h1>{{ msg }}</h1>
+    <div class="error-page flex-grow-1">
+        <h1>404 - Page Not Found</h1>
+        <p>{{ msg }}</p>
+        <router-link to="/">Go Back Home</router-link>
     </div>
 </template>
 
 <style scoped lang="scss">
 @use "../scss/helpers/variables" as *;
 
-.advanced-search {
+.error-page {
     text-align: center;
     background-color: $light-color;
 
