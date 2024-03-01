@@ -20,5 +20,6 @@ export default {
 <style scoped>
 .home {
     text-align: center;
+    margin-top: 100px;
 }
 </style>
