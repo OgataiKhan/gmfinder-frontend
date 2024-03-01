@@ -23,5 +23,10 @@ export default {
 .home {
     text-align: center;
     background-color: $light-color;
+
+    h1 {
+        color: $primary-color;
+        margin-top: 100px;
+    }
 }
 </style>

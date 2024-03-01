@@ -15,4 +15,14 @@ export default {
   </header>
 </template>
 
-<style scoped></style>
+<style scoped lang="scss">
+@use "../scss/helpers/variables" as *;
+
+
+header {
+  background-color: $primary-color;
+  padding: 20px 0;
+  width: 100%;
+  color: $light-color;
+}
+</style>
