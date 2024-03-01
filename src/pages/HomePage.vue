@@ -12,14 +12,16 @@ export default {
 </script>
 
 <template>
-    <div class="home">
+    <div class="home flex-grow-1">
         <h1>{{ msg }}</h1>
     </div>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
+@use "../scss/helpers/variables" as *;
+
 .home {
     text-align: center;
-    margin-top: 100px;
+    background-color: $light-color;
 }
 </style>

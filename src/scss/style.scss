@@ -20,11 +20,6 @@ DEBUG
   min-height: 100vh;
 }
 
-.AppHeader,
-.AppFooter {
-  flex-shrink: 0; /* Prevents header and footer from shrinking */
-}
-
-.router-view {
-  flex-grow: 1; /* Allows router-view to take up available space */
-}
+// .router-view {
+//   flex-grow: 1; /* Allows router-view to take up available space */
+// }
