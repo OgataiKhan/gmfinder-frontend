@@ -15,4 +15,10 @@ export default {
   </footer>
 </template>
 
-<style scoped></style>
+<style scoped>
+footer {
+  background-color: #f8f8f8;
+  padding: 20px 0;
+  width: 100%;
+}
+</style>
