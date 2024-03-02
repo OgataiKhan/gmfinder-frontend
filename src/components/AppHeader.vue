@@ -11,10 +11,7 @@ export default {
     >
       <!-- logo -->
       <div class="logo">
-        <router-link
-          :to="{ name: 'home' }"
-          class="text-router text-decoration-none"
-        >
+        <router-link :to="{ name: 'home' }" class="text-decoration-none">
           <img
             src="/img/dungeons_and_dragons_logo_by_floodgrunt-d6my4z8.png"
             alt=""
@@ -28,28 +25,28 @@ export default {
           <li>
             <router-link
               :to="{ name: 'home' }"
-              class="text-router text-decoration-none link text-white"
+              class="text-decoration-none link text-white"
               ><strong>Home</strong></router-link
             >
           </li>
           <li>
             <router-link
               :to="{ name: 'game-master' }"
-              class="text-router text-decoration-none link text-white"
+              class="text-decoration-none link text-white"
               ><strong>Game Master</strong></router-link
             >
           </li>
           <li>
             <router-link
               :to="{ name: 'message-success' }"
-              class="text-router text-decoration-none link text-white"
+              class="text-decoration-none link text-white"
               ><strong>Message</strong></router-link
             >
           </li>
           <li>
             <router-link
               :to="{ name: 'error' }"
-              class="text-router text-decoration-none link text-white"
+              class="text-decoration-none link text-white"
               ><strong>Error</strong></router-link
             >
           </li>
