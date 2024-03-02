@@ -2,16 +2,18 @@
 
 // button mixins
 
-@mixin primary-button($bg-color: $primary-color, $color: $light-color) {
+// Primary button mixin, accepts two parameters: background color and text color; both default to the primary and light color, respectively
+@mixin primary-button($bg-color: $light-color, $color: $primary-color) {
   background-color: $bg-color;
   color: $color;
-  border: none;
+  border: 1px solid $color;
   padding: 10px 15px;
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s;
 
   &:hover {
-    background-color: darken($bg-color, 10%); // Darken the button on hover
+    background-color: $color; // Darken the button on hover
+    color: $bg-color; // Change the text color on hover
   }
 }

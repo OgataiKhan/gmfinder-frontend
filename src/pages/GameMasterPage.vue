@@ -30,7 +30,7 @@ export default {
 
 <template>
     <div class="game-master-page flex-grow-1">
-        <div class="container p-1">
+        <div class="container p-2 mb-3">
 
 
             <h1>{{ msg }}</h1>
