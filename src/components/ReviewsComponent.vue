@@ -38,9 +38,9 @@ export default {
 </script>
 
 <template>
-    <div class="reviews p-5">
+    <div class="reviews col-6">
         <h1>{{ msg }}</h1>
-        <ul>
+        <ul class="review-list">
             <li v-for="review in reviews" :key="review.id">
                 <strong>{{ review.name }}</strong>: {{ review.review }} (Rating: {{ review.rating }})
             </li>
@@ -58,4 +58,16 @@ export default {
     </div>
 </template>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.reviews {
+    margin: 0 auto;
+    border: 1px solid #ccc;
+
+    ul.review-list {
+        li {
+            border: 1px solid #ccc;
+        }
+    }
+
+}
+</style>
