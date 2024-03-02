@@ -205,7 +205,7 @@ export default {
                     </div>
                 </div>
             </div>
-            <div class="navigation-controls">
+            <div class="navigation-controls d-flex justify-content-between">
                 <button @click="prev">Prev</button>
                 <button @click="next">Next</button>
             </div>
