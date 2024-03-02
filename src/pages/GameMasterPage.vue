@@ -1,4 +1,7 @@
 <script>
+
+import ReviewsComponent from '../components/ReviewsComponent.vue';
+
 export default {
     data() {
         return {
@@ -13,6 +16,9 @@ export default {
                 message: ''
             }
         };
+    },
+    components: {
+        ReviewsComponent
     },
     methods: {
         sendMessage() {
@@ -54,9 +60,9 @@ export default {
                     <label for="msgText" class="form-label">Your message</label>
                     <textarea class="form-control" id="msgText" rows="3" v-model="contactForm.message"></textarea>
                 </div>
-
                 <button type="submit">Send Message</button>
             </form>
+            <ReviewsComponent />
         </div>
     </div>
 </template>
