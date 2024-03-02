@@ -30,7 +30,7 @@ export default {
 
 <template>
     <div class="game-master-page flex-grow-1">
-        <div class="container">
+        <div class="container p-2 mb-3">
 
 
             <h1>{{ msg }}</h1>
@@ -55,7 +55,7 @@ export default {
                     <textarea class="form-control" id="msgText" rows="3" v-model="contactForm.message"></textarea>
                 </div>
 
-                <button type="submit" class="btn btn-primary">Send Message</button>
+                <button type="submit">Send Message</button>
             </form>
         </div>
     </div>
@@ -64,6 +64,7 @@ export default {
 
 <style scoped lang="scss">
 @use "../scss/helpers/variables" as *;
+@use "../scss/helpers/mixins" as *;
 
 .game-master-page {
     text-align: center;
