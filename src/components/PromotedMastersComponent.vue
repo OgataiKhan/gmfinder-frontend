@@ -19,6 +19,11 @@ export default {
                     img: 'https://placehold.co/600x400',
                     caption: 'Third slide',
                     text: 'Praesent commodo cursus magna, vel scelerisque nisl consectetur.'
+                },
+                {
+                    img: 'https://placehold.co/600x400',
+                    caption: 'Fourth slide',
+                    text: 'Praesent commodo cursus magna, vel scelerisque nisl consectetur.'
                 }
             ]
         }
@@ -44,13 +49,11 @@ export default {
         </div> -->
         <div id="carouselExampleCaptions" class="carousel slide">
             <div class="carousel-indicators">
-                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
-                    aria-current="true" aria-label="Slide 1"></button>
-                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
-                    aria-label="Slide 2"></button>
-                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
-                    aria-label="Slide 3"></button>
+                <button type="button" v-for="(slide, idx) in slides" :key="'indicator-' + idx"
+                    data-bs-target="#carouselExampleCaptions" :data-bs-slide-to="idx" :class="{ active: idx === 0 }"
+                    :aria-label="'Slide ' + (idx + 1)"></button>
             </div>
+
             <div class="carousel-inner">
                 <div v-for="(slide, index) in slides" :key="index" class="carousel-item" :class="{ active: index === 0 }">
                     <img :src="slide.img" class="d-block w-100" :alt="slide.label">
