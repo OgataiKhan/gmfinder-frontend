@@ -30,7 +30,7 @@ export default {
 
 <template>
     <div class="game-master-page flex-grow-1">
-        <div class="container">
+        <div class="container p-1">
 
 
             <h1>{{ msg }}</h1>
@@ -64,6 +64,7 @@ export default {
 
 <style scoped lang="scss">
 @use "../scss/helpers/variables" as *;
+@use "../scss/helpers/mixins" as *;
 
 .game-master-page {
     text-align: center;
@@ -72,6 +73,10 @@ export default {
     h1 {
         color: $primary-color;
         margin-top: 100px;
+    }
+
+    .btn-primary {
+        @include primary-button;
     }
 }
 </style>

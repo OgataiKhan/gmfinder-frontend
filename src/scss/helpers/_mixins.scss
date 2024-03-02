@@ -1,0 +1,17 @@
+@use "./variables" as *;
+
+// button mixins
+
+@mixin primary-button {
+  background-color: $primary-color;
+  color: $light-color;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+
+  &:hover {
+    background-color: darken($primary-color, 10%); // Darken the button on hover
+  }
+}
