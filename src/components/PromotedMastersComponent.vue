@@ -131,6 +131,7 @@ export default {
     },
     computed: {
         // returns the masters that should be displayed, in this case 4 masters
+        //we use a computed property because it will be recalculated whenever the visibleStartIndex changes
         visibleMasters() {
             return this.masters.slice(this.visibleStartIndex, this.visibleStartIndex + 4);
         }
@@ -194,7 +195,7 @@ export default {
         <div>
             <div class="masters-grid container">
                 <div class="row g-3">
-                    <div class="col-3" v-for="master in visibleMasters" :key="master.id">
+                    <div class="col-lg-3" v-for="master in visibleMasters" :key="master.id">
                         <!-- Display master info here -->
                         <div class="card p-3">
                             <h3>{{ master.name }}</h3>
