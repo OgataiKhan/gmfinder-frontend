@@ -1,11 +1,15 @@
 <script>
-
+//import jumbotron component
+import JumbotronComponent from '../components/JumbotronComponent.vue';
 export default {
     name: 'HomePage',
     data() {
         return {
             msg: 'Welcome to Your Vue.js App HOME PAGE!'
         }
+    },
+    components: {
+        JumbotronComponent
     }
 };
 
@@ -14,6 +18,7 @@ export default {
 <template>
     <div class="home flex-grow-1">
         <h1>{{ msg }}</h1>
+        <JumbotronComponent />
     </div>
 </template>
 
@@ -21,7 +26,6 @@ export default {
 @use "../scss/helpers/variables" as *;
 
 .home {
-    text-align: center;
     background-color: $light-color;
 
     h1 {
