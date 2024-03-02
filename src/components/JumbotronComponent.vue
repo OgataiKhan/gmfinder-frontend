@@ -14,7 +14,7 @@ export default {
 </script>
 
 <template>
-    <div class="jumbotron col container">
+    <div class="jumbotron">
         <h1>{{ msg }}</h1>
         <JumbotronSearchComponent />
     </div>
