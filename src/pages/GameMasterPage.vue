@@ -73,7 +73,6 @@ export default {
 @use "../scss/helpers/mixins" as *;
 
 .game-master-page {
-    text-align: center;
     background-color: $light-color;
 
     h1 {
