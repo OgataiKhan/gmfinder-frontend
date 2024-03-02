@@ -1,6 +1,7 @@
 <script>
-//import jumbotron component
+//import components
 import JumbotronComponent from '../components/JumbotronComponent.vue';
+import PromotedMastersComponent from '../components/PromotedMastersComponent.vue';
 export default {
     name: 'HomePage',
     data() {
@@ -9,7 +10,8 @@ export default {
         }
     },
     components: {
-        JumbotronComponent
+        JumbotronComponent,
+        PromotedMastersComponent
     }
 };
 
@@ -19,6 +21,7 @@ export default {
     <div class="home flex-grow-1">
         <h1>{{ msg }}</h1>
         <JumbotronComponent />
+        <PromotedMastersComponent />
     </div>
 </template>
 
