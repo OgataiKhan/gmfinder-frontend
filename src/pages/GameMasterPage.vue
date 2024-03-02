@@ -39,7 +39,7 @@ export default {
             <div class="game-master-info">
                 <h2>Game Master Information</h2>
                 <p><strong>Name:</strong> {{ gameMaster.name }}</p>
-                <p><strong>Average Rating:</strong> {{ gameMaster.rating }} years</p>
+                <p><strong>Average Rating:</strong> {{ gameMaster.rating }} </p>
                 <p><strong>Games:</strong> {{ gameMaster.games }}</p>
             </div>
 
