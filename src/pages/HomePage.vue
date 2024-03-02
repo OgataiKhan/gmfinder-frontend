@@ -26,7 +26,6 @@ export default {
 @use "../scss/helpers/variables" as *;
 
 .home {
-    text-align: center;
     background-color: $light-color;
 
     h1 {
