@@ -34,26 +34,13 @@ export default {
 <template>
     <div class="promoted-masters">
         <h1>{{ msg }}</h1>
-        <!-- <div class="row">
-            <div class="col col-lg-4">
-                <div class="card">
-                    <img src="https://placehold.co/600x400" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">This is a card with supporting text below as a natural lead-in to additional
-                            content.</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
-                    </div>
-                </div>
-            </div>
-        </div> -->
+        <!-- carousel -->
         <div id="carouselExampleCaptions" class="carousel slide">
             <div class="carousel-indicators">
                 <button type="button" v-for="(slide, idx) in slides" :key="'indicator-' + idx"
                     data-bs-target="#carouselExampleCaptions" :data-bs-slide-to="idx" :class="{ active: idx === 0 }"
                     :aria-label="'Slide ' + (idx + 1)"></button>
             </div>
-
             <div class="carousel-inner">
                 <div v-for="(slide, index) in slides" :key="index" class="carousel-item" :class="{ active: index === 0 }">
                     <img :src="slide.img" class="d-block w-100" :alt="slide.label">
@@ -63,6 +50,7 @@ export default {
                     </div>
                 </div>
             </div>
+            <!-- carousel prev & next button -->
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
                 data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
