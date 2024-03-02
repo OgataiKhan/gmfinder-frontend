@@ -38,7 +38,7 @@ export default {
 </script>
 
 <template>
-    <div class="reviews col-6">
+    <div class="reviews col col-lg-6">
         <h1>{{ msg }}</h1>
         <ul class="review-list">
             <li v-for="review in reviews" :key="review.id">
