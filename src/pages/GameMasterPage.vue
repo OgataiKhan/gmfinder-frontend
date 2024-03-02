@@ -47,11 +47,12 @@ export default {
             <form @submit.prevent="sendMessage">
                 <div class="mb-3">
                     <label for="userEmailAddress" class="form-label">Email address</label>
-                    <input type="email" class="form-control" id="userEmailAddress" placeholder="Enter your email address">
+                    <input type="email" class="form-control" id="userEmailAddress" placeholder="Enter your email address"
+                        v-model="contactForm.name">
                 </div>
                 <div class="mb-3">
                     <label for="msgText" class="form-label">Your message</label>
-                    <textarea class="form-control" id="msgText" rows="3"></textarea>
+                    <textarea class="form-control" id="msgText" rows="3" v-model="contactForm.message"></textarea>
                 </div>
 
                 <button type="submit" class="btn btn-primary">Send Message</button>
