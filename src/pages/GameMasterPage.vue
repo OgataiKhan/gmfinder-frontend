@@ -55,7 +55,7 @@ export default {
                     <textarea class="form-control" id="msgText" rows="3" v-model="contactForm.message"></textarea>
                 </div>
 
-                <button type="submit" class="btn btn-primary">Send Message</button>
+                <button type="submit">Send Message</button>
             </form>
         </div>
     </div>
@@ -73,10 +73,6 @@ export default {
     h1 {
         color: $primary-color;
         margin-top: 100px;
-    }
-
-    .btn-primary {
-        @include primary-button;
     }
 }
 </style>

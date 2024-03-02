@@ -20,6 +20,12 @@ DEBUG
   min-height: 100vh;
 }
 
-// .router-view {
-//   flex-grow: 1; /* Allows router-view to take up available space */
-// }
+/* 
+********
+BUTTONS
+********
+*/
+
+button {
+  @include mixins.primary-button;
+}
