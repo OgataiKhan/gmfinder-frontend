@@ -85,7 +85,6 @@ header {
 /* navbar */
 .navbar-link ul {
   list-style: none;
-  margin-top: 10px;
   padding-left: 0;
 }
 </style>
