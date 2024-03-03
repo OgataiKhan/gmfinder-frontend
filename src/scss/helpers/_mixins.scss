@@ -2,7 +2,7 @@
 
 // button mixins
 
-// Primary button mixin, accepts two parameters: background color and text color; both default to the primary and light color, respectively
+// Primary button mixin, accepts three parameters: background color, text color, & hover color; both default to the primary and light color, respectively
 @mixin primary-button(
   $bg-color: $light-color,
   $color: $primary-color,
