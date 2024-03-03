@@ -41,7 +41,7 @@ export default {
 
         <!-- col di destra -->
         <div class="col-6">
-          <div class="d-flex align-items-center">
+          <div class="d-flex align-items-center ps-5 ms-5">
             <!-- newsletter e button -->
             <form class="d-flex justify-content-center gap-3">
               <div>
@@ -50,7 +50,7 @@ export default {
                 >
                 <input
                   type="email"
-                  class="form-control bg-warning"
+                  class="form-control bg-warning me-5"
                   id="exampleFormControlInput1"
                   placeholder="email address"
                 />
@@ -65,7 +65,7 @@ export default {
           </div>
           <!-- icons -->
           <div class="mt-3">
-            <ul class="d-flex gap-3">
+            <ul class="d-flex gap-3 ps-5 ms-5">
               <li><a href="#">icons</a></li>
               <li><a href="#">icons</a></li>
               <li><a href="#">icons</a></li>
@@ -89,6 +89,11 @@ a {
 }
 
 button {
+  background-color: $contrast-color;
+  color: black;
+}
+
+button:hover {
   background-color: $contrast-color;
 }
 
