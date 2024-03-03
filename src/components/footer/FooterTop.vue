@@ -40,8 +40,8 @@ export default {
         <!-- /col di sinistra -->
 
         <!-- col di destra -->
-        <div class="col-6">
-          <div class="d-flex align-items-center ps-5 ms-5">
+        <div class="col-6 ps-5">
+          <div class="d-flex align-items-center">
             <!-- newsletter e button -->
             <form class="d-flex justify-content-center gap-3">
               <div>
@@ -65,7 +65,7 @@ export default {
           </div>
           <!-- icons -->
           <div class="mt-3">
-            <ul class="d-flex gap-3 ps-5 ms-5">
+            <ul class="d-flex gap-3">
               <li><a href="#">icons</a></li>
               <li><a href="#">icons</a></li>
               <li><a href="#">icons</a></li>
