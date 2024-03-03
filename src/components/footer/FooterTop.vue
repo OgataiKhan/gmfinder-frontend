@@ -83,23 +83,16 @@ export default {
 
 <style scoped lang="scss">
 @use '../../scss/helpers/variables' as *;
-footer {
-  background-color: $primary-color;
-  padding: 20px 0;
-  width: 100%;
-  color: $light-color;
+a {
+  text-decoration: none;
+  color: white;
+}
 
-  a {
-    text-decoration: none;
-    color: white;
-  }
+button {
+  background-color: $contrast-color;
+}
 
-  button {
-    background-color: $contrast-color;
-  }
-
-  hr {
-    border: 1px solid white;
-  }
+hr {
+  border: 1px solid white;
 }
 </style>
