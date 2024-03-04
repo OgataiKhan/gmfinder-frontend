@@ -56,9 +56,7 @@ export default {
                 />
               </div>
               <div class="mt-4">
-                <button type="submit" class="btn text-uppercase mt-2">
-                  subscribe
-                </button>
+                <button type="submit" class="btn mt-2">Subscribe</button>
               </div>
             </form>
             <!-- /newsletter e button -->
@@ -98,11 +96,17 @@ a:hover {
 
 button {
   background-color: $contrast-color;
-  color: black;
+  color: var(--light-color);
+  border: 1px solid $contrast-color;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
 }
 
 button:hover {
-  background-color: $contrast-color;
+  background-color: $light-color;
+  color: $contrast-color;
+  border-color: $contrast-color;
 }
 
 hr {

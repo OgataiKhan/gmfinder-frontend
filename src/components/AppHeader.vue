@@ -45,7 +45,8 @@ export default {
           <li>
             <router-link
               :to="{ name: 'advanced-search' }"
-              class="btn bg-light px-2 py-1 rounded"
+              id="button"
+              class="btn"
               ><strong>Search</strong></router-link
             >
           </li>
@@ -87,5 +88,22 @@ header {
 
 .link:hover {
   color: $contrast-color;
+}
+
+#button {
+  background-color: $light-color;
+  color: $primary-color;
+  border: 1px solid $light-color;
+  padding: 5px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  font-weight: bold;
+}
+
+#button:hover {
+  background-color: $contrast-color;
+  color: $light-color;
+  border-color: $contrast-color;
 }
 </style>

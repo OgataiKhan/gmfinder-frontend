@@ -13,9 +13,7 @@ export default {
       />
     </div>
     <div>
-      <button type="reset" class="btn btn-primary text-uppercase">
-        back to top
-      </button>
+      <button type="reset" class="btn">Back to Top</button>
     </div>
   </div>
 </template>
@@ -33,11 +31,16 @@ export default {
 
 button {
   background-color: $contrast-color;
-  border: none;
-  color: black;
+  color: var(--light-color);
+  border: 1px solid $contrast-color;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
 }
 
 button:hover {
-  background-color: $contrast-color;
+  background-color: $light-color;
+  color: $contrast-color;
+  border-color: $contrast-color;
 }
 </style>
