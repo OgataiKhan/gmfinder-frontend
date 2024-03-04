@@ -14,25 +14,25 @@ export default {
           <div class="col-4">
             <h4 class="text-uppercase mb-3">About</h4>
             <ul>
-              <li><a href="#">About Us</a></li>
-              <li><a href="#">Contact Us</a></li>
-              <li><a href="#">FAQs</a></li>
+              <li><a href="#" class="link">About Us</a></li>
+              <li><a href="#" class="link">Contact Us</a></li>
+              <li><a href="#" class="link">FAQs</a></li>
             </ul>
           </div>
           <div class="col-4">
             <h4 class="text-uppercase mb-3">Community</h4>
             <ul>
-              <li><a href="#">Events</a></li>
-              <li><a href="#">Forums</a></li>
-              <li><a href="#">Guides</a></li>
+              <li><a href="#" class="link">Events</a></li>
+              <li><a href="#" class="link">Forums</a></li>
+              <li><a href="#" class="link">Guides</a></li>
             </ul>
           </div>
           <div class="col-4">
             <h4 class="text-uppercase mb-3">Legal</h4>
             <ul>
-              <li><a href="#">Terme of Service</a></li>
-              <li><a href="#">Privacy Policy</a></li>
-              <li><a href="#">Accessibility</a></li>
+              <li><a href="#" class="link">Terme of Service</a></li>
+              <li><a href="#" class="link">Privacy Policy</a></li>
+              <li><a href="#" class="link">Accessibility</a></li>
             </ul>
           </div>
           <!-- /link -->
@@ -50,7 +50,7 @@ export default {
                 >
                 <input
                   type="email"
-                  class="form-control bg-warning me-5"
+                  class="form-control email me-5"
                   id="exampleFormControlInput1"
                   placeholder="email address"
                 />
@@ -66,10 +66,10 @@ export default {
           <!-- icons -->
           <div class="mt-3">
             <ul class="d-flex gap-3">
-              <li><a href="#">icons</a></li>
-              <li><a href="#">icons</a></li>
-              <li><a href="#">icons</a></li>
-              <li><a href="#">icons</a></li>
+              <li><a href="#" class="link">icons</a></li>
+              <li><a href="#" class="link">icons</a></li>
+              <li><a href="#" class="link">icons</a></li>
+              <li><a href="#" class="link">icons</a></li>
             </ul>
           </div>
           <!-- /icons -->
@@ -86,6 +86,14 @@ export default {
 a {
   text-decoration: none;
   color: white;
+}
+
+a:hover {
+  color: $contrast-color;
+}
+
+.email {
+  background-color: $light-color;
 }
 
 button {

@@ -23,30 +23,22 @@ export default {
         <ul class="d-flex align-items-center gap-3">
           <!-- link navbar -->
           <li>
-            <router-link
-              :to="{ name: 'home' }"
-              class="text-decoration-none link text-white"
+            <router-link :to="{ name: 'home' }" class="link"
               ><strong>Home</strong></router-link
             >
           </li>
           <li>
-            <router-link
-              :to="{ name: 'game-master' }"
-              class="text-decoration-none link text-white"
+            <router-link :to="{ name: 'game-master' }" class="link"
               ><strong>Game Master</strong></router-link
             >
           </li>
           <li>
-            <router-link
-              :to="{ name: 'message-success' }"
-              class="text-decoration-none link text-white"
+            <router-link :to="{ name: 'message-success' }" class="link"
               ><strong>Message</strong></router-link
             >
           </li>
           <li>
-            <router-link
-              :to="{ name: 'error' }"
-              class="text-decoration-none link text-white"
+            <router-link :to="{ name: 'error' }" class="link"
               ><strong>Error</strong></router-link
             >
           </li>
@@ -86,5 +78,14 @@ header {
 .navbar-link ul {
   list-style: none;
   padding-left: 0;
+}
+
+.link {
+  text-decoration: none;
+  color: white;
+}
+
+.link:hover {
+  color: $contrast-color;
 }
 </style>
