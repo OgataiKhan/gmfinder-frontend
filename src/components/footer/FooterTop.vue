@@ -63,7 +63,7 @@ export default {
           </div>
           <!-- icons -->
           <div class="mt-3">
-            <ul class="d-flex gap-3 justify-content-center">
+            <ul class="d-flex gap-3 justify-content-end">
               <li><a href="#" class="link">icons</a></li>
               <li><a href="#" class="link">icons</a></li>
               <li><a href="#" class="link">icons</a></li>
