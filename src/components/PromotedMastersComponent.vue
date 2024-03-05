@@ -1,4 +1,5 @@
 <script>
+import 'bootstrap-icons/font/bootstrap-icons.css';
 export default {
     name: 'PromotedMastersComponent',
     data() {
@@ -156,8 +157,12 @@ export default {
                 </div>
             </div>
             <div class="navigation-controls d-flex justify-content-between">
-                <button @click="prev">Prev</button>
-                <button @click="next">Next</button>
+                <button @click="prev">
+                    <i class="bi bi-chevron-left"></i>
+                </button>
+                <button @click="next">
+                    <i class="bi bi-chevron-right"></i>
+                </button>
             </div>
         </div>
     </div>
@@ -184,13 +189,22 @@ export default {
 
 .navigation-controls {
     position: absolute;
-    top: 50%;
+    top: 45%;
     left: 0;
     width: 100%;
 
     button {
-        position: relative;
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+    }
+
+    .bi {
+        cursor: pointer;
         z-index: 99;
+        color: $contrast-color;
+        font-size: 3.5rem;
+        font-weight: bold;
     }
 }
 </style>
