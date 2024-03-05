@@ -1,5 +1,5 @@
 //import helpers scss
-@use "./helpers/variables";
+@use "./helpers/variables" as *;
 @use "./helpers/mixins";
 @use "./helpers/functions";
 //import base scss
@@ -40,4 +40,19 @@ BUTTONS
 
 button {
   @include mixins.primary-button;
+}
+
+/* 
+********
+INPUTS
+********
+*/
+
+.my-select:focus {
+  border-color: $contrast-color;
+  box-shadow: 0 0 0 0.25rem rgba(230, 122, 0, 0.25);
+}
+
+option {
+  color: $primary-color;
 }
