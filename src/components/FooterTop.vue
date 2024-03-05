@@ -6,7 +6,7 @@ export default {
 
 <template>
   <footer>
-    <div class="container-fluid">
+    <div class="container">
       <div class="row align-items-center">
         <!-- col di sinistra -->
         <div class="col-6 d-flex">
@@ -49,7 +49,12 @@ export default {
               </div>
               <div class="col-auto">
                 <label for="inputEmail" class="visually-hidden">Password</label>
-                <input type="email" class="form-control" id="inputEmail" placeholder="Your Email Address" />
+                <input
+                  type="email"
+                  class="form-control"
+                  id="inputEmail"
+                  placeholder="Your Email Address"
+                />
               </div>
               <div class="col-auto">
                 <button type="submit" class="btn btn-orange mb-3">

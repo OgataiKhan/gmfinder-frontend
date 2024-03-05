@@ -5,11 +5,12 @@ export default {
 </script>
 
 <template>
-  <div
-    class="container-fluid d-flex justify-content-between align-items-center"
-  >
+  <div class="container d-flex justify-content-between align-items-center">
     <div class="logo">
-      <img src="/img/dungeons_and_dragons_logo_by_floodgrunt-d6my4z8.png" alt="" />
+      <img
+        src="/img/dungeons_and_dragons_logo_by_floodgrunt-d6my4z8.png"
+        alt=""
+      />
     </div>
     <div>
       <button type="reset" class="btn"><strong>Back to Top</strong></button>

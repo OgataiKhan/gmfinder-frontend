@@ -6,37 +6,59 @@ export default {
 
 <template>
   <header>
-    <div class="container-fluid d-flex justify-content-between align-items-center py-2">
+    <div
+      class="container d-flex justify-content-between align-items-center py-2"
+    >
       <!-- navbar -->
       <nav class="navbar navbar-expand-md text-center flex-grow-1">
         <div class="container-fluid">
           <!-- logo -->
           <div class="logo">
             <router-link :to="{ name: 'home' }" class="text-decoration-none">
-              <img src="/img/dungeons_and_dragons_logo_by_floodgrunt-d6my4z8.png" alt="" /></router-link>
+              <img
+                src="/img/dungeons_and_dragons_logo_by_floodgrunt-d6my4z8.png"
+                alt=""
+            /></router-link>
           </div>
           <!-- /logo -->
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" id="header-button"
-            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-            aria-label="Toggle navigation">
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            id="header-button"
+            data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto mb-2 mb-md-0 gap-3">
               <li class="nav-item">
-                <router-link :to="{ name: 'home' }" class="nav-link">Home</router-link>
+                <router-link :to="{ name: 'home' }" class="nav-link"
+                  >Home</router-link
+                >
               </li>
               <li class="nav-item">
-                <router-link :to="{ name: 'home' }" class="nav-link">Games</router-link>
+                <router-link :to="{ name: 'home' }" class="nav-link"
+                  >Games</router-link
+                >
               </li>
               <li class="nav-item">
-                <router-link :to="{ name: 'home' }" class="nav-link">FAQ</router-link>
+                <router-link :to="{ name: 'home' }" class="nav-link"
+                  >FAQ</router-link
+                >
               </li>
               <li class="nav-item">
-                <router-link :to="{ name: 'home' }" class="nav-link">Contact</router-link>
+                <router-link :to="{ name: 'home' }" class="nav-link"
+                  >Contact</router-link
+                >
               </li>
               <li class="nav-item">
-                <router-link :to="{ name: 'advanced-search' }" class="nav-link">Search</router-link>
+                <router-link :to="{ name: 'advanced-search' }" class="nav-link"
+                  >Search</router-link
+                >
               </li>
             </ul>
           </div>
