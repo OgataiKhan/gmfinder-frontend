@@ -14,15 +14,17 @@ export default {
 </script>
 
 <template>
-    <div class="jumbotron">
+    <div class="jumbotron d-flex align-items-center">
         <JumbotronSearchComponent />
     </div>
 </template>
 
 <style scoped lang="scss">
 .jumbotron {
-    background-color: #6e99c4;
     padding: 1rem 1rem;
-    height: 300px;
+    height: 350px;
+    //background image
+    background-image: url('../assets/img/jumbotron-image.jpeg');
+    background-size: cover;
 }
 </style>
