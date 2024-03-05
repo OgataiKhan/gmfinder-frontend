@@ -25,5 +25,7 @@ footer {
   padding: 10px 0;
   width: 100%;
   color: $light-color;
+  margin-top: auto;
+  height: 260px;
 }
 </style>
