@@ -6,7 +6,7 @@
 @mixin primary-button(
   $bg-color: $light-color,
   $color: $primary-color,
-  $hover-color: $secondary-color
+  $hover-color: $contrast-color
 ) {
   background-color: $bg-color;
   color: $color;

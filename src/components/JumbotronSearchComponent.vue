@@ -56,8 +56,10 @@ export default {
 @use "../scss/helpers/variables" as *;
 
 .jumbotron-search {
-    background-color: $light-color;
+    color: $primary-color;
+    background-color: rgba(255, 255, 255, 0.6);
     padding: 2rem 1rem;
+    border-radius: 10px;
 
     select {
         margin-top: 20px;
