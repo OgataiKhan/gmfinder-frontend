@@ -6,7 +6,7 @@ export default {
 
 <template>
   <footer>
-    <div class="container">
+    <div class="container-fluid">
       <div class="row align-items-center">
         <!-- col di sinistra -->
         <div class="col-6 d-flex">
