@@ -3,7 +3,14 @@ export default {
     name: 'JumbotronSearchComponent',
     data() {
         return {
-            msg: 'Find Your Guide to Adventure!'
+            msg: 'Find Your Guide to Adventure!',
+            selectedGame: '',
+            games: [
+                { id: 1, name: 'Game 1' },
+                { id: 2, name: 'Game 2' },
+                { id: 3, name: 'Game 3' }
+            ]
+
         }
     }
 };
@@ -13,18 +20,20 @@ export default {
     <div class="jumbotron-search col">
         <h3 class="text-center">{{ msg }}</h3>
         <!-- select element -->
-        <select class="form-select" aria-label="Default select example">
-            <option selected>Open this select menu</option>
-            <option value="1">One</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
-        </select>
+        <form action="">
+            <select class="form-select" aria-label="Default select example" v-model="selectedGame">
+                <option disabled value="">Select a Game System</option>
+                <option v-for="game in games" :key="game.id" :value="game.id">{{ game.name }}</option>
+            </select>
+        </form>
     </div>
 </template>
 
 <style scoped lang="scss">
+@use "../scss/helpers/variables" as *;
+
 .jumbotron-search {
-    background-color: #0f59a3;
+    background-color: $light-color;
     padding: 2rem 1rem;
 
     select {
