@@ -7,22 +7,22 @@ export default {
 <template>
   <header>
     <div class="container-fluid d-flex justify-content-between align-items-center py-2">
-      <!-- logo -->
-      <!-- <div class="logo">
-        <router-link :to="{ name: 'home' }" class="text-decoration-none">
-          <img src="/img/dungeons_and_dragons_logo_by_floodgrunt-d6my4z8.png" alt="" /></router-link>
-      </div> -->
-      <!-- /logo -->
       <!-- navbar -->
-      <nav class="navbar navbar-expand-md flex-grow-1 text-center">
+      <nav class="navbar navbar-expand-md text-center flex-grow-1">
         <div class="container-fluid">
+          <!-- logo -->
+          <div class="logo">
+            <router-link :to="{ name: 'home' }" class="text-decoration-none">
+              <img src="/img/dungeons_and_dragons_logo_by_floodgrunt-d6my4z8.png" alt="" /></router-link>
+          </div>
+          <!-- /logo -->
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" id="header-button"
             data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
             aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0 gap-3">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0 gap-3">
               <li class="nav-item">
                 <router-link :to="{ name: 'home' }" class="nav-link">Home</router-link>
               </li>
