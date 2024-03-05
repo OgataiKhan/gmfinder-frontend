@@ -9,7 +9,8 @@ export default {
                 { id: 1, name: 'Game 1' },
                 { id: 2, name: 'Game 2' },
                 { id: 3, name: 'Game 3' }
-            ]
+            ],
+            validationError: false
 
         }
     },
@@ -18,8 +19,15 @@ export default {
     methods: {
         searchGm() {
             console.log('searching for game master');
-            //redirects to Advanced Search page with selected game
-            this.$router.push({ name: 'advanced-search', params: { game: this.selectedGame } });
+            if (this.selectedGame) {
+                //set validation error to false
+                this.validationError = false;
+                //redirect to advanced search page
+                this.$router.push({ name: 'advanced-search', params: { game: this.selectedGame } });;
+            } else {
+                this.validationError = true;
+            }
+
         }
     }
 };
@@ -34,8 +42,12 @@ export default {
                 <option disabled value="">Select a Game System</option>
                 <option v-for="game in games" :key="game.id" :value="game.id">{{ game.name }}</option>
             </select>
+            <!-- Validation Message -->
+            <div v-if="validationError" class="me-auto validation-alert">
+                Please select a game system
+            </div>
             <!-- submit button -->
-            <button type="submit" class="mx-auto ms-md-3 mt-2 mt-md-0">Search</button>
+            <button type="submit" class="mx-auto ms-md-3 mt-4 mt-md-0">Search</button>
         </form>
     </div>
 </template>
@@ -50,5 +62,11 @@ export default {
     select {
         margin-top: 20px;
     }
+}
+
+.validation-alert {
+    color: $danger-color;
+    font-size: 0.6rem;
+    margin: 0;
 }
 </style>
