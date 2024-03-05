@@ -64,23 +64,14 @@ export default {
         <div
           class="col-6 d-flex gap-3 align-items-center justify-content-center py-3"
         >
-          <div class="form-check form-switch">
+          <div class="form-check form-check-inline">
             <input
               class="form-check-input"
               type="checkbox"
-              id="flexSwitchCheckDefault"
+              id="inlineCheckbox1"
+              value="option1"
             />
-            <label class="form-check-label" for="flexSwitchCheckDefault"
-              >Dungeons and Dragons</label
-            >
-          </div>
-          <div class="form-check form-switch">
-            <input
-              class="form-check-input"
-              type="checkbox"
-              id="flexSwitchCheckDefault"
-            />
-            <label class="form-check-label" for="flexSwitchCheckDefault"
+            <label class="form-check-label" for="inlineCheckbox1"
               >Dungeons and Dragons</label
             >
           </div>
