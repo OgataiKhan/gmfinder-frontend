@@ -1,6 +1,6 @@
 <script>
-import FooterTop from './footer/FooterTop.vue';
-import FooterBottom from './footer/FooterBottom.vue';
+import FooterTop from './FooterTop.vue';
+import FooterBottom from './FooterBottom.vue';
 
 export default {
   name: 'AppFooter',
@@ -20,6 +20,7 @@ export default {
 
 <style scoped lang="scss">
 @use '../scss/helpers/variables' as *;
+
 footer {
   background-color: $primary-color;
   padding: 10px 0;

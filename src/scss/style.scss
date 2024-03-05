@@ -1,9 +1,9 @@
 //import helpers scss
 @use "./helpers/variables" as *;
-@use "./helpers/mixins";
-@use "./helpers/functions";
+@use "./helpers/mixins" as *;
+@use "./helpers/functions" as *;
 //import base scss
-@use "./base/typography";
+@use "./base/typography" as *;
 
 // Import Bootstrap's CSS
 @import "bootstrap/scss/bootstrap";
@@ -39,7 +39,7 @@ BUTTONS
 */
 
 button {
-  @include mixins.primary-button;
+  @include primary-button;
 }
 
 /* 

@@ -49,12 +49,7 @@ export default {
               </div>
               <div class="col-auto">
                 <label for="inputEmail" class="visually-hidden">Password</label>
-                <input
-                  type="email"
-                  class="form-control"
-                  id="inputEmail"
-                  placeholder="Your Email Address"
-                />
+                <input type="email" class="form-control" id="inputEmail" placeholder="Your Email Address" />
               </div>
               <div class="col-auto">
                 <button type="submit" class="btn btn-orange mb-3">
@@ -83,7 +78,8 @@ export default {
 </template>
 
 <style scoped lang="scss">
-@use '../../scss/helpers/variables' as *;
+@use '../scss/helpers/variables' as *;
+
 a {
   text-decoration: none;
   color: white;

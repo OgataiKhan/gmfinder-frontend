@@ -2,6 +2,7 @@
 //import components
 import JumbotronComponent from '../components/JumbotronComponent.vue';
 import PromotedMastersComponent from '../components/PromotedMastersComponent.vue';
+import SectionInfoComponent from '../components/SectionInfoComponent.vue';
 export default {
     name: 'HomePage',
     data() {
@@ -12,6 +13,7 @@ export default {
     components: {
         JumbotronComponent,
         PromotedMastersComponent,
+        SectionInfoComponent
     }
 };
 
@@ -21,6 +23,7 @@ export default {
     <div class="home flex-grow-1">
         <JumbotronComponent />
         <PromotedMastersComponent />
+        <SectionInfoComponent />
     </div>
 </template>
 
