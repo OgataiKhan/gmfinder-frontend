@@ -7,7 +7,7 @@ export default {
 <template>
   <header>
     <div
-      class="container d-flex justify-content-between align-items-center py-2"
+      class="container-fluid d-flex justify-content-between align-items-center py-2"
     >
       <!-- logo -->
       <div class="logo">

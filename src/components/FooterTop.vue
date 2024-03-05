@@ -6,7 +6,7 @@ export default {
 
 <template>
   <footer>
-    <div class="container">
+    <div class="container-fluid">
       <div class="row align-items-center">
         <!-- col di sinistra -->
         <div class="col-6 d-flex">
@@ -53,7 +53,7 @@ export default {
               </div>
               <div class="col-auto">
                 <button type="submit" class="btn btn-orange mb-3">
-                  Subscribe
+                  <strong>Subscribe</strong>
                 </button>
               </div>
             </form>
@@ -95,7 +95,7 @@ a:hover {
 
 button {
   background-color: $contrast-color;
-  color: var(--light-color);
+  color: $light-color;
   border: 1px solid $contrast-color;
   border-radius: 5px;
   cursor: pointer;
