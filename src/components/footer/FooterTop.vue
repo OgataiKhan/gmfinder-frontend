@@ -58,7 +58,7 @@ export default {
               </div>
               <div class="col-auto">
                 <button type="submit" class="btn btn-orange mb-3">
-                  Subscribe
+                  <strong>Subscribe</strong>
                 </button>
               </div>
             </form>
@@ -99,7 +99,7 @@ a:hover {
 
 button {
   background-color: $contrast-color;
-  color: var(--light-color);
+  color: $light-color;
   border: 1px solid $contrast-color;
   border-radius: 5px;
   cursor: pointer;

@@ -13,7 +13,7 @@ export default {
       />
     </div>
     <div>
-      <button type="reset" class="btn">Back to Top</button>
+      <button type="reset" class="btn"><strong>Back to Top</strong></button>
     </div>
   </div>
 </template>
@@ -31,7 +31,7 @@ export default {
 
 button {
   background-color: $contrast-color;
-  color: var(--light-color);
+  color: $light-color;
   border: 1px solid $contrast-color;
   border-radius: 5px;
   cursor: pointer;
