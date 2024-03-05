@@ -42,7 +42,7 @@ export default {
                 </div>
                 <div class="col-md-12">
                     <div class="card">
-                        <div class="card-header">
+                        <div class="card-header feed-header">
                             <h5>Adventurer's Dispatch</h5>
                         </div>
                         <ul class="list-group list-group-flush">
@@ -94,5 +94,23 @@ export default {
             border-color: $contrast-color !important;
         }
     }
+
+    li {
+
+        background-color: $light-color-card;
+
+        button {
+            @include primary-button($contrast-color, $light-color, $light-color);
+
+            &:hover {
+                border-color: $contrast-color !important;
+            }
+        }
+    }
+}
+
+.feed-header {
+    background-color: $primary-color;
+    color: $light-color;
 }
 </style>
