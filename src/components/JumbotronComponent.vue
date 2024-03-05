@@ -4,7 +4,7 @@ export default {
     name: 'JumbotronComponent',
     data() {
         return {
-            msg: 'This is a jumbotron component!'
+            msg: 'Find Your Guide to Adventure!'
         }
     },
     components: {
@@ -15,7 +15,6 @@ export default {
 
 <template>
     <div class="jumbotron">
-        <h1>{{ msg }}</h1>
         <JumbotronSearchComponent />
     </div>
 </template>
@@ -23,7 +22,7 @@ export default {
 <style scoped lang="scss">
 .jumbotron {
     background-color: #6e99c4;
-    padding: 2rem 1rem;
+    padding: 1rem 1rem;
     height: 300px;
 }
 </style>

@@ -19,7 +19,6 @@ export default {
 
 <template>
     <div class="home flex-grow-1">
-        <h1>{{ msg }}</h1>
         <JumbotronComponent />
         <PromotedMastersComponent />
     </div>

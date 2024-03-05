@@ -3,7 +3,7 @@ export default {
     name: 'JumbotronSearchComponent',
     data() {
         return {
-            msg: 'This is a jumbotron search component!'
+            msg: 'Find Your Guide to Adventure!'
         }
     }
 };
@@ -11,7 +11,7 @@ export default {
 
 <template>
     <div class="jumbotron-search col">
-        <h1>{{ msg }}</h1>
+        <h3 class="text-center">{{ msg }}</h3>
         <!-- select element -->
         <select class="form-select" aria-label="Default select example">
             <option selected>Open this select menu</option>
