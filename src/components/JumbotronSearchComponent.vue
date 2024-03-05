@@ -35,7 +35,7 @@ export default {
                 <option v-for="game in games" :key="game.id" :value="game.id">{{ game.name }}</option>
             </select>
             <!-- submit button -->
-            <button type="submit" class="mx-auto ms-md-3">Search</button>
+            <button type="submit" class="mx-auto ms-md-3 mt-2 mt-md-0">Search</button>
         </form>
     </div>
 </template>
