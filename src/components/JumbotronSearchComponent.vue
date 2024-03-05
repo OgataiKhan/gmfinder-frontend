@@ -34,7 +34,7 @@ export default {
 </script>
 
 <template>
-    <div class="jumbotron-search col">
+    <div class="jumbotron-search col col-md-8 col-lg-6 mx-auto">
         <h3 class="text-center mb-3">{{ msg }}</h3>
         <!-- select element -->
         <form @submit.prevent="searchGm" class="d-flex flex-column flex-md-row align-items-center">
