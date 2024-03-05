@@ -10,42 +10,36 @@ export default {
                     id: 1,
                     name: 'Master 1',
                     description: 'This is the first master',
-                    picture: 'https://via.placeholder.com/150',
                     // Add more master details here
                 },
                 {
                     id: 2,
                     name: 'Master 2',
                     description: 'This is the second master',
-                    picture: 'https://via.placeholder.com/150',
                     // Add more master details here
                 },
                 {
                     id: 3,
                     name: 'Master 3',
                     description: 'This is the third master',
-                    picture: 'https://via.placeholder.com/150',
                     // Add more master details here
                 },
                 {
                     id: 4,
                     name: 'Master 4',
                     description: 'This is the fourth master',
-                    picture: 'https://via.placeholder.com/150',
                     // Add more master details here
                 },
                 {
                     id: 5,
                     name: 'Master 5',
                     description: 'This is the fifth master',
-                    picture: 'https://via.placeholder.com/150',
                     // Add more master details here
                 },
                 {
                     id: 6,
                     name: 'Master 6',
                     description: 'This is the sixth master',
-                    picture: 'https://via.placeholder.com/150',
                     // Add more master details here
                 },
                 {
@@ -143,17 +137,18 @@ export default {
 </script>
 
 <template>
-    <div class="promoted-masters container">
-        <div class="title">
-            <h3 class="text-center py-3">{{ title }}</h3>
+    <div class="promoted-masters">
+        <div class="title p-3">
+            <h3 class="text-center">{{ title }}</h3>
         </div>
-        <div>
+        <div class="masters-container">
             <div class="masters-grid container">
                 <div class="row g-3">
-                    <div class="col-lg-3" v-for="master in visibleMasters" :key="master.id">
+                    <div class="col-md-6 col-lg-3" v-for="master in visibleMasters" :key="master.id">
                         <!-- Display master info here -->
-                        <div class="card p-3">
-                            <h3>{{ master.name }}</h3>
+                        <div class="card p-3 master-card">
+                            <img src="../assets/img/generic-avatar.webp" alt="Master Image" class="img-fluid">
+                            <h3 class="text-center mt-1">{{ master.name }}</h3>
                             <p>{{ master.description }}</p>
                         </div>
                         <!-- Add more master details here -->
@@ -168,4 +163,34 @@ export default {
     </div>
 </template>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+@use "../scss/helpers/variables" as *;
+
+.title {
+    background-color: $primary-color;
+    color: $light-color;
+}
+
+.masters-container {
+    background-color: $primary-color;
+    position: relative;
+}
+
+.master-card {
+    background-color: $light-color;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.navigation-controls {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+
+    button {
+        position: relative;
+        z-index: 99;
+    }
+}
+</style>
