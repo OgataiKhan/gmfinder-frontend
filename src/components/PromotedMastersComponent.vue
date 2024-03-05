@@ -67,8 +67,8 @@ export default {
                         <!-- Display master info here -->
                         <div class="card p-3 master-card">
                             <img src="../assets/img/generic-avatar.webp" alt="Master Image" class="img-fluid">
-                            <h3 class="text-center mt-1">{{ master.name }}</h3>
-                            <p>{{ master.description }}</p>
+                            <h3 class="text-center mt-1">Great Wizard</h3>
+                            <p>Description of my skills</p>
                         </div>
                         <!-- Add more master details here -->
                     </div>

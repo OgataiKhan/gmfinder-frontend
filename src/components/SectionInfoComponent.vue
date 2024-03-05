@@ -12,7 +12,7 @@ export default {
 </script>
 
 <template>
-    <section class="section-info">
+    <section class="section-info pb-3">
         <div class="title p-3">
             <h3 class="text-center">{{ title }} </h3>
         </div>
@@ -31,17 +31,25 @@ export default {
                 </div>
                 <div class="col-md-6">
                     <div class="card">
+                        <img src="../assets/img/startgroup.webp" alt="Start your group image" class="card-img-top">
                         <div class="card-body">
-                            <h2 class="card-title">{{ title }}</h2>
-                            <p class="card-text">{{ description }}</p>
-                            <a href="#" class="btn btn-primary">Find a Master</a>
+                            <h5 class="card-title">Start Your Group</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk
+                                of the card's content.</p>
+                            <a href="#" class="btn">Find a Master</a>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-12">
-                    <div class="twitter-featured">
-                        <h3>Featured on Twitter</h3>
-                        <p>Check out our latest tweets and follow us on Twitter</p>
+                    <div class="card">
+                        <div class="card-header">
+                            Twitter Feed
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">An item</li>
+                            <li class="list-group-item">A second item</li>
+                            <li class="list-group-item">A third item</li>
+                        </ul>
                     </div>
                 </div>
             </div>
