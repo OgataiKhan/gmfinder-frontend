@@ -43,12 +43,35 @@ export default {
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header">
-                            Twitter Feed
+                            <h5>Adventurer's Dispatch</h5>
                         </div>
                         <ul class="list-group list-group-flush">
-                            <li class="list-group-item">An item</li>
-                            <li class="list-group-item">A second item</li>
-                            <li class="list-group-item">A third item</li>
+                            <li class="list-group-item">
+                                <h5 class="list-group-item-heading">🐉 The Great Dragon of the North</h5>
+                                <p class="list-group-item-text">Rumors swirl of a dragon's roar heard over the northern
+                                    mountains. Join the quest to uncover its lair and secure ancient treasures.</p>
+                                <button class="btn-orange">Join the Quest</button>
+                            </li>
+                            <li class="list-group-item">
+                                <h5 class="list-group-item-heading">🗺️ Newly Discovered Ruins</h5>
+                                <p class="list-group-item-text">Ancient ruins have been uncovered, promising untold
+                                    riches and perilous traps. Assemble your party and delve into the unknown.</p>
+                                <button class="btn-orange">Join the Quest</button>
+                            </li>
+                            <li class="list-group-item">
+                                <h5 class="list-group-item-heading">🎉 Festival of the Moon</h5>
+                                <p class="list-group-item-text">The annual festival is here, bringing together
+                                    adventurers from all lands. Compete in games, share tales, and celebrate under the
+                                    moonlight.</p>
+                                <button class="btn-orange">Join the Quest</button>
+                            </li>
+                            <li class="list-group-item">
+                                <h5 class="list-group-item-heading">🔮 Mysterious Artifact</h5>
+                                <p class="list-group-item-text">A powerful artifact has been found, emanating dark
+                                    energy. Scholars and mages alike seek its secrets, but danger lurks for the unwary.
+                                </p>
+                                <button class="btn-orange">Join the Quest</button>
+                            </li>
                         </ul>
                     </div>
                 </div>
