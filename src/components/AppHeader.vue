@@ -64,7 +64,6 @@ export default {
 header {
   background-color: $primary-color;
   width: 100%;
-  height: 85px;
 }
 
 /* logo */
