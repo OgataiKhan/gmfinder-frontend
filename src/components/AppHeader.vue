@@ -22,7 +22,7 @@ export default {
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav ms-auto mb-2 mb-lg-0 gap-3">
+            <ul class="navbar-nav ms-auto mb-2 mb-md-0 gap-3">
               <li class="nav-item">
                 <router-link :to="{ name: 'home' }" class="nav-link">Home</router-link>
               </li>
@@ -36,7 +36,7 @@ export default {
                 <router-link :to="{ name: 'home' }" class="nav-link">Contact</router-link>
               </li>
               <li class="nav-item">
-                <router-link :to="{ name: 'home' }" class="nav-link">Search</router-link>
+                <router-link :to="{ name: 'advanced-search' }" class="nav-link">Search</router-link>
               </li>
             </ul>
           </div>
