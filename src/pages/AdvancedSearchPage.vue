@@ -42,7 +42,9 @@ export default {
                     :src="gm.profile_img ? gm.profile_img : '/img/generic-avatar.jpg'" class="card-img-top" alt="...">
                 </div>
                 <div class="card-body">
-                  <h4 class="card-title">{{ gm.user.name }}</h4>
+                  <div class="text-center text-md-start">
+                    <h4 class="card-title">{{ gm.user.name }}</h4>
+                  </div>
                   <hr>
                   <h6>Game Systems:
                     <span v-for="(system, index) in gm.game_systems" :key="index">
@@ -73,6 +75,10 @@ export default {
 
   .card-header {
     background-color: transparent;
+
+    .card-img-top {
+      border-radius: 3%;
+    }
 
     @media (min-width: 768px) {
       .card-img-top {
