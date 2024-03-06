@@ -7,35 +7,35 @@ export default {
         {
           img: '/img/generic-avatar.jpg',
           name: 'Kevin Luca Bochenski Badellino',
-          gameSistem: 'Dungeons and Dragons',
+          gameSystem: 'Dungeons and Dragons',
           description:
             'Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga necessitatibus eos expedita soluta autem, hic, eveniet magnam qui dolorum amet et totam nobis animi ipsam fugit quaerat optio, vitae tempora',
         },
         {
           img: '/img/generic-avatar.jpg',
           name: 'Alex Chihaia',
-          gameSistem: 'Dungeons and Dragons',
+          gameSystem: 'Dungeons and Dragons',
           description:
             'Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga necessitatibus eos expedita soluta autem, hic, eveniet magnam qui dolorum amet et totam nobis animi ipsam fugit quaerat optio, vitae tempora',
         },
         {
           img: '/img/generic-avatar.jpg',
           name: 'Giacomo Rebussi',
-          gameSistem: 'Dungeons and Dragons',
+          gameSystem: 'Dungeons and Dragons',
           description:
             'Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga necessitatibus eos expedita soluta autem, hic, eveniet magnam qui dolorum amet et totam nobis animi ipsam fugit quaerat optio, vitae tempora',
         },
         {
           img: '/img/generic-avatar.jpg',
           name: 'Gaetano Panìco',
-          gameSistem: 'Dungeons and Dragons',
+          gameSystem: 'Dungeons and Dragons',
           description:
             'Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga necessitatibus eos expedita soluta autem, hic, eveniet magnam qui dolorum amet et totam nobis animi ipsam fugit quaerat optio, vitae tempora',
         },
         {
           img: 'img/generic-avatar.jpg',
           name: 'Diego Romeo',
-          gameSistem: 'Dungeons and Dragons',
+          gameSystem: 'Dungeons and Dragons',
           description:
             'Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga necessitatibus eos expedita soluta autem, hic, eveniet magnam qui dolorum amet et totam nobis animi ipsam fugit quaerat optio, vitae tempora',
         },
@@ -101,7 +101,7 @@ export default {
                 <!-- dati del array -->
                 <div class="ms-3">
                   <h4>Name: {{ li.name }}</h4>
-                  <h5><strong>Game Sistem: </strong>{{ li.gameSistem }}</h5>
+                  <h5><strong>Game System: </strong>{{ li.gameSystem }}</h5>
                   <p><strong>Description: </strong> {{ li.description }}</p>
                 </div>
                 <!-- /dati del array -->
