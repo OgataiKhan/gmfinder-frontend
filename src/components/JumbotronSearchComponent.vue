@@ -40,7 +40,6 @@ export default {
         axios.get(this.store.api.baseURL + this.store.api.apiUrls.game_systems)
             .then(response => {
                 console.log('response from game systems api call:');
-                console.log(response);
                 this.store.gameSystems = response.data.results;
                 console.log(this.store.gameSystems);
             })
@@ -58,7 +57,7 @@ export default {
         <form @submit.prevent="searchGm" class="d-flex flex-column flex-md-row align-items-center">
             <select class="form-select mt-0 my-select" aria-label="Default select example" v-model="selectedGame">
                 <option disabled value="">Select a Game System</option>
-                <option v-for="game in games" :key="game.id" :value="game.id">{{ game.name }}</option>
+                <option v-for="game in store.gameSystems" :value="store.gameSystems.id">{{ game.name }}</option>
             </select>
             <!-- Validation Message -->
             <div v-if="validationError" class="me-auto validation-alert">
