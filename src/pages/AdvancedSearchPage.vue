@@ -8,43 +8,7 @@ export default {
   name: 'AdvancedSearchPage',
   data() {
     return {
-      cardMasters: [
-        {
-          img: '/img/generic-avatar.jpg',
-          name: 'Kevin Luca Bochenski Badellino',
-          gameSistem: 'Dungeons and Dragons',
-          description:
-            'Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga necessitatibus eos expedita soluta autem, hic, eveniet magnam qui dolorum amet et totam nobis animi ipsam fugit quaerat optio, vitae tempora',
-        },
-        {
-          img: '/img/generic-avatar.jpg',
-          name: 'Alex Chihaia',
-          gameSistem: 'Dungeons and Dragons',
-          description:
-            'Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga necessitatibus eos expedita soluta autem, hic, eveniet magnam qui dolorum amet et totam nobis animi ipsam fugit quaerat optio, vitae tempora',
-        },
-        {
-          img: '/img/generic-avatar.jpg',
-          name: 'Giacomo Rebussi',
-          gameSistem: 'Dungeons and Dragons',
-          description:
-            'Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga necessitatibus eos expedita soluta autem, hic, eveniet magnam qui dolorum amet et totam nobis animi ipsam fugit quaerat optio, vitae tempora',
-        },
-        {
-          img: '/img/generic-avatar.jpg',
-          name: 'Gaetano Panìco',
-          gameSistem: 'Dungeons and Dragons',
-          description:
-            'Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga necessitatibus eos expedita soluta autem, hic, eveniet magnam qui dolorum amet et totam nobis animi ipsam fugit quaerat optio, vitae tempora',
-        },
-        {
-          img: 'img/generic-avatar.jpg',
-          name: 'Diego Romeo',
-          gameSistem: 'Dungeons and Dragons',
-          description:
-            'Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga necessitatibus eos expedita soluta autem, hic, eveniet magnam qui dolorum amet et totam nobis animi ipsam fugit quaerat optio, vitae tempora',
-        },
-      ],
+      store,
     };
   },
   components: {
@@ -63,45 +27,10 @@ export default {
           <h3 class="text-center mb-3">Advanced Search</h3>
           <SearchComponent />
         </div>
-
-        <!-- /col for select -->
-        <!-- col for checkbox -->
-        <!-- <div class="col-6 d-flex gap-3 align-items-center justify-content-center py-3">
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1" />
-            <label class="form-check-label" for="inlineCheckbox1">Dungeons and Dragons</label>
-          </div>
-        </div> -->
-        <!-- /col for checkbox -->
       </div>
       <!-- /row top -->
-
       <!-- row bottom -->
       <div class="row">
-        <!-- col per immagine e dati -->
-        <div class="col">
-          <div class="mt-4 mb-3">
-            <ul>
-              <!-- v-for sul array  -->
-              <li v-for="li in cardMasters" class="d-flex py-2 px-2">
-                <!-- immagine -->
-                <div class="container-img">
-                  <img class="img-fluid" :src="li.img" :alt="li.name" />
-                </div>
-                <!-- /immagine -->
-                <!-- dati del array -->
-                <div class="ms-3">
-                  <h4>Name: {{ li.name }}</h4>
-                  <h5><strong>Game Sistem: </strong>{{ li.gameSistem }}</h5>
-                  <p><strong>Description: </strong> {{ li.description }}</p>
-                </div>
-                <!-- /dati del array -->
-              </li>
-              <!-- /v-for sul array  -->
-            </ul>
-          </div>
-        </div>
-        <!-- /col per immagine e dati -->
       </div>
       <!-- /row bottom -->
     </div>

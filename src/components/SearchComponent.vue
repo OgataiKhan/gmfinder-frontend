@@ -13,13 +13,24 @@ export default {
     // methods
     methods: {
         searchGm() {
-            console.log('searching for game master');
             console.log('selected game:' + this.store.selectedGameSystem);
             if (this.store.selectedGameSystem) {
                 //set validation error to false
                 this.validationError = false;
-                //redirect to advanced search page
-                this.$router.push({ name: 'advanced-search', params: { game_system: this.store.selectedGameSystem } });;
+                //api call to fetch game masters with selected game system
+                axios.get(this.store.api.baseURL + this.store.api.apiUrls.game_masters, {
+                    params: { key: this.store.selectedGameSystem }
+                })
+                    .then(response => {
+                        console.log('response.data.results.data:', response);
+                        // Store game masters in store
+                        this.store.gameMastersResults = response.data.results.data;
+                        //redirect to advanced search page
+                        this.$router.push({ name: 'advanced-search' });
+                    })
+                    .catch(error => {
+                        console.log(error);
+                    })
             } else {
                 this.validationError = true;
             }
@@ -30,9 +41,7 @@ export default {
         //call api to fetch game options
         axios.get(this.store.api.baseURL + this.store.api.apiUrls.game_systems)
             .then(response => {
-                console.log('response from game systems api call:');
                 this.store.gameSystems = response.data.results;
-                console.log(this.store.gameSystems);
             })
             .catch(error => {
                 console.log(error);

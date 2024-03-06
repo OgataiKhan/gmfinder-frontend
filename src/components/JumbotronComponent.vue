@@ -22,7 +22,7 @@ export default {
 <style scoped lang="scss">
 .jumbotron {
     padding: 1rem 1rem;
-    height: 350px;
+    height: 400px;
     //background image
     background-image: url('../assets/img/jumbotron-image.jpeg');
     background-size: cover;
