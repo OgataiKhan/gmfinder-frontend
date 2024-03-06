@@ -6,11 +6,14 @@ const store = reactive({
         baseURL: 'http://127.0.0.1:8000/',
         apiUrls: {
             'game_masters': 'api/game_masters',
+            'game_systems': 'api/game_systems',
         },
     },
-    masters: {
-        searchKey: '',
-    },
+    gameMasters: [],
+    selectedGameMaster: '',
+    gameMastersResults: [],
+    gameSystems: [],
+    selectedGameSystem: '',
 });
 
 export default store;
