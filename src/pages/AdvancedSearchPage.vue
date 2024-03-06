@@ -1,4 +1,9 @@
 <script>
+import store from '../store/store.js';
+//import axios
+import axios from 'axios';
+//import JumbotronSearchComponent
+import JumbotronSearchComponent from '../components/JumbotronSearchComponent.vue';
 export default {
   name: 'AdvancedSearchPage',
   data() {
@@ -42,6 +47,9 @@ export default {
       ],
     };
   },
+  components: {
+    JumbotronSearchComponent,
+  },
 };
 </script>
 
@@ -51,29 +59,13 @@ export default {
       <!-- row top -->
       <div class="row mx-auto mt-2 align-items-center" id="row-one">
         <!-- col for select -->
-        <div class="col-6 py-3">
-          <select class="form-select" aria-label="Default select example">
-            <option selected>Open this select menu</option>
-            <option value="1">One</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
-          </select>
-        </div>
+        <JumbotronSearchComponent />
         <!-- /col for select -->
         <!-- col for checkbox -->
-        <div
-          class="col-6 d-flex gap-3 align-items-center justify-content-center py-3"
-        >
+        <div class="col-6 d-flex gap-3 align-items-center justify-content-center py-3">
           <div class="form-check form-check-inline">
-            <input
-              class="form-check-input"
-              type="checkbox"
-              id="inlineCheckbox1"
-              value="option1"
-            />
-            <label class="form-check-label" for="inlineCheckbox1"
-              >Dungeons and Dragons</label
-            >
+            <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1" />
+            <label class="form-check-label" for="inlineCheckbox1">Dungeons and Dragons</label>
           </div>
         </div>
         <!-- /col for checkbox -->
