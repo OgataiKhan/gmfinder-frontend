@@ -38,12 +38,18 @@ export default {
             <li v-for="gm in store.gameMastersResults" :key="gm.id">
               <p>{{ gm }}</p>
               <!-- create card for each gm -->
-              <div class="card">
-                <img src="..." class="card-img-top" alt="...">
+              <div class="card d-flex flex-md-row">
+                <div class="card-header"><img :src="gm.profile_img ? gm.profile_img : '/img/generic-avatar.jpg'"
+                    class="card-img-top" alt="...">
+                </div>
                 <div class="card-body">
-                  <h5 class="card-title">Card title</h5>
-                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                    card's content.</p>
+                  <h5 class="card-title">{{ gm.user.name }}</h5>
+                  <h6>Game Systems:
+                    <span v-for="(system, index) in gm.game_systems" :key="index">
+                      {{ system.name }}{{ index < gm.game_systems.length - 1 ? ', ' : '' }} </span>
+                  </h6>
+                  <h6>Max players: {{ gm.max_players }}</h6>
+                  <p class="card-text">{{ gm.game_description }}</p>
                   <a href="#" class="btn btn-primary">Go somewhere</a>
                 </div>
               </div>
