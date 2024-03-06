@@ -60,6 +60,7 @@ export default {
         if (this.$route.query.gameSystem) {
             this.searchGm(this.$route.query.gameSystem);
         } else {
+            //if the query is not present, clear the gameMastersResults
             this.store.gameMastersResults = [];
         }
     }
