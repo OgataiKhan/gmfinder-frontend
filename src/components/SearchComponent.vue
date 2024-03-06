@@ -12,14 +12,14 @@ export default {
     },
     // methods
     methods: {
-        searchGm() {
-            console.log('selected game:' + this.store.selectedGameSystem);
-            if (this.store.selectedGameSystem) {
+        searchGm(gameSystem = this.store.selectedGameSystem) {
+            console.log('selected game:' + gameSystem);
+            if (gameSystem) {
                 //set validation error to false
                 this.validationError = false;
                 //api call to fetch game masters with selected game system
                 axios.get(this.store.api.baseURL + this.store.api.apiUrls.game_masters, {
-                    params: { key: this.store.selectedGameSystem }
+                    params: { key: gameSystem }
                 })
                     .then(response => {
 
@@ -28,13 +28,20 @@ export default {
                         console.log('master results:', this.store.gameMastersResults);
                         //redirect to advanced search page
                         // this.$router.push({ name: 'advanced-search' });
-                        this.$router.push({ name: 'advanced-search', query: { gameSystem: this.store.selectedGameSystem } });
+                        this.$router.push({ name: 'advanced-search', query: { gameSystem: gameSystem } });
                     })
                     .catch(error => {
                         console.log(error);
                     })
             } else {
                 this.validationError = true;
+            }
+        }
+    },
+    watch: {
+        '$route.query.gameSystem'(newVal) {
+            if (newVal) {
+                this.searchGm(newVal);
             }
         }
     },
@@ -48,13 +55,19 @@ export default {
             .catch(error => {
                 console.log(error);
             })
+
+        //if query is present, call searchGm
+        if (this.$route.query.gameSystem) {
+            this.searchGm(this.$route.query.gameSystem);
+        }
     }
 }
 
 </script>
 
 <template>
-    <form @submit.prevent="searchGm" class="d-flex flex-column flex-md-row align-items-center">
+    <form @submit.prevent="searchGm(store.selectedGameSystem)"
+        class="d-flex flex-column flex-md-row align-items-center">
         <select class="form-select mt-0 my-select" aria-label="Default select example"
             v-model="store.selectedGameSystem">
             <option disabled value="">Select a Game System</option>
