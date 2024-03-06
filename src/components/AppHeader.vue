@@ -6,9 +6,7 @@ export default {
 
 <template>
   <header>
-    <div
-      class="container d-flex justify-content-between align-items-center py-2"
-    >
+    <div class="container d-flex justify-content-between align-items-center">
       <!-- navbar -->
       <nav class="navbar navbar-expand-md text-center flex-grow-1">
         <div class="container-fluid">
