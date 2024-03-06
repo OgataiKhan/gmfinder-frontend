@@ -43,14 +43,17 @@ export default {
                     class="card-img-top" alt="...">
                 </div>
                 <div class="card-body">
-                  <h5 class="card-title">{{ gm.user.name }}</h5>
+                  <h4 class="card-title">{{ gm.user.name }}</h4>
+                  <hr>
                   <h6>Game Systems:
                     <span v-for="(system, index) in gm.game_systems" :key="index">
                       {{ system.name }}{{ index < gm.game_systems.length - 1 ? ', ' : '' }} </span>
                   </h6>
-                  <h6>Max players: {{ gm.max_players }}</h6>
+                  <h6>Max players: <span>{{ gm.max_players }}</span></h6>
                   <p class="card-text">{{ gm.game_description }}</p>
-                  <a href="#" class="btn btn-primary">Go somewhere</a>
+                  <div class="text-center text-md-start">
+                    <button class="mx-auto">Show</button>
+                  </div>
                 </div>
               </div>
             </li>
@@ -64,9 +67,14 @@ export default {
 
 <style scoped lang="scss">
 @use '../scss/helpers/variables' as *;
+@use '../scss/helpers/mixins' as *;
 
-#row-one {
-  border: 2px solid $contrast-color;
+.card {
+  background-color: $light-color-card;
+
+  .card-header {
+    background-color: transparent;
+  }
 }
 
 button {
@@ -83,5 +91,13 @@ button:hover {
   background-color: $light-color;
   color: $contrast-color;
   border-color: $contrast-color;
+}
+
+h6 {
+  font-weight: bold;
+
+  span {
+    font-weight: normal;
+  }
 }
 </style>
