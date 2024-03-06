@@ -59,6 +59,8 @@ export default {
         //if query is present, call searchGm
         if (this.$route.query.gameSystem) {
             this.searchGm(this.$route.query.gameSystem);
+        } else {
+            this.store.gameMastersResults = [];
         }
     }
 }
