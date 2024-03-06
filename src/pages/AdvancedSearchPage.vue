@@ -30,9 +30,28 @@ export default {
       </div>
       <!-- /row top -->
       <!-- row bottom -->
-      <div class="row">
+      <!-- create ul to show search results -->
+      <div class="row mx-auto mt-2 align-items-center" id="row-two">
+        <div class="col p-5">
+          <h3 class="text-center mb-3">Search Results</h3>
+          <ul>
+            <li v-for="gm in store.gameMastersResults" :key="gm.id">
+              <p>{{ gm }}</p>
+              <!-- create card for each gm -->
+              <div class="card">
+                <img src="..." class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">Card title</h5>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                    card's content.</p>
+                  <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <!-- /row bottom -->
       </div>
-      <!-- /row bottom -->
     </div>
   </main>
 </template>

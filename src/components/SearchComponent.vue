@@ -22,11 +22,13 @@ export default {
                     params: { key: this.store.selectedGameSystem }
                 })
                     .then(response => {
-                        console.log('response.data.results.data:', response);
+
                         // Store game masters in store
                         this.store.gameMastersResults = response.data.results.data;
+                        console.log('master results:', this.store.gameMastersResults);
                         //redirect to advanced search page
-                        this.$router.push({ name: 'advanced-search' });
+                        // this.$router.push({ name: 'advanced-search' });
+                        this.$router.push({ name: 'advanced-search', query: { gameSystem: this.store.selectedGameSystem } });
                     })
                     .catch(error => {
                         console.log(error);
