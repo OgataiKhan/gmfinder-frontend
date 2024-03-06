@@ -7,7 +7,6 @@ export default {
     data() {
         return {
             store,
-            selectedGame: '',
             validationError: false,
         }
     },
@@ -15,15 +14,15 @@ export default {
     methods: {
         searchGm() {
             console.log('searching for game master');
-            if (this.selectedGame) {
+            console.log('selected game:' + this.store.selectedGameSystem);
+            if (this.store.selectedGameSystem) {
                 //set validation error to false
                 this.validationError = false;
                 //redirect to advanced search page
-                this.$router.push({ name: 'advanced-search', params: { game: this.selectedGame } });;
+                this.$router.push({ name: 'advanced-search', params: { game_system: this.store.selectedGameSystem } });;
             } else {
                 this.validationError = true;
             }
-
         }
     },
     //call api to fetch options
@@ -45,9 +44,10 @@ export default {
 
 <template>
     <form @submit.prevent="searchGm" class="d-flex flex-column flex-md-row align-items-center">
-        <select class="form-select mt-0 my-select" aria-label="Default select example" v-model="selectedGame">
+        <select class="form-select mt-0 my-select" aria-label="Default select example"
+            v-model="store.selectedGameSystem">
             <option disabled value="">Select a Game System</option>
-            <option v-for="game in store.gameSystems" :value="store.gameSystems.id">{{ game.name }}</option>
+            <option v-for="game in store.gameSystems" :value="game.id">{{ game.name }}</option>
         </select>
         <!-- Validation Message -->
         <div v-if="validationError" class="me-auto validation-alert">

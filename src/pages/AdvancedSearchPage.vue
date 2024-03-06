@@ -2,8 +2,8 @@
 import store from '../store/store.js';
 //import axios
 import axios from 'axios';
-//import JumbotronSearchComponent
-import JumbotronSearchComponent from '../components/JumbotronSearchComponent.vue';
+//import SearchComponent
+import SearchComponent from '../components/SearchComponent.vue';
 export default {
   name: 'AdvancedSearchPage',
   data() {
@@ -48,32 +48,31 @@ export default {
     };
   },
   components: {
-    JumbotronSearchComponent,
+    SearchComponent,
   },
 };
 </script>
 
 <template>
   <main>
-    <div class="container-fluid">
+    <div class="container">
       <!-- row top -->
       <div class="row mx-auto mt-2 align-items-center" id="row-one">
         <!-- col for select -->
-        <JumbotronSearchComponent />
+        <div class="col p-5">
+          <h3 class="text-center mb-3">Advanced Search</h3>
+          <SearchComponent />
+        </div>
+
         <!-- /col for select -->
         <!-- col for checkbox -->
-        <div class="col-6 d-flex gap-3 align-items-center justify-content-center py-3">
+        <!-- <div class="col-6 d-flex gap-3 align-items-center justify-content-center py-3">
           <div class="form-check form-check-inline">
             <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1" />
             <label class="form-check-label" for="inlineCheckbox1">Dungeons and Dragons</label>
           </div>
-        </div>
+        </div> -->
         <!-- /col for checkbox -->
-        <!-- button search -->
-        <div class="text-center py-3">
-          <button class="btn button"><strong>Search</strong></button>
-        </div>
-        <!-- /button search -->
       </div>
       <!-- /row top -->
 

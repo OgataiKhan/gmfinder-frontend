@@ -10,7 +10,8 @@ const store = reactive({
         },
     },
     gameMasters: [],
-    gameSystems: []
+    gameSystems: [],
+    selectedGameSystem: '',
 });
 
 export default store;
