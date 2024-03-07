@@ -21,24 +21,31 @@ export default {
       console.log("Selected game:" + gameSystem);
       if (gameSystem) {
         this.validationError = false;
+        // Check and correct for negative page numbers
+        let correctedPage = Math.max(1, page);
+
         axios
           .get(this.store.api.baseURL + this.store.api.apiUrls.game_masters, {
-            params: { key: gameSystem, page: page },
+            params: { key: gameSystem, page: correctedPage },
           })
           .then((response) => {
             this.store.gameMastersResults = response.data.results.data;
             this.store.totalResults = response.data.results.total;
             this.store.lastPage = Math.ceil(this.store.totalResults / 10);
 
-            if (page > this.store.lastPage) {
+            // Check if the initially requested page was out of bounds
+            if (page < 1 || page > this.store.lastPage) {
               this.$router.push({
                 name: "advanced-search",
-                query: { gameSystem: gameSystem, page: this.store.lastPage },
+                query: {
+                  gameSystem: gameSystem,
+                  page: page < 1 ? 1 : this.store.lastPage,
+                },
               });
             } else {
               this.$router.push({
                 name: "advanced-search",
-                query: { gameSystem: gameSystem, page: page },
+                query: { gameSystem: gameSystem, page: correctedPage },
               });
             }
 
