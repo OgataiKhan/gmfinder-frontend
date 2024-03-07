@@ -1,6 +1,6 @@
 <script>
 export default {
-  name: "AppHeader",
+  name: 'AppHeader',
 };
 </script>
 
@@ -11,7 +11,7 @@ export default {
       <nav class="navbar navbar-expand-md text-center flex-grow-1">
         <div class="container-fluid">
           <!-- logo -->
-          <div class="logo">
+          <div class="logo pt-2">
             <router-link :to="{ name: 'home' }" class="text-decoration-none">
               <img src="/img/logo.png" alt="logo"
             /></router-link>
@@ -60,7 +60,7 @@ export default {
 </template>
 
 <style scoped lang="scss">
-@use "../scss/helpers/variables" as *;
+@use '../scss/helpers/variables' as *;
 
 header {
   background-color: $primary-color;
