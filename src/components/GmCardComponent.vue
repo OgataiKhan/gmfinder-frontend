@@ -16,6 +16,10 @@ export default {
             type: Object,
             required: true,
         },
+        gmShow: {
+            type: Boolean,
+            default: false,
+        },
     },
     methods: {
         selectGm(gm) {
@@ -54,7 +58,13 @@ export default {
             <h6>
                 Max players: <span>{{ gm.max_players }}</span>
             </h6>
-            <p class="card-text">{{ gm.game_description }}</p>
+            <div class="gm-show" v-if="gmShow">
+                <h6>Campaign Description: {{ gm.game_description }}</h6>
+                <h6>Availability: {{ gm.is_available ? 'Available' : 'Not Available' }}</h6>
+                <h6>Location: {{ gm.location }}</h6>
+                <h6>Game Master since: {{ gm.created_at.slice(0, 10) }}</h6>
+
+            </div>
         </div>
     </div>
     <!-- ////create card for each gm -->

@@ -58,22 +58,9 @@ export default {
 
 <template>
     <div class="gm-page flex-grow-1">
-        <div class="container p-2 mb-3">
-
-            <GmCardComponent v-if="store.selectedGameMaster" :gm="store.selectedGameMaster" />
-
-
+        <div class="container p-2 mb-3" v-if="store.selectedGameMaster">
             <h1>{{ msg }}</h1>
-
-            <!-- Game Master Information Section -->
-            <!-- checks if the gm has been selected before mounting this -->
-            <div v-if="store.selectedGameMaster && store.selectedGameMaster.user" class="gm-info">
-                <h2>Game Master Information</h2>
-                <p><strong>Name: {{ store.selectedGameMaster.user.name }}</strong></p>
-                <p><strong>Average Rating:</strong> </p>
-                <p><strong>Games:</strong> </p>
-            </div>
-
+            <GmCardComponent v-if="store.selectedGameMaster" :gm="store.selectedGameMaster" :gmShow="true" />
             <!-- Contact Form -->
             <form @submit.prevent="sendMessage">
                 <div class="mb-3">
@@ -88,6 +75,11 @@ export default {
                 <button type="submit">Send Message</button>
             </form>
             <ReviewsComponent />
+        </div>
+        <div v-else>
+
+            <h1>Game Master not found</h1>
+
         </div>
     </div>
 </template>

@@ -1,6 +1,18 @@
 <script>
+import store from '../store/store.js';
 export default {
   name: 'AppHeader',
+  data() {
+    return {
+      store,
+    };
+  },
+  methods: {
+    //clear search results when search link is clicked
+    clearResults() {
+      this.store.gameMastersResults = [];
+    },
+  },
 };
 </script>
 
@@ -36,7 +48,8 @@ export default {
                 <a class="nav-link" id="nav-link">Contact</a>
               </li>
               <li class="nav-item">
-                <router-link :to="{ name: 'advanced-search' }" class="nav-link">Search</router-link>
+                <router-link :to="{ name: 'advanced-search' }" class="nav-link"
+                  @click="clearResults">Search</router-link>
               </li>
             </ul>
           </div>
