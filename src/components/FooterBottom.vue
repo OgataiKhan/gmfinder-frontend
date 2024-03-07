@@ -1,19 +1,20 @@
 <script>
+import ButtonBackTopComponent from './ButtonBackTopComponent.vue';
 export default {
   name: 'FooterBottom',
+  components: {
+    ButtonBackTopComponent,
+  },
 };
 </script>
 
 <template>
   <div class="container d-flex justify-content-between align-items-center">
     <div class="logo">
-      <img
-        src="/img/logo.png"
-        alt="logo"
-      />
+      <img src="/img/logo.png" alt="logo" />
     </div>
     <div>
-      <button type="reset" class="btn"><strong>Back to Top</strong></button>
+      <ButtonBackTopComponent />
     </div>
   </div>
 </template>
