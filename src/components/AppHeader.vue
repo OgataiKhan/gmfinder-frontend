@@ -39,19 +39,13 @@ export default {
                 >
               </li>
               <li class="nav-item">
-                <router-link :to="{ name: 'home' }" class="nav-link"
-                  >Games</router-link
-                >
+                <a class="nav-link">Games</a>
               </li>
               <li class="nav-item">
-                <router-link :to="{ name: 'home' }" class="nav-link"
-                  >FAQ</router-link
-                >
+                <a class="nav-link">FAQ</a>
               </li>
               <li class="nav-item">
-                <router-link :to="{ name: 'home' }" class="nav-link"
-                  >Contact</router-link
-                >
+                <a class="nav-link">Contact</a>
               </li>
               <li class="nav-item">
                 <router-link :to="{ name: 'advanced-search' }" class="nav-link"
