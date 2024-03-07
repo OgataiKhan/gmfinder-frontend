@@ -39,13 +39,13 @@ export default {
                 >
               </li>
               <li class="nav-item">
-                <a class="nav-link">Games</a>
+                <a class="nav-link" id="nav-link">Games</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link">FAQ</a>
+                <a class="nav-link" id="nav-link">FAQ</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link">Contact</a>
+                <a class="nav-link" id="nav-link">Contact</a>
               </li>
               <li class="nav-item">
                 <router-link :to="{ name: 'advanced-search' }" class="nav-link"
@@ -94,7 +94,10 @@ header {
 .nav-link {
   text-decoration: none;
   color: white;
-  // margin-right: 10px;
+}
+
+#nav-link:hover {
+  cursor: pointer;
 }
 
 #header-button {
