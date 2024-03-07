@@ -17,23 +17,16 @@ export default {
             console.log('STO CERCANDO UN GM');
             console.log('selected game:' + gameSystem);
             if (gameSystem) {
-                //set validation error to false
                 this.validationError = false;
-                //api call to fetch game masters with selected game system
                 axios
                     .get(this.store.api.baseURL + this.store.api.apiUrls.game_masters, {
                         params: { key: gameSystem, page: page },
                     })
                     .then((response) => {
-                        // Store game masters in store
                         this.store.gameMastersResults = response.data.results.data;
-                        //update total results
                         this.store.totalResults = response.data.results.total;
-                        //update last page
                         this.store.lastPage = Math.ceil(this.store.totalResults / 10);
-                        // Emit an event with the response data
                         this.$emit('dataReceived', response.data);
-                        //redirect to advanced search page
                         this.$router.push({
                             name: 'advanced-search',
                             query: { gameSystem: gameSystem, page: page },
