@@ -33,7 +33,7 @@ export default {
       <!-- row top -->
       <div class="row mx-auto mt-2 align-items-center">
         <!-- col for select -->
-        <div class="col p-5" id="row">
+        <div class="col p-5" id="advanced-search-top">
           <h3 class="text-center mb-3 text-black">Advanced Search</h3>
           <SearchComponent />
         </div>
@@ -115,7 +115,7 @@ export default {
   }
 }
 
-#row {
+#advanced-search-top {
   background-image: url(../assets/img/jumbotron-image.jpeg);
   background-position: center;
   border-radius: 10px;
@@ -125,6 +125,12 @@ export default {
 .card:hover {
   border: 1px solid $contrast-color;
   cursor: pointer;
+  transition: border 0.2s;
+  transition: transform 0.2s;
+  //border shadow
+  box-shadow: 0 0 10px $contrast-color;
+  //make bigger
+  transform: scale(1.02);
 }
 
 button {
