@@ -62,7 +62,7 @@ export default {
   watch: {
     "$route.query.gameSystem"(newVal) {
       if (newVal) {
-        this.searchGm(newVal, this.$route.query.page);
+        this.searchGm(newVal, this.$route.query.gameSystem);
       }
     },
 
