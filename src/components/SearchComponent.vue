@@ -1,124 +1,144 @@
 <script>
-import store from '../store/store.js';
+import store from "../store/store.js";
 //import axios
-import axios from 'axios';
+import axios from "axios";
 export default {
-    name: 'SearchComponent',
-    data() {
-        return {
-            store,
-            validationError: false,
-            urlPage: null
-        };
-    },
-    // methods
-    methods: {
-        searchGm(gameSystem = this.store.selectedGameSystem, page = this.store.currentPage) {
-            console.log('STO CERCANDO UN GM');
-            console.log('selected game:' + gameSystem);
-            if (gameSystem) {
-                this.validationError = false;
-                axios
-                    .get(this.store.api.baseURL + this.store.api.apiUrls.game_masters, {
-                        params: { key: gameSystem, page: page },
-                    })
-                    .then((response) => {
-                        this.store.gameMastersResults = response.data.results.data;
-                        this.store.totalResults = response.data.results.total;
-                        this.store.lastPage = Math.ceil(this.store.totalResults / 10);
-                        this.$emit('dataReceived', response.data);
-                        this.$router.push({
-                            name: 'advanced-search',
-                            query: { gameSystem: gameSystem, page: page },
-                        });
-                    })
-                    .catch((error) => {
-                        console.log(error);
-                    });
-            } else {
-                this.validationError = true;
-            }
-        },
-    },
-    watch: {
-        '$route.query.gameSystem'(newVal) {
-            if (newVal) {
-                this.searchGm(newVal, this.$route.query.page);
-            }
-        },
-
-        '$route.query.page'(newVal) {
-            if (newVal && !isNaN(newVal)) {
-                this.store.currentPage = parseInt(newVal);
-                this.searchGm(this.store.selectedGameSystem, newVal);
-            }
-        },
-    },
-    //call api to fetch options
-    mounted() {
-        //call api to fetch game options
+  name: "SearchComponent",
+  data() {
+    return {
+      store,
+      validationError: false,
+      urlPage: null,
+    };
+  },
+  // methods
+  methods: {
+    searchGm(
+      gameSystem = this.store.selectedGameSystem,
+      page = this.store.currentPage
+    ) {
+      console.log("Searching for a GM");
+      console.log("Selected game:" + gameSystem);
+      if (gameSystem) {
+        this.validationError = false;
         axios
-            .get(this.store.api.baseURL + this.store.api.apiUrls.game_systems)
-            .then((response) => {
-                this.store.gameSystems = response.data.results;
-            })
-            .catch((error) => {
-                console.log(error);
-            });
+          .get(this.store.api.baseURL + this.store.api.apiUrls.game_masters, {
+            params: { key: gameSystem, page: page },
+          })
+          .then((response) => {
+            this.store.gameMastersResults = response.data.results.data;
+            this.store.totalResults = response.data.results.total;
+            this.store.lastPage = Math.ceil(this.store.totalResults / 10);
 
-        //if query is present, call searchGm
-        if (this.$route.query.gameSystem && this.$route.query.page && !isNaN(this.$route.query.page)) {
-
-            if (this.$route.query.page < 1) {
-                this.urlPage = 1;
-            } else if (this.$route.query.page > this.store.lastPage) {
-                this.urlPage = this.store.lastPage;
+            if (page > this.store.lastPage) {
+              this.$router.push({
+                name: "advanced-search",
+                query: { gameSystem: gameSystem, page: this.store.lastPage },
+              });
             } else {
-                this.urlPage = this.$route.query.page;
+              this.$router.push({
+                name: "advanced-search",
+                query: { gameSystem: gameSystem, page: page },
+              });
             }
 
-            // this.$router.push({
-            //     name: 'advanced-search',
-            //     query: { gameSystem: this.$route.query.gameSystem, page: this.urlPage },
-            // });
-
-            this.store.currentPage = this.urlPage;
-            this.searchGm(this.$route.query.gameSystem, this.$route.query.page);
-            this.store.selectedGameSystem = this.$route.query.gameSystem;
-        } else {
-            //if the query is not present, clear the gameMastersResults
-            this.store.gameMastersResults = [];
-            this.store.selectedGameSystem = '';
-        }
+            this.$emit("dataReceived", response.data);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      } else {
+        this.validationError = true;
+      }
     },
+  },
+  watch: {
+    "$route.query.gameSystem"(newVal) {
+      if (newVal) {
+        this.searchGm(newVal, this.$route.query.page);
+      }
+    },
+
+    "$route.query.page"(newVal) {
+      if (newVal && !isNaN(newVal)) {
+        this.store.currentPage = parseInt(newVal);
+        this.searchGm(this.store.selectedGameSystem, newVal);
+      }
+    },
+  },
+  //call api to fetch options
+  mounted() {
+    //call api to fetch game options
+    axios
+      .get(this.store.api.baseURL + this.store.api.apiUrls.game_systems)
+      .then((response) => {
+        this.store.gameSystems = response.data.results;
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
+    //if query is present, call searchGm
+    if (
+      this.$route.query.gameSystem &&
+      this.$route.query.page &&
+      !isNaN(this.$route.query.page)
+    ) {
+      if (this.$route.query.page < 1) {
+        this.urlPage = 1;
+      } else if (this.$route.query.page > this.store.lastPage) {
+        this.urlPage = this.store.lastPage;
+      } else {
+        this.urlPage = this.$route.query.page;
+      }
+
+      // this.$router.push({
+      //     name: 'advanced-search',
+      //     query: { gameSystem: this.$route.query.gameSystem, page: this.urlPage },
+      // });
+
+      this.store.currentPage = this.urlPage;
+      this.searchGm(this.$route.query.gameSystem, this.$route.query.page);
+      this.store.selectedGameSystem = this.$route.query.gameSystem;
+    } else {
+      //if the query is not present, clear the gameMastersResults
+      this.store.gameMastersResults = [];
+      this.store.selectedGameSystem = "";
+    }
+  },
 };
 </script>
 
 <template>
-    <form @submit.prevent="searchGm(store.selectedGameSystem)"
-        class="d-flex flex-column flex-md-row align-items-center w-75 mx-auto">
-        <select class="form-select mt-0 my-select" aria-label="Default select example"
-            v-model="store.selectedGameSystem">
-            <option disabled value="">Select a Game System</option>
-            <option v-for="game in store.gameSystems" :value="game.id">
-                {{ game.name }}
-            </option>
-        </select>
-        <!-- Validation Message -->
-        <div v-if="validationError" class="me-auto validation-alert">
-            Please select a game system
-        </div>
-        <!-- submit button -->
-        <button type="submit" class="mx-auto ms-md-3 mt-4 mt-md-0">Search</button>
-    </form>
+  <form
+    @submit.prevent="searchGm(store.selectedGameSystem)"
+    class="d-flex flex-column flex-md-row align-items-center w-75 mx-auto"
+  >
+    <select
+      class="form-select mt-0 my-select"
+      aria-label="Default select example"
+      v-model="store.selectedGameSystem"
+    >
+      <option disabled value="">Select a Game System</option>
+      <option v-for="game in store.gameSystems" :value="game.id">
+        {{ game.name }}
+      </option>
+    </select>
+    <!-- Validation Message -->
+    <div v-if="validationError" class="me-auto validation-alert">
+      Please select a game system
+    </div>
+    <!-- submit button -->
+    <button type="submit" class="mx-auto ms-md-3 mt-4 mt-md-0">Search</button>
+  </form>
 </template>
 
 <style scoped lang="scss">
-@use '../scss/helpers/variables' as *;
+@use "../scss/helpers/variables" as *;
 
 .validation-alert {
-    color: $danger-color;
-    font-size: 0.6rem;
-    margin: 0;
+  color: $danger-color;
+  font-size: 0.6rem;
+  margin: 0;
 }
 </style>
