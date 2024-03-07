@@ -1,6 +1,6 @@
 <script>
 export default {
-  name: 'AppHeader',
+  name: "AppHeader",
 };
 </script>
 
@@ -13,9 +13,7 @@ export default {
           <!-- logo -->
           <div class="logo">
             <router-link :to="{ name: 'home' }" class="text-decoration-none">
-              <img
-                src="/img/dungeons_and_dragons_logo_by_floodgrunt-d6my4z8.png"
-                alt=""
+              <img src="/img/logo.png" alt="logo"
             /></router-link>
           </div>
           <!-- /logo -->
@@ -62,7 +60,7 @@ export default {
 </template>
 
 <style scoped lang="scss">
-@use '../scss/helpers/variables' as *;
+@use "../scss/helpers/variables" as *;
 
 header {
   background-color: $primary-color;
