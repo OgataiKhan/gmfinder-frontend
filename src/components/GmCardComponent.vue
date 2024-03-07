@@ -40,9 +40,9 @@ export default {
     <div class="card d-flex flex-md-row">
         <div class="card-header border-bottom-0">
             <img :src="gm.profile_img
-                ? gm.profile_img
+                ? this.store.api.baseURL + this.store.api.apiUrls.storage + gm.profile_img
                 : '/img/generic-avatar.jpg'
-                " class="card-img-top" alt="..." />
+                " class="card-img-top" alt="profile pic" />
         </div>
         <div class="card-body">
             <div class="text-center text-md-start">
@@ -63,7 +63,6 @@ export default {
                 <h6>Availability: {{ gm.is_available ? 'Available' : 'Not Available' }}</h6>
                 <h6>Location: {{ gm.location }}</h6>
                 <h6>Game Master since: {{ gm.created_at.slice(0, 10) }}</h6>
-
             </div>
         </div>
     </div>
