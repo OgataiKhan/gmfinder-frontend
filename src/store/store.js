@@ -15,7 +15,7 @@ const store = reactive({
     gameMastersResults: [],
     gameSystems: [],
     selectedGameSystem: '',
-    currentPage: 1,
+    currentPage: null,
     lastPage: null,
     totalResults: 0,
 });
