@@ -83,16 +83,22 @@ export default {
                       <h4 class="card-title">{{ gm.user.name }}</h4>
                     </div>
                     <hr />
-                    <h6>
-                      Game Systems:
-                      <span v-for="(system, index) in gm.game_systems" :key="index">
-                        {{ system.name
-                        }}{{ index < gm.game_systems.length - 1 ? ', ' : '' }} </span>
-                    </h6>
-                    <h6>
-                      Max players: <span>{{ gm.max_players }}</span>
-                    </h6>
-                    <p class="card-text">{{ gm.game_description }}</p>
+                    <div>
+                      <h6>
+                        Game Systems
+                      </h6>
+                      <p><span v-for="(system, index) in gm.game_systems" :key="index">
+                          {{ system.name
+                          }}{{ index < gm.game_systems.length - 1 ? ', ' : '' }} </span>
+                      </p>
+                    </div>
+                    <div>
+                      <h6>
+                        Max Players
+                      </h6>
+                      <p>{{ gm.max_players }}
+                      </p>
+                    </div>
                   </div>
                 </div>
                 <!-- /create card for each gm -->
@@ -190,9 +196,5 @@ button:hover {
 
 h6 {
   font-weight: bold;
-
-  span {
-    font-weight: normal;
-  }
 }
 </style>
