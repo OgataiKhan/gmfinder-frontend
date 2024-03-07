@@ -31,7 +31,7 @@ export default {
           .then((response) => {
             this.store.gameMastersResults = response.data.results.data;
             this.store.totalResults = response.data.results.total;
-            this.store.lastPage = Math.ceil(this.store.totalResults / 10);
+            this.store.lastPage = response.data.results.last_page;
 
             // Check if the initially requested page was out of bounds
             if (page < 1 || page > this.store.lastPage) {
