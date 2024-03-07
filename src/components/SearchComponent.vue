@@ -8,11 +8,13 @@ export default {
         return {
             store,
             validationError: false,
+            urlPage: null
         };
     },
     // methods
     methods: {
-        searchGm(gameSystem = this.store.selectedGameSystem) {
+        searchGm(gameSystem = this.store.selectedGameSystem, page = this.store.currentPage) {
+            console.log('STO CERCANDO UN GM');
             console.log('selected game:' + gameSystem);
             if (gameSystem) {
                 //set validation error to false
@@ -20,17 +22,21 @@ export default {
                 //api call to fetch game masters with selected game system
                 axios
                     .get(this.store.api.baseURL + this.store.api.apiUrls.game_masters, {
-                        params: { key: gameSystem },
+                        params: { key: gameSystem, page: page },
                     })
                     .then((response) => {
                         // Store game masters in store
                         this.store.gameMastersResults = response.data.results.data;
-                        console.log('master results:', this.store.gameMastersResults);
+                        //update total results
+                        this.store.totalResults = response.data.results.total;
+                        //update last page
+                        this.store.lastPage = Math.ceil(this.store.totalResults / 10);
+                        // Emit an event with the response data
+                        this.$emit('dataReceived', response.data);
                         //redirect to advanced search page
-                        // this.$router.push({ name: 'advanced-search' });
                         this.$router.push({
                             name: 'advanced-search',
-                            query: { gameSystem: gameSystem },
+                            query: { gameSystem: gameSystem, page: page },
                         });
                     })
                     .catch((error) => {
@@ -44,7 +50,14 @@ export default {
     watch: {
         '$route.query.gameSystem'(newVal) {
             if (newVal) {
-                this.searchGm(newVal);
+                this.searchGm(newVal, this.$route.query.page);
+            }
+        },
+
+        '$route.query.page'(newVal) {
+            if (newVal && !isNaN(newVal)) {
+                this.store.currentPage = parseInt(newVal);
+                this.searchGm(this.store.selectedGameSystem, newVal);
             }
         },
     },
@@ -61,8 +74,23 @@ export default {
             });
 
         //if query is present, call searchGm
-        if (this.$route.query.gameSystem) {
-            this.searchGm(this.$route.query.gameSystem);
+        if (this.$route.query.gameSystem && this.$route.query.page && !isNaN(this.$route.query.page)) {
+
+            if (this.$route.query.page < 1) {
+                this.urlPage = 1;
+            } else if (this.$route.query.page > this.store.lastPage) {
+                this.urlPage = this.store.lastPage;
+            } else {
+                this.urlPage = this.$route.query.page;
+            }
+
+            // this.$router.push({
+            //     name: 'advanced-search',
+            //     query: { gameSystem: this.$route.query.gameSystem, page: this.urlPage },
+            // });
+
+            this.store.currentPage = this.urlPage;
+            this.searchGm(this.$route.query.gameSystem, this.$route.query.page);
             this.store.selectedGameSystem = this.$route.query.gameSystem;
         } else {
             //if the query is not present, clear the gameMastersResults

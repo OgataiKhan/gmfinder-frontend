@@ -15,6 +15,9 @@ const store = reactive({
     gameMastersResults: [],
     gameSystems: [],
     selectedGameSystem: '',
+    currentPage: 1,
+    lastPage: null,
+    totalResults: 0,
 });
 
 export default store;
