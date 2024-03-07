@@ -1,6 +1,7 @@
 <script>
 
 import ReviewsComponent from '../components/ReviewsComponent.vue';
+import GmCardComponent from '../components/GmCardComponent.vue';
 import store from '../store/store.js';
 import axios from 'axios';
 
@@ -16,7 +17,8 @@ export default {
         };
     },
     components: {
-        ReviewsComponent
+        ReviewsComponent,
+        GmCardComponent,
     },
     methods: {
         sendMessage() {
@@ -57,6 +59,8 @@ export default {
 <template>
     <div class="gm-page flex-grow-1">
         <div class="container p-2 mb-3">
+
+            <GmCardComponent v-if="store.selectedGameMaster" :gm="store.selectedGameMaster" />
 
 
             <h1>{{ msg }}</h1>
