@@ -14,6 +14,16 @@ export default {
   components: {
     SearchComponent,
   },
+  methods: {
+    selectGm(gm) {
+      this.store.selectedGameMaster = gm;
+      //redirect to game master page with query params
+      this.$router.push({
+        name: 'game-master',
+        query: { gameMaster: gm.slug },
+      });
+    },
+  },
 };
 </script>
 
@@ -36,40 +46,35 @@ export default {
           <h3 class="text-center my-5 text-black">Search Results</h3>
           <ul class="d-flex gap-3 flex-column">
             <li v-for="gm in store.gameMastersResults" :key="gm.id">
-              <!-- create card for each gm -->
-              <div class="card d-flex flex-md-row">
-                <div class="card-header border-bottom-0">
-                  <img
-                    :src="
-                      gm.profile_img
-                        ? gm.profile_img
-                        : '/img/generic-avatar.jpg'
-                    "
-                    class="card-img-top"
-                    alt="..."
-                  />
-                </div>
-                <div class="card-body">
-                  <div class="text-center text-md-start">
-                    <h4 class="card-title">{{ gm.user.name }}</h4>
+              <!-- route link f9or clickable card -->
+              <router-link :to="{ name: 'game-master' }" class="nav-link" @click="selectGm(gm)">
+                <!-- create card for each gm -->
+                <div class="card d-flex flex-md-row">
+                  <div class="card-header border-bottom-0">
+                    <img :src="gm.profile_img
+              ? this.store.api.baseURL + this.store.api.apiUrls.storage + gm.profile_img
+              : '/img/generic-avatar.jpg'
+              " class="card-img-top" alt="profile pic" />
                   </div>
-                  <hr />
-                  <h6>
-                    Game Systems:
-                    <span
-                      v-for="(system, index) in gm.game_systems"
-                      :key="index"
-                    >
-                      {{ system.name
-                      }}{{ index < gm.game_systems.length - 1 ? ', ' : '' }}
-                    </span>
-                  </h6>
-                  <h6>
-                    Max players: <span>{{ gm.max_players }}</span>
-                  </h6>
-                  <p class="card-text">{{ gm.game_description }}</p>
+                  <div class="card-body">
+                    <div class="text-center text-md-start">
+                      <h4 class="card-title">{{ gm.user.name }}</h4>
+                    </div>
+                    <hr />
+                    <h6>
+                      Game Systems:
+                      <span v-for="(system, index) in gm.game_systems" :key="index">
+                        {{ system.name
+                        }}{{ index < gm.game_systems.length - 1 ? ', ' : '' }} </span>
+                    </h6>
+                    <h6>
+                      Max players: <span>{{ gm.max_players }}</span>
+                    </h6>
+                    <p class="card-text">{{ gm.game_description }}</p>
+                  </div>
                 </div>
-              </div>
+                <!-- ////create card for each gm -->
+              </router-link>
             </li>
           </ul>
         </div>

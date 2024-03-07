@@ -1,16 +1,15 @@
 <script>
 
 import ReviewsComponent from '../components/ReviewsComponent.vue';
+import GmCardComponent from '../components/GmCardComponent.vue';
+import store from '../store/store.js';
+import axios from 'axios';
 
 export default {
     data() {
         return {
+            store,
             msg: "Contact Game Master",
-            gameMaster: {
-                name: "John Doe",
-                rating: 5,
-                games: "Fantasy campaigns"
-            },
             contactForm: {
                 name: '',
                 message: ''
@@ -18,7 +17,8 @@ export default {
         };
     },
     components: {
-        ReviewsComponent
+        ReviewsComponent,
+        GmCardComponent,
     },
     methods: {
         sendMessage() {
@@ -29,32 +29,44 @@ export default {
             this.contactForm.name = '';
             this.contactForm.message = '';
         }
+    },
+    mounted() {
+        // Fetch the game master details from the store
+        // and display them in the game master information section.
+
+
+        // check if query params are present, and store the game master in the store
+        if (this.$route.query.gameMaster) {
+            const slug = this.$route.query.gameMaster;
+            //make API call to fetch game master details
+            axios.get(this.store.api.baseURL + this.store.api.apiUrls.game_masters + '/' + slug)
+                .then(response => {
+                    // Store the fetched game master in the store
+                    this.store.selectedGameMaster = response.data.result;
+                    //console log 
+                    console.log('Game Master:', this.store.selectedGameMaster);
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+        }
     }
 }
+
 </script>
 
 
 <template>
-    <div class="game-master-page flex-grow-1">
-        <div class="container p-2 mb-3">
-
-
+    <div class="gm-page flex-grow-1">
+        <div class="container p-2 mb-3" v-if="store.selectedGameMaster">
             <h1>{{ msg }}</h1>
-
-            <!-- Game Master Information Section -->
-            <div class="game-master-info">
-                <h2>Game Master Information</h2>
-                <p><strong>Name:</strong> {{ gameMaster.name }}</p>
-                <p><strong>Average Rating:</strong> {{ gameMaster.rating }} </p>
-                <p><strong>Games:</strong> {{ gameMaster.games }}</p>
-            </div>
-
+            <GmCardComponent v-if="store.selectedGameMaster" :gm="store.selectedGameMaster" :gmShow="true" />
             <!-- Contact Form -->
             <form @submit.prevent="sendMessage">
                 <div class="mb-3">
                     <label for="userEmailAddress" class="form-label">Email address</label>
-                    <input type="email" class="form-control" id="userEmailAddress" placeholder="Enter your email address"
-                        v-model="contactForm.name">
+                    <input type="email" class="form-control" id="userEmailAddress"
+                        placeholder="Enter your email address" v-model="contactForm.name">
                 </div>
                 <div class="mb-3">
                     <label for="msgText" class="form-label">Your message</label>
@@ -64,15 +76,20 @@ export default {
             </form>
             <ReviewsComponent />
         </div>
+        <div v-else>
+
+            <h1>Game Master not found</h1>
+
+        </div>
     </div>
 </template>
-  
+
 
 <style scoped lang="scss">
 @use "../scss/helpers/variables" as *;
 @use "../scss/helpers/mixins" as *;
 
-.game-master-page {
+.gm-page {
     background-color: $light-color;
 
     h1 {
