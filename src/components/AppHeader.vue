@@ -26,21 +26,31 @@ export default {
           <!-- logo -->
           <div class="logo pt-2">
             <router-link :to="{ name: 'home' }" class="text-decoration-none">
-              <img src="/img/logo.png" alt="logo" /></router-link>
+              <img src="/img/logo.png" alt="logo"
+            /></router-link>
           </div>
           <!-- /logo -->
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" id="header-button"
-            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-            aria-label="Toggle navigation">
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            id="header-button"
+            data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto mb-2 mb-md-0 gap-3">
               <li class="nav-item">
-                <router-link :to="{ name: 'home' }" class="nav-link">Home</router-link>
+                <router-link :to="{ name: 'home' }" class="nav-link"
+                  >Home</router-link
+                >
               </li>
               <li class="nav-item">
-                <router-link :to="{ name: 'game-master' }" class="nav-link">Games</router-link>
+                <a class="nav-link" id="nav-link">Games</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" id="nav-link">FAQ</a>
@@ -49,8 +59,12 @@ export default {
                 <a class="nav-link" id="nav-link">Contact</a>
               </li>
               <li class="nav-item">
-                <router-link :to="{ name: 'advanced-search' }" class="nav-link"
-                  @click="clearResults">Search</router-link>
+                <router-link
+                  :to="{ name: 'advanced-search' }"
+                  class="nav-link"
+                  @click="clearResults"
+                  >Search</router-link
+                >
               </li>
             </ul>
           </div>
