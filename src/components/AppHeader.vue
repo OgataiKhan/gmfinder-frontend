@@ -11,6 +11,7 @@ export default {
     //clear search results when search link is clicked
     clearResults() {
       this.store.gameMastersResults = [];
+      this.store.selectedGameSystem = '';
     },
   },
 };
