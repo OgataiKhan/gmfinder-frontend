@@ -76,6 +76,7 @@ export default {
             </form>
             <ReviewsComponent />
         </div>
+        <!-- if game master slug is not found -->
         <div v-else>
 
             <h1>Game Master not found</h1>
