@@ -8,6 +8,7 @@ export default {
         return {
             store,
             validationError: false,
+            urlPage: null
         };
     },
     // methods
@@ -54,7 +55,8 @@ export default {
         },
 
         '$route.query.page'(newVal) {
-            if (newVal) {
+            if (newVal && !isNaN(newVal)) {
+                this.store.currentPage = parseInt(newVal);
                 this.searchGm(this.store.selectedGameSystem, newVal);
             }
         },
@@ -72,7 +74,22 @@ export default {
             });
 
         //if query is present, call searchGm
-        if (this.$route.query.gameSystem) {
+        if (this.$route.query.gameSystem && this.$route.query.page && !isNaN(this.$route.query.page)) {
+
+            if (this.$route.query.page < 1) {
+                this.urlPage = 1;
+            } else if (this.$route.query.page > this.store.lastPage) {
+                this.urlPage = this.store.lastPage;
+            } else {
+                this.urlPage = this.$route.query.page;
+            }
+
+            // this.$router.push({
+            //     name: 'advanced-search',
+            //     query: { gameSystem: this.$route.query.gameSystem, page: this.urlPage },
+            // });
+
+            this.store.currentPage = this.urlPage;
             this.searchGm(this.$route.query.gameSystem, this.$route.query.page);
             this.store.selectedGameSystem = this.$route.query.gameSystem;
         } else {

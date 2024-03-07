@@ -103,13 +103,17 @@ export default {
         <!-- /row bottom -->
       </div>
       <!-- pagination -->
-      <nav class="d-flex justify-content-center">
-        <ul class="pagination">
-          <li class="page-item" v-if="apiResponse" v-show="apiResponse.results?.prev_page_url">
-            <button class="page-link" @click="previousPage">Previous</button>
+      <nav class="mb-3">
+        <ul class="pagination d-flex justify-content-between">
+          <li>
+            <div class="page-item" v-if="apiResponse" v-show="apiResponse.results?.prev_page_url">
+              <button class="page-link" @click="previousPage">Previous</button>
+            </div>
           </li>
-          <li class="page-item" v-if="apiResponse" v-show="apiResponse.results?.next_page_url">
-            <button class="btn btn-info" @click="nextPage">Next</button>
+          <li>
+            <div class="page-item" v-if="apiResponse" v-show="apiResponse.results?.next_page_url">
+              <button class="btn btn-info" @click="nextPage">Next</button>
+            </div>
           </li>
         </ul>
       </nav>
