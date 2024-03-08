@@ -1,11 +1,11 @@
 <script>
-import store from "../store/store.js";
+import store from '../store/store.js';
 //import axios
-import axios from "axios";
+import axios from 'axios';
 //import SearchComponent
-import SearchComponent from "../components/SearchComponent.vue";
+import SearchComponent from '../components/SearchComponent.vue';
 export default {
-  name: "AdvancedSearchPage",
+  name: 'AdvancedSearchPage',
   data() {
     return {
       store,
@@ -20,7 +20,7 @@ export default {
       this.store.selectedGameMaster = gm;
       //redirect to game master page with query params
       this.$router.push({
-        name: "game-master",
+        name: 'game-master',
         query: { gameMaster: gm.slug },
       });
     },
@@ -73,7 +73,10 @@ export default {
       <!-- create ul to show search results -->
       <div class="row mx-auto mt-2 align-items-center">
         <div class="col mb-5">
-          <h3 v-if="this.store.searchInitiated" class="text-center my-5 text-black">
+          <h3
+            v-if="this.store.searchInitiated"
+            class="text-center my-4 text-black"
+          >
             Total results:
             <span v-if="apiResponse && store.gameMastersResults.length">{{
               apiResponse.results.total
@@ -115,7 +118,7 @@ export default {
                           :key="index"
                         >
                           {{ system.name
-                          }}{{ index < gm.game_systems.length - 1 ? ", " : "" }}
+                          }}{{ index < gm.game_systems.length - 1 ? ', ' : '' }}
                         </span>
                       </p>
                     </div>
@@ -133,7 +136,12 @@ export default {
               </router-link>
             </li>
           </ul>
-          <p v-if="store.gameMastersResults.length === 0 && apiResponse" class="text-center fst-italic">There's no loot here. Also, the chest was a mimic. Roll initiative.</p>
+          <p
+            v-if="store.gameMastersResults.length === 0 && apiResponse"
+            class="text-center fst-italic"
+          >
+            There's no loot here. Also, the chest was a mimic. Roll initiative.
+          </p>
         </div>
         <!-- /row bottom -->
       </div>
@@ -168,8 +176,8 @@ export default {
 </template>
 
 <style scoped lang="scss">
-@use "../scss/helpers/variables" as *;
-@use "../scss/helpers/mixins" as *;
+@use '../scss/helpers/variables' as *;
+@use '../scss/helpers/mixins' as *;
 
 .card {
   background-color: $light-color-card;

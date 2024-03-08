@@ -46,29 +46,48 @@ export default {
 <template>
   <div v-if="store.selectedGameMaster">
     <!-- send message -->
-    <div class="mt-3 text-center mb-3">
-      <h3>{{ msg }}</h3>
+    <div class="text-center">
+      <h3 class="pt-2">{{ msg }}</h3>
     </div>
     <div class="col-8 mx-auto form-div" v-if="!reviewSuccess">
       <form @submit.prevent="sendReview">
         <div class="d-flex justify-content-between">
           <div class="my-4 col-5">
             <label for="userEmailAddress" class="form-label">Thy Name</label>
-            <input type="text" class="form-control" id="userName" placeholder="Enter your name"
-              v-model="formData.name" />
+            <input
+              type="text"
+              class="form-control"
+              id="userName"
+              placeholder="Enter your name"
+              v-model="formData.name"
+            />
           </div>
           <div class="my-4 col-5">
-            <label for="userEmailAddress" class="form-label">Raven-Email Address</label>
-            <input type="email" class="form-control" id="userEmailAddress" placeholder="Enter your email address"
-              v-model="formData.email" />
+            <label for="userEmailAddress" class="form-label"
+              >Raven-Email Address</label
+            >
+            <input
+              type="email"
+              class="form-control"
+              id="userEmailAddress"
+              placeholder="Enter your email address"
+              v-model="formData.email"
+            />
           </div>
         </div>
         <div class="mb-3">
           <label for="msgText" class="form-label">Thy Missive</label>
-          <textarea class="form-control" id="msgText" rows="3" v-model="formData.text"></textarea>
+          <textarea
+            class="form-control"
+            id="msgText"
+            rows="3"
+            v-model="formData.text"
+          ></textarea>
         </div>
         <div class="py-3 d-flex">
-          <button type="submit" class="mx-auto" @click.prevent="sendReview">Send your Review</button>
+          <button type="submit" class="mx-auto" @click.prevent="sendReview">
+            Send your Review
+          </button>
         </div>
       </form>
     </div>
@@ -79,11 +98,10 @@ export default {
         <button type="submit" @click="reviewReset">Send Another Review</button>
       </div>
     </div>
-    <div class="mt-4 container">
-      <button type="submit">Back to Profile</button>
+    <div class="my-3 container text-end">
+      <button type="submit"><- Back to Search</button>
     </div>
   </div>
-
 </template>
 
 <style scoped lang="scss">

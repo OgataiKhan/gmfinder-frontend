@@ -1,9 +1,9 @@
 <script>
-import store from "../store/store.js";
+import store from '../store/store.js';
 //import axios
-import axios from "axios";
+import axios from 'axios';
 export default {
-  name: "SearchComponent",
+  name: 'SearchComponent',
   data() {
     return {
       store,
@@ -35,7 +35,7 @@ export default {
             // Check if the initially requested page was out of bounds
             if (page < 1 || page > this.store.lastPage) {
               this.$router.push({
-                name: "advanced-search",
+                name: 'advanced-search',
                 query: {
                   gameSystem: gameSystem,
                   page: page < 1 ? 1 : this.store.lastPage,
@@ -43,12 +43,12 @@ export default {
               });
             } else {
               this.$router.push({
-                name: "advanced-search",
+                name: 'advanced-search',
                 query: { gameSystem: gameSystem, page: correctedPage },
               });
             }
 
-            this.$emit("dataReceived", response.data);
+            this.$emit('dataReceived', response.data);
           })
           .catch((error) => {
             console.log(error);
@@ -59,13 +59,13 @@ export default {
     },
   },
   watch: {
-    "$route.query.gameSystem"(newVal) {
+    '$route.query.gameSystem'(newVal) {
       if (newVal) {
         this.searchGm(newVal, this.$route.query.page);
       }
     },
 
-    "$route.query.page"(newVal) {
+    '$route.query.page'(newVal) {
       if (newVal && !isNaN(newVal)) {
         this.store.currentPage = parseInt(newVal);
         this.searchGm(this.store.selectedGameSystem, newVal);
@@ -103,17 +103,19 @@ export default {
     } else {
       //if the query is not present, clear the gameMastersResults
       this.store.gameMastersResults = [];
-      this.store.selectedGameSystem = "";
+      this.store.selectedGameSystem = '';
     }
   },
 };
 </script>
 
 <template>
-  <div class="d-flex align-items-center flex-column justify-content-center search-component-box">
+  <div
+    class="d-flex align-items-center flex-column justify-content-center search-component-box"
+  >
     <form
       @submit.prevent="searchGm(store.selectedGameSystem)"
-      class="d-flex flex-column flex-md-row align-items-center mx-auto w-75"
+      class="d-flex flex-column flex-md-row align-items-center mx-auto w-75 mb-2"
     >
       <select
         class="form-select mt-0 my-select"
@@ -130,14 +132,14 @@ export default {
       <button type="submit" class="mx-auto ms-md-3 mt-4 mt-md-0">Search</button>
     </form>
     <!-- Validation Message -->
-    <div v-if="validationError" class="validation-alert w-75 mt-2">
+    <div v-if="validationError" class="validation-alert w-75">
       Please select a game system
     </div>
   </div>
 </template>
 
 <style scoped lang="scss">
-@use "../scss/helpers/variables" as *;
+@use '../scss/helpers/variables' as *;
 
 .validation-alert {
   color: $danger-color;
