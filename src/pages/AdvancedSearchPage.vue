@@ -1,11 +1,11 @@
 <script>
-import store from '../store/store.js';
+import store from "../store/store.js";
 //import axios
-import axios from 'axios';
+import axios from "axios";
 //import SearchComponent
-import SearchComponent from '../components/SearchComponent.vue';
+import SearchComponent from "../components/SearchComponent.vue";
 export default {
-  name: 'AdvancedSearchPage',
+  name: "AdvancedSearchPage",
   data() {
     return {
       store,
@@ -20,7 +20,7 @@ export default {
       this.store.selectedGameMaster = gm;
       //redirect to game master page with query params
       this.$router.push({
-        name: 'game-master',
+        name: "game-master",
         query: { gameMaster: gm.slug },
       });
     },
@@ -70,22 +70,34 @@ export default {
       <!-- create ul to show search results -->
       <div class="row mx-auto mt-2 align-items-center">
         <div class="col mb-5">
-          <h3 class="text-center my-5 text-black" v-if="apiResponse && store.gameMastersResults.length">Total results:
-            {{
-              apiResponse.results.total }}</h3>
+          <h3 class="text-center my-5 text-black">
+            Total results:
+            <span v-if="apiResponse && store.gameMastersResults.length">{{
+              apiResponse.results.total
+            }}</span>
+          </h3>
           <ul class="d-flex gap-3 flex-column">
             <li v-for="gm in store.gameMastersResults" :key="gm.id">
               <!-- route link f9or clickable card -->
-              <router-link :to="{ name: 'game-master' }" class="nav-link" @click="selectGm(gm)">
+              <router-link
+                :to="{ name: 'game-master' }"
+                class="nav-link"
+                @click="selectGm(gm)"
+              >
                 <!-- create card for each gm -->
                 <div class="card d-flex flex-md-row">
                   <div class="card-header border-bottom-0">
-                    <img :src="gm.profile_img
-              ? this.store.api.baseURL +
-              this.store.api.apiUrls.storage +
-              gm.profile_img
-              : '/img/generic-avatar.jpg'
-              " class="card-img-top" alt="profile pic" />
+                    <img
+                      :src="
+                        gm.profile_img
+                          ? this.store.api.baseURL +
+                            this.store.api.apiUrls.storage +
+                            gm.profile_img
+                          : '/img/generic-avatar.jpg'
+                      "
+                      class="card-img-top"
+                      alt="profile pic"
+                    />
                   </div>
                   <div class="card-body">
                     <div class="text-center text-md-start">
@@ -95,24 +107,22 @@ export default {
                     <div>
                       <h6>Game Systems</h6>
                       <p>
-                        <span v-for="(system, index) in gm.game_systems" :key="index">
+                        <span
+                          v-for="(system, index) in gm.game_systems"
+                          :key="index"
+                        >
                           {{ system.name
-                          }}{{ index < gm.game_systems.length - 1 ? ', ' : '' }} </span>
+                          }}{{ index < gm.game_systems.length - 1 ? ", " : "" }}
+                        </span>
                       </p>
                     </div>
                     <div>
-                      <h6>
-                        Location
-                      </h6>
-                      <p>{{ gm.location }}
-                      </p>
+                      <h6>Location</h6>
+                      <p>{{ gm.location }}</p>
                     </div>
                     <div>
-                      <h6>
-                        Max Players
-                      </h6>
-                      <p>{{ gm.max_players }}
-                      </p>
+                      <h6>Max Players</h6>
+                      <p>{{ gm.max_players }}</p>
                     </div>
                   </div>
                 </div>
@@ -120,6 +130,7 @@ export default {
               </router-link>
             </li>
           </ul>
+          <p v-if="store.gameMastersResults.length === 0" class="text-center fst-italic">There's no loot here. Also, the chest was a mimic. Roll initiative.</p>
         </div>
         <!-- /row bottom -->
       </div>
@@ -128,15 +139,21 @@ export default {
         <ul class="pagination d-flex justify-content-between px-3 pb-3">
           <!-- Previous -->
           <li>
-            <div class="page-item" v-if="apiResponse && this.$route.query.page"
-              v-show="apiResponse.results?.prev_page_url">
+            <div
+              class="page-item"
+              v-if="apiResponse && this.$route.query.page"
+              v-show="apiResponse.results?.prev_page_url"
+            >
               <button class="page-link" @click="previousPage">Previous</button>
             </div>
           </li>
           <!-- Next -->
           <li>
-            <div class="page-item" v-if="apiResponse && this.$route.query.page"
-              v-show="apiResponse.results?.next_page_url">
+            <div
+              class="page-item"
+              v-if="apiResponse && this.$route.query.page"
+              v-show="apiResponse.results?.next_page_url"
+            >
               <button class="btn btn-info" @click="nextPage">Next</button>
             </div>
           </li>
@@ -148,8 +165,8 @@ export default {
 </template>
 
 <style scoped lang="scss">
-@use '../scss/helpers/variables' as *;
-@use '../scss/helpers/mixins' as *;
+@use "../scss/helpers/variables" as *;
+@use "../scss/helpers/mixins" as *;
 
 .card {
   background-color: $light-color-card;
