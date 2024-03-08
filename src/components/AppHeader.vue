@@ -13,6 +13,7 @@ export default {
       this.store.gameMastersResults = [];
       this.store.selectedGameSystem = '';
       this.store.currentPage = 1;
+
     },
   },
 };

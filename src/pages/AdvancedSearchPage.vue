@@ -58,9 +58,12 @@ export default {
       <div class="row mx-auto mt-2 align-items-center">
         <!-- col for select -->
         <div class="col p-5" id="advanced-search-top">
-          <h3 class="text-center mb-3 text-black">Advanced Search</h3>
+          <!-- <h3 class="text-center mb-3 text-black">Advanced Search</h3> -->
           <!-- search component with red to access method -->
-          <SearchComponent @dataReceived="handleData" ref="SearchComponent" />
+          <div class="p-3">
+            <h3 class="text-center mb-4">Advanced Search</h3>
+            <SearchComponent @dataReceived="handleData" ref="SearchComponent" />
+          </div>
         </div>
       </div>
       <!-- /row top -->
@@ -68,7 +71,9 @@ export default {
       <!-- create ul to show search results -->
       <div class="row mx-auto mt-2 align-items-center">
         <div class="col mb-5">
-          <h3 class="text-center my-5 text-black">Search Results</h3>
+          <h3 class="text-center my-5 text-black" v-if="apiResponse && store.gameMastersResults.length">Total results:
+            {{
+              apiResponse.results.total }}</h3>
           <ul class="d-flex gap-3 flex-column">
             <li v-for="gm in store.gameMastersResults" :key="gm.id">
               <!-- route link f9or clickable card -->
@@ -77,11 +82,11 @@ export default {
                 <div class="card d-flex flex-md-row">
                   <div class="card-header border-bottom-0">
                     <img :src="gm.profile_img
-            ? this.store.api.baseURL +
-            this.store.api.apiUrls.storage +
-            gm.profile_img
-            : '/img/generic-avatar.jpg'
-            " class="card-img-top" alt="profile pic" />
+              ? this.store.api.baseURL +
+              this.store.api.apiUrls.storage +
+              gm.profile_img
+              : '/img/generic-avatar.jpg'
+              " class="card-img-top" alt="profile pic" />
                   </div>
                   <div class="card-body">
                     <div class="text-center text-md-start">
