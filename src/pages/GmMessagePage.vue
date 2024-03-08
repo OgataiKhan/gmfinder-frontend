@@ -14,7 +14,8 @@ export default {
                 text: null,
                 name: null,
                 email: null,
-            }
+            },
+            messageSuccess: false,
         };
     },
     methods: {
@@ -26,7 +27,11 @@ export default {
                 email: this.formData.email
             }
             axios.post(this.store.api.baseURL + this.store.api.apiUrls.messages, data).then(response => {
-                console.log('inviato!')
+                //empty the form data
+                this.formData.text = null;
+                this.formData.name = null;
+                this.formData.email = null;
+                this.messageSuccess = true;
             }).catch(error => {
                 console.error(error)
             })
@@ -49,6 +54,11 @@ export default {
                     console.error(error);
                 });
         },
+
+        //resent messageSuccess
+        messageReset() {
+            this.messageSuccess = false;
+        },
     },
     mounted() {
         this.fetchGameMasterData();
@@ -64,7 +74,7 @@ export default {
         <div class="mt-3 text-center mb-3">
             <h3>Dispatch Your Scroll to {{ store.selectedGameMaster.user.name }}</h3>
         </div>
-        <div class="col-8 mx-auto form-div">
+        <div class="col-8 mx-auto form-div" v-if="!messageSuccess">
             <form @submit.prevent="sendMessage">
                 <div class="d-flex justify-content-between">
                     <div class="my-4 col-5">
@@ -86,6 +96,13 @@ export default {
                     <button type="submit" class="mx-auto" @click.prevent="postMessage">Send Forth Thy Scroll</button>
                 </div>
             </form>
+        </div>
+        <!-- if message success is true -->
+        <div class="col-8 mx-auto form-div" v-else>
+            <h3 class="text-center">Your message has been sent!</h3>
+            <div class="mt-4">
+                <button type="submit" @click="messageReset">Send Another Message</button>
+            </div>
         </div>
         <div class="mt-4">
             <button type="submit">Back to Results</button>
