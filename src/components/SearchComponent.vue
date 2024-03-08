@@ -146,7 +146,7 @@ export default {
   font-size: 0.8rem;
   margin: 0;
   position: absolute;
-  top: calc(50% + 15px);
+  top: calc(50% + 17px);
 }
 
 .search-component-box {
