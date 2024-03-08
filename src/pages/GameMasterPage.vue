@@ -68,10 +68,13 @@ export default {
       <div class="review-container mt-4">
         <ReviewsComponent />
       </div>
+      <div class="my-3 container text-start">
+        <button type="submit">Back to Search</button>
+      </div>
     </div>
     <div v-else class="text-center">
       <h1>Game Master not found</h1>
-      <router-link :to="{ name: 'advanced-search' }" class="nav-link mt-3"><button class="btn-voi-orange">Go Back
+      <router-link :to="{ name: 'advanced-search' }" class="nav-link mt-3"><button>Back to
           Search</button></router-link>
     </div>
   </div>
