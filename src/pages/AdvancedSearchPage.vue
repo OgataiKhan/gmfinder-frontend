@@ -130,7 +130,7 @@ export default {
               </router-link>
             </li>
           </ul>
-          <p v-if="store.gameMastersResults.length === 0" class="text-center fst-italic">There's no loot here. Also, the chest was a mimic. Roll initiative.</p>
+          <p v-if="store.gameMastersResults.length === 0 && apiResponse" class="text-center fst-italic">There's no loot here. Also, the chest was a mimic. Roll initiative.</p>
         </div>
         <!-- /row bottom -->
       </div>
