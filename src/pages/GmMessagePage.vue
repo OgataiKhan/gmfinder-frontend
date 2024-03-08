@@ -104,8 +104,8 @@ export default {
                 <button type="submit" @click="messageReset">Send Another Message</button>
             </div>
         </div>
-        <div class="mt-4">
-            <button type="submit">Back to Results</button>
+        <div class="mt-4 container">
+            <button type="submit">Back to Profile</button>
         </div>
     </div>
 

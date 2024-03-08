@@ -8,6 +8,7 @@ const store = reactive({
             'game_masters': 'api/game_masters',
             'game_systems': 'api/game_systems',
             'messages': 'api/messages',
+            'reviews': 'api/reviews',
             'storage': 'storage/',
         },
     },

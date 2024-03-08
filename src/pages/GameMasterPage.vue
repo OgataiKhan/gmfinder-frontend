@@ -64,40 +64,10 @@ export default {
     <div class="container p-2 mb-3" v-if="store.selectedGameMaster">
       <h1>{{ msg }}</h1>
       <GmCardComponent v-if="store.selectedGameMaster" :gm="store.selectedGameMaster" :gmShow="true" />
-
-
-      <!-- send message -->
-      <div class="mt-3 text-center mb-3">
-        <h3>Dispatch Your Scroll to {{ store.selectedGameMaster.user.name }}</h3>
-      </div>
-      <div class="col-8 mx-auto form-div">
-        <form @submit.prevent="sendMessage">
-          <div class="d-flex justify-content-between">
-            <div class="my-4 col-5">
-              <label for="userEmailAddress" class="form-label">Thy Name</label>
-              <input type="text" class="form-control" id="userName" placeholder="Enter your name"
-                v-model="formData.name" />
-            </div>
-            <div class="my-4 col-5">
-              <label for="userEmailAddress" class="form-label">Raven-Email Address</label>
-              <input type="email" class="form-control" id="userEmailAddress" placeholder="Enter your email address"
-                v-model="formData.email" />
-            </div>
-          </div>
-          <div class="mb-3">
-            <label for="msgText" class="form-label">Thy Missive</label>
-            <textarea class="form-control" id="msgText" rows="3" v-model="formData.text"></textarea>
-          </div>
-          <div class="py-3 d-flex">
-            <button type="submit" class="mx-auto" @click.prevent="postMessage">Send Forth Thy Scroll</button>
-          </div>
-        </form>
-      </div>
-
-
-
       <!-- Reviews -->
-      <ReviewsComponent />
+      <div class="review-container mt-4">
+        <ReviewsComponent />
+      </div>
     </div>
     <div v-else class="text-center">
       <h1>Game Master not found</h1>

@@ -1,60 +1,89 @@
 <script>
+import store from '../store/store.js';
+import axios from 'axios';
 export default {
   name: 'ReviewsComponent',
   data() {
     return {
       msg: 'This is the review component!',
-      reviews: [
-        {
-          id: 1,
-          name: 'John Doe',
-          review: 'This is a great product!',
-          rating: 5,
-        },
-        {
-          id: 2,
-          name: 'Jane Doe',
-          review: 'This is a great product!',
-          rating: 5,
-        },
-        {
-          id: 3,
-          name: 'John Smith',
-          review: 'This is a great product!',
-          rating: 5,
-        },
-        {
-          id: 4,
-          name: 'Jane Smith',
-          review: 'This is a great product!',
-          rating: 5,
-        },
-      ],
-      currentPage: 1,
-      pageSize: 5,
+      store,
+      formData: {
+        text: null,
+        name: null,
+        email: null,
+      },
+      reviewSuccess: false,
     };
+  },
+  methods: {
+    sendReview() {
+      const data = {
+        game_master_id: store.selectedGameMaster.id,
+        text: this.formData.text,
+        name: this.formData.name,
+        email: this.formData.email,
+      };
+      axios
+        .post(this.store.api.baseURL + this.store.api.apiUrls.reviews, data)
+        .then((response) => {
+          //empty the form data
+          this.formData.text = null;
+          this.formData.name = null;
+          this.formData.email = null;
+          this.reviewSuccess = true;
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    },
+    reviewReset() {
+      this.reviewSuccess = false;
+    },
   },
 };
 </script>
 
 <template>
-  <!-- <div class="reviews col col-lg-6">
-        <h1>{{ msg }}</h1>
-        <ul class="review-list">
-            <li v-for="review in reviews" :key="review.id">
-                <strong>{{ review.name }}</strong>: {{ review.review }} (Rating: {{ review.rating }})
-            </li>
-        </ul>
-        <nav aria-label="Page navigation" class="d-flex justify-content-center">
-            <ul class="pagination">
-                <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item"><a class="page-link" href="#">Next</a></li>
-            </ul>
-        </nav>
-    </div> -->
+  <div v-if="store.selectedGameMaster">
+    <!-- send message -->
+    <div class="mt-3 text-center mb-3">
+      <h3>{{ msg }}</h3>
+    </div>
+    <div class="col-8 mx-auto form-div" v-if="!reviewSuccess">
+      <form @submit.prevent="sendReview">
+        <div class="d-flex justify-content-between">
+          <div class="my-4 col-5">
+            <label for="userEmailAddress" class="form-label">Thy Name</label>
+            <input type="text" class="form-control" id="userName" placeholder="Enter your name"
+              v-model="formData.name" />
+          </div>
+          <div class="my-4 col-5">
+            <label for="userEmailAddress" class="form-label">Raven-Email Address</label>
+            <input type="email" class="form-control" id="userEmailAddress" placeholder="Enter your email address"
+              v-model="formData.email" />
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="msgText" class="form-label">Thy Missive</label>
+          <textarea class="form-control" id="msgText" rows="3" v-model="formData.text"></textarea>
+        </div>
+        <div class="py-3 d-flex">
+          <button type="submit" class="mx-auto" @click.prevent="sendReview">Send your Review</button>
+        </div>
+      </form>
+    </div>
+    <!-- if message success is true -->
+    <div class="col-8 mx-auto form-div" v-else>
+      <h3 class="text-center">Your message has been sent!</h3>
+      <div class="mt-4">
+        <button type="submit" @click="reviewReset">Send Another Review</button>
+      </div>
+    </div>
+    <div class="mt-4 container">
+      <button type="submit">Back to Profile</button>
+    </div>
+  </div>
+
 </template>
 
 <style scoped lang="scss">

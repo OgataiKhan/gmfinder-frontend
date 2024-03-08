@@ -44,8 +44,8 @@ export default {
                 : '/img/generic-avatar.jpg'
                 " class="card-img-top" alt="profile pic" />
             <!-- button to send msg, route to GmMessagePage -->
-            <div class="card-button">
-                <button @click="goToGmMessagePage(store.selectedGameMaster.slug)">Send Message</button>
+            <div class="card-button mt-3">
+                <button @click="goToGmMessagePage(store.selectedGameMaster.slug)" class="w-100">Send Message</button>
             </div>
 
         </div>
