@@ -17,8 +17,6 @@ export default {
       gameSystem = this.store.selectedGameSystem,
       page = this.store.currentPage
     ) {
-      console.log("Searching for a GM");
-      console.log("Selected game:" + gameSystem);
       if (gameSystem) {
         this.validationError = false;
         // Check and correct for negative page numbers
@@ -73,7 +71,6 @@ export default {
       }
     },
   },
-  //call api to fetch options
   mounted() {
     //call api to fetch game options
     axios
@@ -99,11 +96,6 @@ export default {
         this.urlPage = this.$route.query.page;
       }
 
-      // this.$router.push({
-      //     name: 'advanced-search',
-      //     query: { gameSystem: this.$route.query.gameSystem, page: this.urlPage },
-      // });
-
       this.store.currentPage = this.urlPage;
       this.searchGm(this.$route.query.gameSystem, this.$route.query.page);
       this.store.selectedGameSystem = this.$route.query.gameSystem;
@@ -117,7 +109,7 @@ export default {
 </script>
 
 <template>
-  <div class="d-flex align-items-center flex-column justify-content-center">
+  <div class="d-flex align-items-center flex-column justify-content-center search-component-box">
     <form
       @submit.prevent="searchGm(store.selectedGameSystem)"
       class="d-flex flex-column flex-md-row align-items-center mx-auto w-75"
@@ -150,5 +142,11 @@ export default {
   color: $danger-color;
   font-size: 0.8rem;
   margin: 0;
+  position: absolute;
+  top: calc(50% + 15px);
+}
+
+.search-component-box {
+  position: relative;
 }
 </style>

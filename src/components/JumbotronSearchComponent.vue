@@ -27,7 +27,7 @@ export default {
 .jumbotron-search {
     color: $primary-color;
     background-color: rgba(255, 255, 255, 0.6);
-    padding: 3rem 1rem;
+    padding: 3rem 1rem 4rem;
     border-radius: 10px;
 }
 </style>
