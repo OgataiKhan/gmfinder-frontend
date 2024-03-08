@@ -57,10 +57,9 @@ export default {
       <!-- row top -->
       <div class="row mx-auto mt-2 align-items-center">
         <!-- col for select -->
-        <div class="col p-5" id="advanced-search-top">
-          <!-- <h3 class="text-center mb-3 text-black">Advanced Search</h3> -->
+        <div class="col d-flex" id="advanced-search-top">
           <!-- search component with red to access method -->
-          <div class="p-3">
+          <div class="p-3 search-component col-9 mx-auto">
             <h3 class="text-center mb-4">Advanced Search</h3>
             <SearchComponent @dataReceived="handleData" ref="SearchComponent" />
           </div>
@@ -182,8 +181,18 @@ export default {
 #advanced-search-top {
   background-image: url(../assets/img/jumbotron-image.jpeg);
   background-position: center;
-  border-radius: 10px;
+  background-size: cover;
+  color: $primary-color;
   margin-top: 20px;
+  padding: 50px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
+}
+
+.search-component {
+  background-color: rgba(255, 255, 255, 0.6);
+  padding: 3rem 1rem 4rem;
+  border-radius: 10px;
 }
 
 .card:hover {

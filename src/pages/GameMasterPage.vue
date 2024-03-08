@@ -91,7 +91,10 @@ export default {
         </form>
 
       </div>
-      <button type="submit">Back to Results</button>
+      <div class="mt-4">
+        <button type="submit">Back to Results</button>
+      </div>
+
       <!-- Reviews -->
       <ReviewsComponent />
     </div>
