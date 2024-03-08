@@ -48,6 +48,14 @@ export default {
                 gm.profile_img
                 : '/img/generic-avatar.jpg'
                 " class="card-img-top" alt="profile pic" />
+            <!-- button to send msg, route to GmMessagePage -->
+            <!-- <div class="card-button">
+                <router-link :to="{ name: 'message-gamemaster', params: { slug: gm.slug } }"><button class=" mt-4 w-100"
+                        @click="selectGm(gm)">Send
+                        a
+                        Message</button></router-link>
+            </div> -->
+
         </div>
         <div class="card-body">
             <div class="text-center text-md-start">

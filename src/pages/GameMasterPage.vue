@@ -30,9 +30,6 @@ export default {
     },
   },
   mounted() {
-    // Fetch the game master details from the store
-    // and display them in the game master information section.
-
     // check if query params are present, and store the game master in the store
     if (this.$route.query.gameMaster) {
       const slug = this.$route.query.gameMaster;
@@ -47,8 +44,6 @@ export default {
         .then((response) => {
           // Store the fetched game master in the store
           this.store.selectedGameMaster = response.data.result;
-          //console log
-          console.log('Game Master:', this.store.selectedGameMaster);
         })
         .catch((error) => {
           console.error(error);
@@ -63,7 +58,7 @@ export default {
     <div class="container p-2 mb-3" v-if="store.selectedGameMaster">
       <h1>{{ msg }}</h1>
       <GmCardComponent v-if="store.selectedGameMaster" :gm="store.selectedGameMaster" :gmShow="true" />
-      <!-- Contact Form -->
+      <!-- send message -->
       <div class="mt-3 text-center mb-3">
         <h3>Dispatch Your Scroll to {{ store.selectedGameMaster.user.name }}</h3>
       </div>
@@ -89,21 +84,15 @@ export default {
             <button type="submit" class="mx-auto">Send Forth Thy Scroll</button>
           </div>
         </form>
-
+        <!-- Reviews -->
+        <ReviewsComponent />
       </div>
-      <div class="mt-4">
-        <button type="submit">Back to Results</button>
+      <div v-else class="text-center">
+        <h1>Game Master not found</h1>
+        <router-link :to="{ name: 'advanced-search' }" class="nav-link mt-3"><button class="btn-voi-orange">Go Back
+            Search</button></router-link>
       </div>
-
-      <!-- Reviews -->
-      <ReviewsComponent />
     </div>
-    <div v-else class="text-center">
-      <h1>Game Master not found</h1>
-      <router-link :to="{ name: 'advanced-search' }" class="nav-link mt-3"><button class="btn-voi-orange">Go Back
-          Search</button></router-link>
-    </div>
-  </div>
 </template>
 
 <style scoped lang="scss">
@@ -119,15 +108,5 @@ export default {
     margin-bottom: 40px;
     text-align: center;
   }
-}
-
-.form-div {
-  background-image: url('../assets/img/vintage-grunge.jpg');
-  background-size: cover;
-  background-position: center;
-  padding: 40px;
-  border-radius: 10px;
-  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
-  color: $light-color;
 }
 </style>
