@@ -1,10 +1,10 @@
 <script>
-import store from '../store/store.js';
+import store from "../store/store.js";
 // Import Luxon
-import { DateTime } from 'luxon';
+import { DateTime } from "luxon";
 
 export default {
-  name: 'GmCardComponent',
+  name: "GmCardComponent",
 
   data() {
     return {
@@ -24,7 +24,7 @@ export default {
   },
   methods: {
     goToGmMessagePage(slug) {
-      this.$router.push({ name: 'message-gamemaster', params: { slug } });
+      this.$router.push({ name: "message-gamemaster", params: { slug } });
     },
     formatLocalDate(dateStr) {
       return DateTime.fromISO(dateStr).toLocaleString(DateTime.DATE_MED);
@@ -60,7 +60,7 @@ export default {
     </div>
     <div class="card-body">
       <div class="text-center text-md-start">
-        <h4 class="card-title">{{ gm.user.name }}</h4>
+        <h4 class="card-title">{{ gm.user.name }} <span v-if="gm.has_future_promotion">(I am promoted!)</span></h4>
       </div>
       <hr />
       <div>
@@ -68,7 +68,7 @@ export default {
         <p>
           <span v-for="(system, index) in gm.game_systems" :key="index">
             {{ system.name
-            }}{{ index < gm.game_systems.length - 1 ? ', ' : '' }}
+            }}{{ index < gm.game_systems.length - 1 ? ", " : "" }}
           </span>
         </p>
       </div>
@@ -92,11 +92,14 @@ export default {
           ></p>
         </div>
         <div>
+          <h6>Campaign Description</h6>
+          <p>{{ gm.game_description }}</p>
+        </div>
+        <div>
           <h6>Game Master Since</h6>
           <p>{{ formatLocalDate(gm.created_at) }}</p>
         </div>
-        <h6>Campaign Description</h6>
-        <p>{{ gm.game_description }}</p>
+        
       </div>
     </div>
   </div>
@@ -104,8 +107,8 @@ export default {
 </template>
 
 <style scoped lang="scss">
-@use '../scss/helpers/variables' as *;
-@use '../scss/helpers/mixins' as *;
+@use "../scss/helpers/variables" as *;
+@use "../scss/helpers/mixins" as *;
 
 .card {
   background-color: $light-color-card;

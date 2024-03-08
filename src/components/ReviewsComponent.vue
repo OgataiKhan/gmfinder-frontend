@@ -5,7 +5,7 @@ export default {
   name: 'ReviewsComponent',
   data() {
     return {
-      msg: 'This is the review component!',
+      msg: 'Write your review!',
       store,
       formData: {
         text: null,
