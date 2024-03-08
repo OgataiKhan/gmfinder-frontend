@@ -94,11 +94,19 @@ export default {
                     </div>
                     <div>
                       <h6>
+                        Location
+                      </h6>
+                      <p>{{ gm.location }}
+                      </p>
+                    </div>
+                    <div>
+                      <h6>
                         Max Players
                       </h6>
                       <p>{{ gm.max_players }}
                       </p>
                     </div>
+
                   </div>
                 </div>
                 <!-- /create card for each gm -->
@@ -113,13 +121,15 @@ export default {
         <ul class="pagination d-flex justify-content-between">
           <!-- Previous -->
           <li>
-            <div class="page-item" v-if="apiResponse && this.$route.query.page" v-show="apiResponse.results?.prev_page_url">
+            <div class="page-item" v-if="apiResponse && this.$route.query.page"
+              v-show="apiResponse.results?.prev_page_url">
               <button class="page-link" @click="previousPage">Previous</button>
             </div>
           </li>
           <!-- Next -->
           <li>
-            <div class="page-item" v-if="apiResponse && this.$route.query.page" v-show="apiResponse.results?.next_page_url">
+            <div class="page-item" v-if="apiResponse && this.$route.query.page"
+              v-show="apiResponse.results?.next_page_url">
               <button class="btn btn-info" @click="nextPage">Next</button>
             </div>
           </li>
