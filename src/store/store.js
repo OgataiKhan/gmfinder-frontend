@@ -18,6 +18,7 @@ const store = reactive({
     currentPage: null,
     lastPage: null,
     totalResults: 0,
+    searchInitiated: false,
 });
 
 export default store;

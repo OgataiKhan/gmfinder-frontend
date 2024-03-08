@@ -48,6 +48,9 @@ export default {
       }
     },
   },
+  created() {
+    this.store.searchInitiated = false;
+  },
 };
 </script>
 
@@ -70,7 +73,7 @@ export default {
       <!-- create ul to show search results -->
       <div class="row mx-auto mt-2 align-items-center">
         <div class="col mb-5">
-          <h3 class="text-center my-5 text-black">
+          <h3 v-if="this.store.searchInitiated" class="text-center my-5 text-black">
             Total results:
             <span v-if="apiResponse && store.gameMastersResults.length">{{
               apiResponse.results.total

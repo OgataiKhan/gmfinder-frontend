@@ -17,6 +17,7 @@ export default {
       gameSystem = this.store.selectedGameSystem,
       page = this.store.currentPage
     ) {
+      this.store.searchInitiated = true;
       if (gameSystem) {
         this.validationError = false;
         // Check and correct for negative page numbers
