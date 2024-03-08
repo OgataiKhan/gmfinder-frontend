@@ -10,7 +10,7 @@ const routes = [
     { path: '/', name: 'home', component: HomePage },
     { path: '/advanced-search', name: 'advanced-search', component: AdvancedSearchPage },
     { path: '/game-master', name: 'game-master', component: GameMasterPage },
-    { path: '/game-master/message/:slug', name: 'message-gamemaster', component: GmMessagePage },
+    { path: '/game-master-message/:slug', name: 'message-gamemaster', component: GmMessagePage, props: true },
     { path: '/message-success', name: 'message-success', component: MessageSuccessPage },
     { path: '/:pathMatch(.*)*', name: 'error', component: ErrorPage }
 ]

@@ -23,13 +23,8 @@ export default {
         },
     },
     methods: {
-        selectGm(gm) {
-            this.$store.selectedGameMaster = gm;
-            //redirect to game master page with query params
-            this.$router.push({
-                name: "game-master",
-                query: { gameMaster: gm.slug },
-            });
+        goToGmMessagePage(slug) {
+            this.$router.push({ name: 'message-gamemaster', params: { slug } });
         },
         formatLocalDate(dateStr) {
             return DateTime.fromISO(dateStr).toLocaleString(DateTime.DATE_MED);
@@ -49,12 +44,9 @@ export default {
                 : '/img/generic-avatar.jpg'
                 " class="card-img-top" alt="profile pic" />
             <!-- button to send msg, route to GmMessagePage -->
-            <!-- <div class="card-button">
-                <router-link :to="{ name: 'message-gamemaster', params: { slug: gm.slug } }"><button class=" mt-4 w-100"
-                        @click="selectGm(gm)">Send
-                        a
-                        Message</button></router-link>
-            </div> -->
+            <div class="card-button">
+                <button @click="goToGmMessagePage(store.selectedGameMaster.slug)">Send Message</button>
+            </div>
 
         </div>
         <div class="card-body">
