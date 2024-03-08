@@ -90,7 +90,7 @@ export default {
                     <h6>
                         Game Master Since
                     </h6>
-                    <p>{{ gm.created_at.slice(0, 10) }}
+                    <p>{{ formatLocalDate(gm.created_at) }}
                     </p>
                 </div>
                 <h6>Campaign Description</h6>

@@ -77,10 +77,10 @@ export default {
                 <div class="card d-flex flex-md-row">
                   <div class="card-header border-bottom-0">
                     <img :src="gm.profile_img
-              ? this.store.api.baseURL +
-              this.store.api.apiUrls.storage +
-              gm.profile_img
-              : '/img/generic-avatar.jpg'
+            ? this.store.api.baseURL +
+            this.store.api.apiUrls.storage +
+            gm.profile_img
+            : '/img/generic-avatar.jpg'
             " class="card-img-top" alt="profile pic" />
                   </div>
                   <div class="card-body">
@@ -109,10 +109,6 @@ export default {
                       </h6>
                       <p>{{ gm.max_players }}
                       </p>
-                    </div>
-                    <div>
-                      <h6>Max Players</h6>
-                      <p>{{ gm.max_players }}</p>
                     </div>
                   </div>
                 </div>
