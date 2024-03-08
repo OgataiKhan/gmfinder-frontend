@@ -1,9 +1,9 @@
 //import helpers scss
-@use "./helpers/variables" as *;
-@use "./helpers/mixins" as *;
-@use "./helpers/functions" as *;
+@use "./helpers/variables";
+@use "./helpers/mixins";
+@use "./helpers/functions";
 //import base scss
-@use "./base/typography" as *;
+@use "./base/typography";
 
 // Import Bootstrap's CSS
 @import "bootstrap/scss/bootstrap";
@@ -39,20 +39,5 @@ BUTTONS
 */
 
 button {
-  @include primary-button;
-}
-
-/* 
-********
-INPUTS
-********
-*/
-
-.my-select:focus {
-  border-color: $contrast-color;
-  box-shadow: 0 0 0 0.25rem rgba(230, 122, 0, 0.25);
-}
-
-option {
-  color: $primary-color;
+  @include mixins.primary-button;
 }

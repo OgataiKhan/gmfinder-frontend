@@ -106,7 +106,6 @@ export default {
                       <p>{{ gm.max_players }}
                       </p>
                     </div>
-
                   </div>
                 </div>
                 <!-- /create card for each gm -->
