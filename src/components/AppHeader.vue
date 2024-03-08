@@ -55,7 +55,10 @@ export default {
                   @click="clearResults">Search</router-link>
               </li>
               <li class="nav-item">
-                <a :href="store.api.baseURL + 'game_master'" class="nav-link" id="nav-link">My Account</a>
+                <a :href="store.api.baseURL + 'login'" class="nav-link" id="nav-link">My Account</a>
+              </li>
+              <li class="nav-item">
+                <a :href="store.api.baseURL + 'register'" class="nav-link" id="nav-link">Sign Up</a>
               </li>
             </ul>
           </div>
