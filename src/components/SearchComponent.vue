@@ -62,7 +62,7 @@ export default {
   watch: {
     "$route.query.gameSystem"(newVal) {
       if (newVal) {
-        this.searchGm(newVal, this.$route.query.gameSystem);
+        this.searchGm(newVal, this.$route.query.page);
       }
     },
 
@@ -117,27 +117,30 @@ export default {
 </script>
 
 <template>
-  <form
-    @submit.prevent="searchGm(store.selectedGameSystem)"
-    class="d-flex flex-column flex-md-row align-items-center w-75 mx-auto"
-  >
-    <select
-      class="form-select mt-0 my-select"
-      aria-label="Default select example"
-      v-model="store.selectedGameSystem"
+  <div class="d-flex align-items-center flex-column justify-content-center">
+    <form
+      @submit.prevent="searchGm(store.selectedGameSystem)"
+      class="d-flex flex-column flex-md-row align-items-center mx-auto w-75"
     >
-      <option disabled value="">Select a Game System</option>
-      <option v-for="game in store.gameSystems" :value="game.id">
-        {{ game.name }}
-      </option>
-    </select>
+      <select
+        class="form-select mt-0 my-select"
+        aria-label="Default select example"
+        v-model="store.selectedGameSystem"
+      >
+        <option disabled value="">Select a Game System</option>
+        <option v-for="game in store.gameSystems" :value="game.id">
+          {{ game.name }}
+        </option>
+      </select>
+
+      <!-- submit button -->
+      <button type="submit" class="mx-auto ms-md-3 mt-4 mt-md-0">Search</button>
+    </form>
     <!-- Validation Message -->
-    <div v-if="validationError" class="me-auto validation-alert">
+    <div v-if="validationError" class="validation-alert w-75 mt-2">
       Please select a game system
     </div>
-    <!-- submit button -->
-    <button type="submit" class="mx-auto ms-md-3 mt-4 mt-md-0">Search</button>
-  </form>
+  </div>
 </template>
 
 <style scoped lang="scss">
@@ -145,7 +148,7 @@ export default {
 
 .validation-alert {
   color: $danger-color;
-  font-size: 0.6rem;
+  font-size: 0.8rem;
   margin: 0;
 }
 </style>
