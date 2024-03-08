@@ -7,6 +7,7 @@ const store = reactive({
         apiUrls: {
             'game_masters': 'api/game_masters',
             'game_systems': 'api/game_systems',
+            'messages': 'api/messages',
             'storage': 'storage/',
         },
     },

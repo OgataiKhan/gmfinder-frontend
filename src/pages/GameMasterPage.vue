@@ -9,10 +9,11 @@ export default {
     return {
       store,
       msg: 'Summon the Lorekeeper',
-      contactForm: {
-        name: '',
-        message: '',
-      },
+      formData: {
+        text: null,
+        name: null,
+        email: null,
+      }
     };
   },
   components: {
@@ -20,14 +21,19 @@ export default {
     GmCardComponent,
   },
   methods: {
-    sendMessage() {
-      // Here handle the form submission.
-      console.log('Form Data:', this.contactForm);
-
-      // After sending the message, clear the form fields
-      this.contactForm.name = '';
-      this.contactForm.message = '';
-    },
+    postMessage() {
+      const data = {
+        game_master_id: store.selectedGameMaster.id,
+        text: this.formData.text,
+        name: this.formData.name,
+        email: this.formData.email
+      }
+      axios.post(this.store.api.baseURL + this.store.api.apiUrls.messages, data).then(response => {
+        console.log('inviato!')
+      }).catch(error => {
+        console.error(error)
+      })
+    }
   },
   mounted() {
     // check if query params are present, and store the game master in the store
@@ -58,6 +64,8 @@ export default {
     <div class="container p-2 mb-3" v-if="store.selectedGameMaster">
       <h1>{{ msg }}</h1>
       <GmCardComponent v-if="store.selectedGameMaster" :gm="store.selectedGameMaster" :gmShow="true" />
+
+
       <!-- send message -->
       <div class="mt-3 text-center mb-3">
         <h3>Dispatch Your Scroll to {{ store.selectedGameMaster.user.name }}</h3>
@@ -68,31 +76,35 @@ export default {
             <div class="my-4 col-5">
               <label for="userEmailAddress" class="form-label">Thy Name</label>
               <input type="text" class="form-control" id="userName" placeholder="Enter your name"
-                v-model="contactForm.name" />
+                v-model="formData.name" />
             </div>
             <div class="my-4 col-5">
               <label for="userEmailAddress" class="form-label">Raven-Email Address</label>
               <input type="email" class="form-control" id="userEmailAddress" placeholder="Enter your email address"
-                v-model="contactForm.name" />
+                v-model="formData.email" />
             </div>
           </div>
           <div class="mb-3">
             <label for="msgText" class="form-label">Thy Missive</label>
-            <textarea class="form-control" id="msgText" rows="3" v-model="contactForm.message"></textarea>
+            <textarea class="form-control" id="msgText" rows="3" v-model="formData.text"></textarea>
           </div>
           <div class="py-3 d-flex">
-            <button type="submit" class="mx-auto">Send Forth Thy Scroll</button>
+            <button type="submit" class="mx-auto" @click.prevent="postMessage">Send Forth Thy Scroll</button>
           </div>
         </form>
-        <!-- Reviews -->
-        <ReviewsComponent />
       </div>
-      <div v-else class="text-center">
-        <h1>Game Master not found</h1>
-        <router-link :to="{ name: 'advanced-search' }" class="nav-link mt-3"><button class="btn-voi-orange">Go Back
-            Search</button></router-link>
-      </div>
+
+
+
+      <!-- Reviews -->
+      <ReviewsComponent />
     </div>
+    <div v-else class="text-center">
+      <h1>Game Master not found</h1>
+      <router-link :to="{ name: 'advanced-search' }" class="nav-link mt-3"><button class="btn-voi-orange">Go Back
+          Search</button></router-link>
+    </div>
+  </div>
 </template>
 
 <style scoped lang="scss">
