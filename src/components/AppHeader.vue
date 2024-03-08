@@ -53,6 +53,9 @@ export default {
                 <router-link :to="{ name: 'advanced-search' }" class="nav-link"
                   @click="clearResults">Search</router-link>
               </li>
+              <li class="nav-item">
+                <a :href="store.api.baseURL + 'game_master'" class="nav-link" id="nav-link">My Account</a>
+              </li>
             </ul>
           </div>
         </div>
