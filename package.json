@@ -12,6 +12,7 @@
     "axios": "^1.6.7",
     "bootstrap": "^5.3.3",
     "bootstrap-icons": "^1.11.3",
+    "luxon": "^3.4.4",
     "sass": "^1.71.1",
     "vue": "^3.3.8",
     "vue-router": "^4.3.0"
