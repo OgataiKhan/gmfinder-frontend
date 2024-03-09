@@ -21,6 +21,7 @@ export default {
     GmCardComponent,
   },
   methods: {
+    //method to send message to game master
     postMessage() {
       const data = {
         game_master_id: store.selectedGameMaster.id,
@@ -33,6 +34,15 @@ export default {
       }).catch(error => {
         console.error(error)
       })
+    },
+    //method to go back to the search page
+    backToSearch() {
+      this.$router.push({
+        name: 'advanced-search', query: {
+          gameSystem: this.store.selectedGameSystem,
+          page: this.store.currentPage
+        }
+      });
     }
   },
   mounted() {
@@ -69,7 +79,7 @@ export default {
         <ReviewsComponent />
       </div>
       <div class="my-3 container text-start">
-        <button type="submit">Back to Search</button>
+        <button type="submit" @click="backToSearch">Back to Search</button>
       </div>
     </div>
     <div v-else class="text-center">
