@@ -57,9 +57,14 @@ export default {
                 });
         },
 
-        //resent messageSuccess
+        //reset messageSuccess
         messageReset() {
             this.messageSuccess = false;
+        },
+
+        //back to profile
+        backToProfile() {
+            this.$router.push({ name: 'game-master', params: { slug: this.slug } });
         },
     },
     mounted() {
@@ -111,7 +116,7 @@ export default {
             </div>
         </div>
         <div class="mt-4 container pt-2 pb-4 text-start">
-            <button type="submit">Back to Profile</button>
+            <button type="submit" @click="backToProfile">Back to Profile</button>
         </div>
     </div>
 </template>
