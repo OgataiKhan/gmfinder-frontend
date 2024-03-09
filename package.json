@@ -15,7 +15,9 @@
     "luxon": "^3.4.4",
     "sass": "^1.71.1",
     "vue": "^3.3.8",
-    "vue-router": "^4.3.0"
+    "vue-router": "^4.3.0",
+    "vuex": "^4.0.2",
+    "vuex-persistedstate": "^4.1.0"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.5.0",

@@ -2,6 +2,8 @@
 import store from '../store/store.js';
 //import axios
 import axios from 'axios';
+//impor vuex mapState
+import { mapState, mapActions } from 'vuex';
 //import SearchComponent
 import SearchComponent from '../components/SearchComponent.vue';
 export default {
@@ -47,9 +49,24 @@ export default {
         );
       }
     },
+    //map actions
+    ...mapActions(['updateSearchParams']),
   },
   created() {
     this.store.searchInitiated = false;
+  },
+  watch: {
+    // Watch for changes in route query parameters
+    '$route.query': {
+      immediate: true, // This ensures the handler runs immediately, not only when the route changes
+      handler(newQuery) {
+        // Dispatch action to update search parameters in Vuex store
+        this.updateSearchParams({
+          page: newQuery.page || null,
+          selectedGame: newQuery.gameSystem || null, // Assuming 'gameSystem' is the query parameter for the selected game
+        });
+      },
+    },
   },
 };
 </script>
@@ -73,10 +90,7 @@ export default {
       <!-- create ul to show search results -->
       <div class="row mx-auto mt-2 align-items-center">
         <div class="col mb-5">
-          <h3
-            v-if="this.store.searchInitiated"
-            class="text-center my-4 text-black"
-          >
+          <h3 v-if="this.store.searchInitiated" class="text-center my-4 text-black">
             Total results:
             <span v-if="apiResponse && store.gameMastersResults.length">{{
               apiResponse.results.total
@@ -85,25 +99,16 @@ export default {
           <ul class="d-flex gap-3 flex-column">
             <li v-for="gm in store.gameMastersResults" :key="gm.id">
               <!-- route link f9or clickable card -->
-              <router-link
-                :to="{ name: 'game-master' }"
-                class="nav-link"
-                @click="selectGm(gm)"
-              >
+              <router-link :to="{ name: 'game-master' }" class="nav-link" @click="selectGm(gm)">
                 <!-- create card for each gm -->
                 <div class="card d-flex flex-md-row">
                   <div class="card-header border-bottom-0">
-                    <img
-                      :src="
-                        gm.profile_img
-                          ? this.store.api.baseURL +
-                            this.store.api.apiUrls.storage +
-                            gm.profile_img
-                          : '/img/generic-avatar.jpg'
-                      "
-                      class="card-img-top"
-                      alt="profile pic"
-                    />
+                    <img :src="gm.profile_img
+              ? this.store.api.baseURL +
+              this.store.api.apiUrls.storage +
+              gm.profile_img
+              : '/img/generic-avatar.jpg'
+              " class="card-img-top" alt="profile pic" />
                   </div>
                   <div class="card-body">
                     <div class="text-center text-md-start">
@@ -113,13 +118,9 @@ export default {
                     <div>
                       <h6>Game Systems</h6>
                       <p>
-                        <span
-                          v-for="(system, index) in gm.game_systems"
-                          :key="index"
-                        >
+                        <span v-for="(system, index) in gm.game_systems" :key="index">
                           {{ system.name
-                          }}{{ index < gm.game_systems.length - 1 ? ', ' : '' }}
-                        </span>
+                          }}{{ index < gm.game_systems.length - 1 ? ', ' : '' }} </span>
                       </p>
                     </div>
                     <div>
@@ -136,10 +137,7 @@ export default {
               </router-link>
             </li>
           </ul>
-          <p
-            v-if="store.gameMastersResults.length === 0 && apiResponse"
-            class="text-center fst-italic"
-          >
+          <p v-if="store.gameMastersResults.length === 0 && apiResponse" class="text-center fst-italic">
             There's no loot here. Also, the chest was a mimic. Roll initiative.
           </p>
         </div>
@@ -150,21 +148,15 @@ export default {
         <ul class="pagination d-flex justify-content-between px-3 pb-3">
           <!-- Previous -->
           <li>
-            <div
-              class="page-item"
-              v-if="apiResponse && this.$route.query.page"
-              v-show="apiResponse.results?.prev_page_url"
-            >
+            <div class="page-item" v-if="apiResponse && this.$route.query.page"
+              v-show="apiResponse.results?.prev_page_url">
               <button class="page-link" @click="previousPage">Previous</button>
             </div>
           </li>
           <!-- Next -->
           <li>
-            <div
-              class="page-item"
-              v-if="apiResponse && this.$route.query.page"
-              v-show="apiResponse.results?.next_page_url"
-            >
+            <div class="page-item" v-if="apiResponse && this.$route.query.page"
+              v-show="apiResponse.results?.next_page_url">
               <button class="btn btn-info" @click="nextPage">Next</button>
             </div>
           </li>

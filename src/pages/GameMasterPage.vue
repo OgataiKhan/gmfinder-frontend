@@ -3,6 +3,7 @@ import ReviewsComponent from '../components/ReviewsComponent.vue';
 import GmCardComponent from '../components/GmCardComponent.vue';
 import store from '../store/store.js';
 import axios from 'axios';
+import { mapActions, mapState } from 'vuex';
 
 export default {
   data() {
@@ -37,13 +38,17 @@ export default {
     },
     //method to go back to the search page
     backToSearch() {
+      // Use the Vuex store's state to navigate back with the stored search parameters
+      console.log('this.page', this.page)
+      console.log('this.selectedGame', this.selectedGame)
       this.$router.push({
-        name: 'advanced-search', query: {
-          gameSystem: this.store.selectedGameSystem,
-          page: this.store.currentPage
-        }
+        name: 'advanced-search',
+        query: {
+          gameSystem: this.selectedGame,
+          page: this.page,
+        },
       });
-    }
+    },
   },
   mounted() {
     // check if query params are present, and store the game master in the store
@@ -65,6 +70,13 @@ export default {
           console.error(error);
         });
     }
+  },
+  computed: {
+    ...mapState({
+      // This will create computed properties tied directly to the Vuex store's state
+      page: state => state.searchParams.page,
+      selectedGame: state => state.searchParams.selectedGame,
+    }),
   },
 };
 </script>
