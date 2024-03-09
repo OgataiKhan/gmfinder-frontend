@@ -39,8 +39,8 @@ export default {
     backToSearch() {
       this.$router.push({
         name: 'advanced-search', query: {
-          gameSystem: this.$route.query.gameSystem,
-          page: this.$route.query.page
+          gameSystem: this.store.selectedGameSystem,
+          page: this.store.currentPage
         }
       });
     }
