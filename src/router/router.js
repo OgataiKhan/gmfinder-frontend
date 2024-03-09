@@ -20,7 +20,7 @@ const router = createRouter({
     routes,
     //add scroll behavior
     scrollBehavior() {
-        return { top: 0 }
+        return { top: 0, behavior: 'auto' }
     }
 })
 
