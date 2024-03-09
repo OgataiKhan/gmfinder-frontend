@@ -49,7 +49,7 @@ export default {
         );
       }
     },
-    //map actions
+    //This is a helper that allows us to call the updateSearchParams action from the store as if it were a method of this component
     ...mapActions(['updateSearchParams']),
   },
   created() {
@@ -58,9 +58,10 @@ export default {
   watch: {
     // Watch for changes in route query parameters
     '$route.query': {
-      immediate: true, // This ensures the handler runs immediately, not only when the route changes
+      // Call handler immediately on component creation
+      immediate: true,
+      //the handler gets called when the route query parameters change and updates the store
       handler(newQuery) {
-        // Dispatch action to update search parameters in Vuex store
         this.updateSearchParams({
           page: newQuery.page || null,
           selectedGame: newQuery.gameSystem || null, // Assuming 'gameSystem' is the query parameter for the selected game

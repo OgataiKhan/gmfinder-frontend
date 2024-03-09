@@ -39,11 +39,10 @@ export default {
     //method to go back to the search page
     backToSearch() {
       // Use the Vuex store's state to navigate back with the stored search parameters
-      console.log('this.page', this.page)
-      console.log('this.selectedGame', this.selectedGame)
       this.$router.push({
         name: 'advanced-search',
         query: {
+          //we can access vuex state directly from the component because of the mapState helper in computed
           gameSystem: this.selectedGame,
           page: this.page,
         },
@@ -72,9 +71,11 @@ export default {
     }
   },
   computed: {
+    //this creates a computed property that maps the store's state to the component's data i.e. a computed property that changes when the store's state (data) changes
     ...mapState({
-      // This will create computed properties tied directly to the Vuex store's state
+      //creates a computed property named 'page' that reflects state.searchParams.page
       page: state => state.searchParams.page,
+      //creates a computed property named 'selectedGame' that reflects state.searchParams.selectedGame
       selectedGame: state => state.searchParams.selectedGame,
     }),
   },
