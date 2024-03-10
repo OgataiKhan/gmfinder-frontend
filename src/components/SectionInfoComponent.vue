@@ -4,7 +4,7 @@ export default {
     name: 'SectionInfoComponent',
     data() {
         return {
-            title: 'Welcome to the Dragons Realm!',
+            title: "Welcome to the Dragons' Realm!",
             description: 'This is a place where you can find the best masters of the realm to guide you through your journey. You can also become a master and share your knowledge with others.',
         }
     }
