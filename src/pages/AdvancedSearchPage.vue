@@ -87,7 +87,7 @@ export default {
           <!-- search component with red to access method -->
           <div class="p-3 search-component col-9 mx-auto">
             <h3 class="text-center mb-4">Advanced Search</h3>
-            <SearchComponent @dataReceived="handleData" ref="SearchComponent" />
+            <SearchComponent @dataReceived="handleData" ref="SearchComponent" :advanced="true" />
           </div>
         </div>
       </div>

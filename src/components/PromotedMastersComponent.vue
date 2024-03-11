@@ -4,53 +4,75 @@ import 'bootstrap-icons/font/bootstrap-icons.css';
 import store from '../store/store.js';
 //import axios
 import axios from 'axios';
+import GmCardComponent from './GmCardComponent.vue';
 export default {
     name: 'PromotedMastersComponent',
+
+    components: {
+        GmCardComponent,
+    },
+
     data() {
         return {
             title: 'Featured Masters of the Realm',
-            masters: [], // store the masters data from the API
+            featuredMasters: [], // store the masters data from the API
             store,
             currentPage: 1, // store the current page number
+            lastPage: 1, // store the last page number
         }
     },
     methods: {
 
         //api call to get masters
-        getMasters() {
-            axios.get(this.store.api.baseURL + this.store.api.apiUrls.game_masters, { params: { page: this.currentPage } })
+        getFeaturedMasters() {
+            //get list of gm where promotion is active
+            axios.get(this.store.api.baseURL + this.store.api.apiUrls.featured, {
+                params: {
+                    page: this.currentPage
+                }
+            })
                 .then(response => {
-                    console.log(response);
-                    this.masters = response.data.results.data;
-                    console.log(this.masters);
+                    this.featuredMasters = response.data.results.data;
+                    this.lastPage = response.data.results.last_page;
+
                 })
                 .catch(error => {
-                    console.log(error);
-                })
+                    console.error('Error fetching promoted masters', error);
+                });
         },
 
         // Function to display the next set of masters
         next() {
-            // If there are more masters to display, increment the visibleStartIndex
-            if (this.visibleStartIndex + 4 < this.masters.length) {
-                this.visibleStartIndex += 4;
-            } else {
-                this.visibleStartIndex = 0; // Loop back to start if at the end
+            // Check if currentPage is within bounds
+            if (this.currentPage < this.lastPage) {
+                // Call api to get the results of the next page
+                this.getFeaturedMasters(this.currentPage++);
             }
+            //if we are at the last page, return to first page
+            else if (this.currentPage === this.lastPage) {
+                this.currentPage = 1;
+                this.getFeaturedMasters(this.currentPage);
+            }
+            console.log('Current page', this.currentPage);
         },
         // Function to display the previous set of masters
         prev() {
-            //if there are more masters to display, decrement the visibleStartIndex
-            if (this.visibleStartIndex - 4 >= 0) {
-                this.visibleStartIndex -= 4;
-            } else {
-                this.visibleStartIndex = this.masters.length - 4; // Loop back to end if at the start
+            // Check if currentPage is greater than 1
+            if (this.currentPage > 1) {
+                // Call api to get the results of the previous page
+                this.getFeaturedMasters(this.currentPage--);
             }
+            //if we are at the first page, return to last page
+            else if (this.currentPage === 1) {
+                this.currentPage = this.lastPage;
+                this.getFeaturedMasters(this.currentPage);
+            }
+
         }
     },
     created() {
         // Call the getMasters function when the component is mounted
-        this.getMasters();
+        this.getFeaturedMasters();
     }
 };
 </script>
@@ -63,12 +85,22 @@ export default {
         <div class="masters-container pb-3">
             <div class="masters-grid container">
                 <div class="row g-3">
-                    <div class="col-md-6 col-lg-3" v-for="master in 4" :key="master.id">
-                        <!-- Display master info here -->
-                        <div class="card p-3 master-card">
-                            <img src="../assets/img/generic-avatar.webp" alt="Master Image" class="img-fluid">
-                            <h3 class="text-center mt-1">Great Wizard</h3>
-                            <p>Description of my skills</p>
+                    <div class="col-md-6 col-lg-3" v-for="gm in featuredMasters">
+                        <div class="card">
+                            <img :src="gm.profile_img
+                ? this.store.api.baseURL +
+                this.store.api.apiUrls.storage +
+                gm.profile_img
+                : '/img/generic-avatar.jpg'
+                " class="" alt="profile pic" />
+                            <div class="card-body">
+                                <h4>{{ gm.user.name }}</h4>
+                                <p>
+                                    <span v-for="(system, index) in gm.game_systems" :key="index">
+                                        {{ system.name
+                                        }}{{ index < gm.game_systems.length - 1 ? ", " : "" }} </span>
+                                </p>
+                            </div>
                         </div>
                         <!-- Add more master details here -->
                     </div>
@@ -107,7 +139,8 @@ export default {
 
 .navigation-controls {
     position: absolute;
-    top: 45%;
+    top: 50%;
+    transform: translateY(-50%);
     left: 0;
     width: 100%;
 
@@ -123,6 +156,18 @@ export default {
         color: $contrast-color;
         font-size: 3.5rem;
         font-weight: bold;
+    }
+}
+
+.card {
+    padding: 0.5rem;
+    height: 100%;
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 10px;
     }
 }
 </style>
