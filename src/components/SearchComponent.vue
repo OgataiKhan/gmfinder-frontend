@@ -146,7 +146,8 @@ export default {
       class="d-flex flex-column align-items-center mx-auto w-75 mb-2">
       <!-- Select Game System -->
       <label for="gameSystem" class="form-label mt-2">Game System</label>
-      <select class="form-select mt-0 my-select" aria-label="Default select example" v-model="store.selectedGameSystem">
+      <select class="form-select mt-0 my-select input-focus-orange" aria-label="Default select example"
+        v-model="store.selectedGameSystem">
         <option disabled value="">Select a Game System</option>
         <option v-for="game in store.gameSystems" :value="game.id">
           {{ game.name }}
@@ -157,7 +158,7 @@ export default {
         <!-- Average Rating Select -->
         <div class="d-flex flex-column align-items-center">
           <label for="avgRating" class="form-label mt-2">Average Rating</label>
-          <select class="form-select avg-rating" v-model="store.selectedAvgRating">
+          <select class="form-select avg-rating input-focus-orange" v-model="store.selectedAvgRating">
             <option disabled value="">Select Average Rating</option>
             <option value="">Any Rating</option>
             <option value="1">1+</option>
@@ -172,7 +173,7 @@ export default {
         <!-- Input number reviews -->
         <div class="d-flex flex-column align-items-center">
           <label class="form-label mt-2">Min Reviews</label>
-          <input type="number" class="form-control min-reviews" placeholder="Min Reviews"
+          <input type="number" class="form-control min-reviews input-focus-orange" placeholder="Min Reviews"
             v-model="store.selectedMinReviews" />
         </div>
       </div>

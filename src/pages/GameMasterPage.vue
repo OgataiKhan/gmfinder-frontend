@@ -23,28 +23,6 @@ export default {
     ShowReviewsComponent,
   },
   methods: {
-    postRating() {
-      const data = {
-        rating_id: this.formData.rating_id,
-        game_master_id: store.selectedGameMaster.id,
-      };
-
-      axios.post(this.store.api.baseURL + this.store.api.apiUrls.ratings, data)
-        .then(response => {
-          console.log('Selected gm', store.selectedGameMaster.id);
-          console.log('Rating selected', this.formData.rating_id);
-
-
-          this.ratingSuccess = true;
-          console.log("Rating submitted successfully", response.data);
-          // Reset formData
-          this.formData.rating_id = null;
-        })
-        .catch(error => {
-          console.error("Error submitting review", error);
-        });
-    },
-
 
 
 
@@ -119,33 +97,9 @@ export default {
       <div class="review-container mt-4">
         <ReviewsComponent />
       </div>
-
-
-      <!-- select to give rating -->
-      <div class="my-3 container text-start">
-        <form>
-          <select name="rating" id="rating" v-model="formData.rating_id">
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-          </select>
-          <div class="py-3 d-flex">
-            <button type="submit" class="mx-auto" @click.prevent="postRating">
-              send rating
-            </button>
-          </div>
-        </form>
-      </div>
-
       <div class="show-review-container">
         <ShowReviewsComponent />
       </div>
-
-
-
-
       <div class="my-3 container text-start">
         <button type="submit" @click="backToSearch">Back to Search</button>
       </div>

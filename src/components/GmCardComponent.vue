@@ -2,6 +2,7 @@
 import store from "../store/store.js";
 // Import Luxon
 import { DateTime } from "luxon";
+import axios from 'axios';
 
 export default {
   name: "GmCardComponent",
@@ -9,6 +10,10 @@ export default {
   data() {
     return {
       store,
+      formData: {
+        rating_id: null,
+      },
+      ratingSuccess: false,
     };
   },
 
@@ -29,6 +34,27 @@ export default {
     formatLocalDate(dateStr) {
       return DateTime.fromISO(dateStr).toLocaleString(DateTime.DATE_MED);
     },
+    postRating() {
+      const data = {
+        rating_id: this.formData.rating_id,
+        game_master_id: store.selectedGameMaster.id,
+      };
+
+      axios.post(this.store.api.baseURL + this.store.api.apiUrls.ratings, data)
+        .then(response => {
+          console.log('Selected gm', store.selectedGameMaster.id);
+          console.log('Rating selected', this.formData.rating_id);
+
+
+          this.ratingSuccess = true;
+          console.log("Rating submitted successfully", response.data);
+          // Reset formData
+          this.formData.rating_id = null;
+        })
+        .catch(error => {
+          console.error("Error submitting review", error);
+        });
+    },
   },
 };
 </script>
@@ -48,6 +74,24 @@ export default {
         <button @click="goToGmMessagePage(store.selectedGameMaster.slug)" class="w-100">
           Send Message
         </button>
+        <!-- select to give rating -->
+        <div class="my-3 text-start">
+          <form>
+            <label for="rating">Rate this GM</label>
+            <select name="rating" id="rating" v-model="formData.rating_id" class="form-select w-100 input-focus-orange">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+            <div class="py-3 d-flex">
+              <button type="submit" class="mx-auto" @click.prevent="postRating">
+                Send Rating
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
     <div class="card-body">

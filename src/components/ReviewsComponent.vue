@@ -54,18 +54,18 @@ export default {
         <div class="d-flex justify-content-between">
           <div class="my-4 col-5">
             <label for="userEmailAddress" class="form-label">Thy Name</label>
-            <input type="text" class="form-control" id="userName" placeholder="Enter your name"
+            <input type="text" class="form-control input-focus-orange" id="userName" placeholder="Enter your name"
               v-model="formData.name" />
           </div>
           <div class="my-4 col-5">
             <label for="userEmailAddress" class="form-label">Raven-Email Address</label>
-            <input type="email" class="form-control" id="userEmailAddress" placeholder="Enter your email address"
-              v-model="formData.email" />
+            <input type="email" class="form-control input-focus-orange" id="userEmailAddress"
+              placeholder="Enter your email address" v-model="formData.email" />
           </div>
         </div>
         <div class="mb-3">
           <label for="msgText" class="form-label">Thy Missive</label>
-          <textarea class="form-control" id="msgText" rows="3" v-model="formData.text"></textarea>
+          <textarea class="form-control input-focus-orange" id="msgText" rows="3" v-model="formData.text"></textarea>
         </div>
         <div class="py-3 d-flex">
           <button type="submit" class="mx-auto" @click.prevent="sendReview">

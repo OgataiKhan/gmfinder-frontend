@@ -41,3 +41,14 @@ BUTTONS
 button {
   @include mixins.primary-button;
 }
+
+/* 
+********
+INPUTS
+********
+*/
+
+.input-focus-orange:focus {
+  border-color: var(--contrast-color);
+  box-shadow: 0 0 0 0.25rem rgba(230, 122, 0, 0.25);
+}
