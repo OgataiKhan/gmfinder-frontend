@@ -6,6 +6,8 @@ import axios from 'axios';
 import { mapState, mapActions } from 'vuex';
 //import SearchComponent
 import SearchComponent from '../components/SearchComponent.vue';
+//import gm card
+import GmCardComponent from '../components/GmCardComponent.vue';
 export default {
   name: 'AdvancedSearchPage',
   data() {
@@ -16,6 +18,7 @@ export default {
   },
   components: {
     SearchComponent,
+    GmCardComponent,
   },
   methods: {
     selectGm(gm) {
@@ -99,10 +102,25 @@ export default {
           </h3>
           <ul class="d-flex gap-3 flex-column">
             <li v-for="gm in store.gameMastersResults" :key="gm.id">
-              <!-- route link f9or clickable card -->
+              <!-- route link for clickable card -->
               <router-link :to="{ name: 'game-master' }" class="nav-link" @click="selectGm(gm)">
+
+
+
+
+                <GmCardComponent :gm="gm" :gmShow="false" />
+
+
+
+
+
+
+
+
+
+
                 <!-- create card for each gm -->
-                <div class="card d-flex flex-md-row">
+                <!-- <div class="card d-flex flex-md-row">
                   <div class="card-header border-bottom-0">
                     <img :src="gm.profile_img
               ? this.store.api.baseURL +
@@ -133,7 +151,7 @@ export default {
                       <p>{{ gm.max_players }}</p>
                     </div>
                   </div>
-                </div>
+                </div> -->
                 <!-- /create card for each gm -->
               </router-link>
             </li>

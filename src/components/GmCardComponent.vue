@@ -37,30 +37,23 @@ export default {
   <!-- create card for each gm -->
   <div class="card d-flex flex-md-row">
     <div class="card-header border-bottom-0">
-      <img
-        :src="
-          gm.profile_img
-            ? this.store.api.baseURL +
-              this.store.api.apiUrls.storage +
-              gm.profile_img
-            : '/img/generic-avatar.jpg'
-        "
-        class="card-img-top"
-        alt="profile pic"
-      />
+      <img :src="gm.profile_img
+        ? this.store.api.baseURL +
+        this.store.api.apiUrls.storage +
+        gm.profile_img
+        : '/img/generic-avatar.jpg'
+        " class="card-img-top" alt="profile pic" />
       <!-- button to send msg, route to GmMessagePage -->
-      <div class="card-button mt-4 text-center">
-        <button
-          @click="goToGmMessagePage(store.selectedGameMaster.slug)"
-          class="w-75"
-        >
+      <div class="card-button mt-4 text-center" v-if="gmShow">
+        <button @click="goToGmMessagePage(store.selectedGameMaster.slug)" class="w-100">
           Send Message
         </button>
       </div>
     </div>
     <div class="card-body">
       <div class="text-center text-md-start">
-        <h4 class="card-title">{{ gm.user.name }} <span v-if="gm.has_future_promotion"> <i class="bi bi-stars"></i></span></h4>
+        <h4 class="card-title">{{ gm.user.name }} <span v-if="gm.has_future_promotion"> <i
+              class="bi bi-stars"></i></span></h4>
       </div>
       <hr />
       <div>
@@ -68,8 +61,7 @@ export default {
         <p>
           <span v-for="(system, index) in gm.game_systems" :key="index">
             {{ system.name
-            }}{{ index < gm.game_systems.length - 1 ? ", " : "" }}
-          </span>
+            }}{{ index < gm.game_systems.length - 1 ? ", " : "" }} </span>
         </p>
       </div>
       <div>
@@ -83,13 +75,10 @@ export default {
       <div class="gm-show" v-if="gmShow">
         <div>
           <h6>Availability</h6>
-          <p
-            v-html="
-              gm.is_available
-                ? 'Available <span style=\'color:green;\'>●</span>'
-                : 'Not Available <span style=\'color:red;\'>●</span>'
-            "
-          ></p>
+          <p v-html="gm.is_available
+        ? 'Available <span style=\'color:green;\'>●</span>'
+        : 'Not Available <span style=\'color:red;\'>●</span>'
+        "></p>
         </div>
         <div>
           <h6>Campaign Description</h6>
@@ -99,7 +88,7 @@ export default {
           <h6>Game Master Since</h6>
           <p>{{ formatLocalDate(gm.created_at) }}</p>
         </div>
-        
+
       </div>
     </div>
   </div>
