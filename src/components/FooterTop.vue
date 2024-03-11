@@ -66,11 +66,23 @@ export default {
           </div>
           <!-- icons -->
           <div class="mt-3">
-            <ul class="d-flex gap-3 justify-content-end">
-              <li><a href="#" class="link">icons</a></li>
-              <li><a href="#" class="link">icons</a></li>
-              <li><a href="#" class="link">icons</a></li>
-              <li><a href="#" class="link">icons</a></li>
+            <ul class="d-flex gap-4 justify-content-end">
+              <li>
+                <a href="#" class="link"
+                  ><i class="bi bi-instagram fs-2"></i
+                ></a>
+              </li>
+              <li>
+                <a href="#" class="link"
+                  ><i class="bi bi-twitter-x fs-2"></i
+                ></a>
+              </li>
+              <li>
+                <a href="#" class="link"><i class="bi bi-facebook fs-2"></i></a>
+              </li>
+              <li>
+                <a href="#" class="link"><i class="bi bi-tiktok fs-2"></i></a>
+              </li>
             </ul>
           </div>
           <!-- /icons -->
