@@ -21,7 +21,7 @@ const store = reactive({
     gameSystems: [],
     selectedGameSystem: '',
     selectedAvgRating: 0,
-    selectedPromotionStatus: '',
+    selectedMinReviews: 0,
     currentPage: null,
     lastPage: null,
     totalResults: 0,

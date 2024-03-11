@@ -69,6 +69,7 @@ export default {
           page: newQuery.page || null,
           selectedGame: newQuery.gameSystem || null,
           selectedAvgRating: newQuery.avgRating || null,
+          selectedMinReviews: newQuery.minReviews || null,
         });
       },
     },

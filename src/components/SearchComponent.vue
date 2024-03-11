@@ -17,6 +17,7 @@ export default {
       gameSystem = this.store.selectedGameSystem,
       page = this.store.currentPage,
       avgRating = this.store.selectedAvgRating,
+      minReviews = this.store.selectedMinReviews
     ) {
       this.store.searchInitiated = true;
       if (gameSystem) {
@@ -33,6 +34,11 @@ export default {
         //if avgRating is present, add it to the params
         if (avgRating) {
           params.min_average_rating = avgRating;
+        }
+
+        //if minReviews is present, add it to the params
+        if (minReviews) {
+          params.min_reviews = minReviews;
         }
 
         axios
@@ -52,13 +58,14 @@ export default {
                 query: {
                   gameSystem: gameSystem,
                   page: page < 1 ? 1 : this.store.lastPage,
-                  avgRating: avgRating ? avgRating : undefined
+                  avgRating: avgRating ? avgRating : undefined,
+                  minReviews: minReviews ? minReviews : undefined,
                 },
               });
             } else {
               this.$router.push({
                 name: 'advanced-search',
-                query: { gameSystem: gameSystem, page: correctedPage, avgRating: avgRating ? avgRating : undefined },
+                query: { gameSystem: gameSystem, page: correctedPage, avgRating: avgRating ? avgRating : undefined, minReviews: minReviews ? minReviews : undefined },
               });
             }
 
@@ -112,14 +119,16 @@ export default {
       }
 
       this.store.currentPage = this.urlPage;
-      this.searchGm(this.$route.query.gameSystem, this.$route.query.page, this.$route.query.avgRating);
+      this.searchGm(this.$route.query.gameSystem, this.$route.query.page, this.$route.query.avgRating, this.$route.query.minReviews);
       this.store.selectedGameSystem = this.$route.query.gameSystem;
       this.store.selectedAvgRating = this.$route.query.avgRating;
+      this.store.selectedMinReviews = this.$route.query.minReviews;
     } else {
       //if the query is not present, clear the gameMastersResults
       this.store.gameMastersResults = [];
       this.store.selectedGameSystem = '';
       this.store.selectedAvgRating = '';
+      this.store.selectedMinReviews = '';
     }
   },
 };
@@ -129,30 +138,34 @@ export default {
   <div class="d-flex align-items-center flex-column justify-content-center search-component-box">
     <form @submit.prevent="searchGm(store.selectedGameSystem)"
       class="d-flex flex-column flex-md-row align-items-center mx-auto w-75 mb-2">
+      <!-- Select Game System -->
       <select class="form-select mt-0 my-select" aria-label="Default select example" v-model="store.selectedGameSystem">
         <option disabled value="">Select a Game System</option>
         <option v-for="game in store.gameSystems" :value="game.id">
           {{ game.name }}
         </option>
       </select>
+      <!-- /Select Game System -->
 
-      <!-- Average Rating Select -->
-      <select class="form-select mt-2 my-select" v-model="store.selectedAvgRating">
-        <option disabled value="">Select Average Rating</option>
-        <option value="">Any Rating</option>
-        <option value="1">1+</option>
-        <option value="2">2+</option>
-        <option value="3">3+</option>
-        <option value="4">4+</option>
-        <option value="5">5</option>
-      </select>
+      <div>
+        <!-- Average Rating Select -->
+        <select class="form-select mt-2 my-select" v-model="store.selectedAvgRating">
+          <option disabled value="">Select Average Rating</option>
+          <option value="">Any Rating</option>
+          <option value="1">1+</option>
+          <option value="2">2+</option>
+          <option value="3">3+</option>
+          <option value="4">4+</option>
+          <option value="5">5</option>
+        </select>
 
-      <!-- Promotion Status Select -->
-      <!-- <select class="form-select mt-2 my-select" v-model="store.selectedPromotionStatus">
-        <option disabled value="">Select Promotion Status</option>
-        <option value="yes">Yes</option>
-        <option value="no">No</option>
-      </select> -->
+        <!-- input number reviews -->
+        <input type="number" class="form-control mt-2 my-select" placeholder="Min Reviews"
+          v-model="store.selectedMinReviews" />
+      </div>
+
+
+
 
 
       <!-- submit button -->
