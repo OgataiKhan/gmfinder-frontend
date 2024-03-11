@@ -4,8 +4,14 @@ import 'bootstrap-icons/font/bootstrap-icons.css';
 import store from '../store/store.js';
 //import axios
 import axios from 'axios';
+import GmCardComponent from './GmCardComponent.vue';
 export default {
     name: 'PromotedMastersComponent',
+
+    components: {
+        GmCardComponent,
+    },
+
     data() {
         return {
             title: 'Featured Masters of the Realm',
@@ -36,13 +42,21 @@ export default {
 
         // Function to display the next set of masters
         next() {
-            //call api to get the results of the next page
-            this.getFeaturedMasters(this.currentPage++);
+            // Check if currentPage is within bounds
+            if (this.currentPage < this.featuredMasters.length) {
+                // Call api to get the results of the next page
+                this.getFeaturedMasters(this.currentPage++);
+            }
+            console.log('Current page', this.currentPage);
         },
         // Function to display the previous set of masters
         prev() {
-            //call api to get the results of the previous page
-            this.getFeaturedMasters(this.currentPage--);
+            // Check if currentPage is greater than 1
+            if (this.currentPage > 1) {
+                // Call api to get the results of the previous page
+                this.getFeaturedMasters(this.currentPage--);
+            }
+            console.log('Current page', this.currentPage);
         }
     },
     created() {
@@ -61,14 +75,21 @@ export default {
             <div class="masters-grid container">
                 <div class="row g-3">
                     <div class="col-md-6 col-lg-3" v-for="gm in featuredMasters">
-                        <!-- Display master info here -->
-                        <div class="card p-3 master-card">
-                            <img src="../assets/img/generic-avatar.webp" alt="Master Image" class="img-fluid">
-                            <h3 class="text-center mt-1">{{ gm.user.name }}</h3>
-                            <p><span v-for="(system, index) in gm.game_systems" :key="index">
-                                    {{ system.name
-                                    }}{{ index < gm.game_systems.length - 1 ? ", " : "" }} </span>
-                            </p>
+                        <div class="card">
+                            <img :src="gm.profile_img
+                ? this.store.api.baseURL +
+                this.store.api.apiUrls.storage +
+                gm.profile_img
+                : '/img/generic-avatar.jpg'
+                " class="" alt="profile pic" />
+                            <div class="card-body">
+                                <h4>{{ gm.user.name }}</h4>
+                                <p>
+                                    <span v-for="(system, index) in gm.game_systems" :key="index">
+                                        {{ system.name
+                                        }}{{ index < gm.game_systems.length - 1 ? ", " : "" }} </span>
+                                </p>
+                            </div>
                         </div>
                         <!-- Add more master details here -->
                     </div>
@@ -124,6 +145,18 @@ export default {
         color: $contrast-color;
         font-size: 3.5rem;
         font-weight: bold;
+    }
+}
+
+.card {
+    padding: 0.5rem;
+    height: 100%;
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 10px;
     }
 }
 </style>
