@@ -11,6 +11,12 @@ export default {
       urlPage: null,
     };
   },
+  props: {
+    advanced: {
+      type: Boolean,
+      default: false,
+    },
+  },
   // methods
   methods: {
     searchGm(
@@ -147,7 +153,7 @@ export default {
         </option>
       </select>
       <!-- /Select Game System -->
-      <div class="d-flex flex-column align-items-center justify-content-center flex-md-row w-100">
+      <div class="d-flex flex-column align-items-center justify-content-center flex-md-row w-100" v-if="advanced">
         <!-- Average Rating Select -->
         <div class="d-flex flex-column align-items-center">
           <label for="avgRating" class="form-label mt-2">Average Rating</label>
