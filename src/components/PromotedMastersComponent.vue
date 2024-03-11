@@ -9,7 +9,7 @@ export default {
     data() {
         return {
             title: 'Featured Masters of the Realm',
-            masters: [], // store the masters data from the API
+            featuredMasters: [], // store the masters data from the API
             store,
             currentPage: 1, // store the current page number
         }
@@ -17,40 +17,41 @@ export default {
     methods: {
 
         //api call to get masters
-        getMasters() {
-            axios.get(this.store.api.baseURL + this.store.api.apiUrls.game_masters, { params: { page: this.currentPage } })
+        getFeaturedMasters() {
+            //get list of gm where promotion is active
+            axios.get(this.store.api.baseURL + this.store.api.apiUrls.featured)
                 .then(response => {
-                    console.log(response);
-                    this.masters = response.data.results.data;
-                    console.log(this.masters);
+                    console.log('Featured masters', response.data);
+                    this.featuredMasters = response.data.results.data;
+                    console.log('Featured masters', this.featuredMasters);
                 })
                 .catch(error => {
-                    console.log(error);
-                })
+                    console.error('Error fetching promoted masters', error);
+                });
         },
 
-        // Function to display the next set of masters
-        next() {
-            // If there are more masters to display, increment the visibleStartIndex
-            if (this.visibleStartIndex + 4 < this.masters.length) {
-                this.visibleStartIndex += 4;
-            } else {
-                this.visibleStartIndex = 0; // Loop back to start if at the end
-            }
-        },
-        // Function to display the previous set of masters
-        prev() {
-            //if there are more masters to display, decrement the visibleStartIndex
-            if (this.visibleStartIndex - 4 >= 0) {
-                this.visibleStartIndex -= 4;
-            } else {
-                this.visibleStartIndex = this.masters.length - 4; // Loop back to end if at the start
-            }
-        }
+        // // Function to display the next set of masters
+        // next() {
+        //     // If there are more masters to display, increment the visibleStartIndex
+        //     if (this.visibleStartIndex + 4 < this.featuredMasters.length) {
+        //         this.visibleStartIndex += 4;
+        //     } else {
+        //         this.visibleStartIndex = 0; // Loop back to start if at the end
+        //     }
+        // },
+        // // Function to display the previous set of masters
+        // prev() {
+        //     //if there are more masters to display, decrement the visibleStartIndex
+        //     if (this.visibleStartIndex - 4 >= 0) {
+        //         this.visibleStartIndex -= 4;
+        //     } else {
+        //         this.visibleStartIndex = this.masters.length - 4; // Loop back to end if at the start
+        //     }
+        // }
     },
     created() {
         // Call the getMasters function when the component is mounted
-        this.getMasters();
+        this.getFeaturedMasters();
     }
 };
 </script>
@@ -63,12 +64,15 @@ export default {
         <div class="masters-container pb-3">
             <div class="masters-grid container">
                 <div class="row g-3">
-                    <div class="col-md-6 col-lg-3" v-for="master in 4" :key="master.id">
+                    <div class="col-md-6 col-lg-3" v-for="gm in featuredMasters">
                         <!-- Display master info here -->
                         <div class="card p-3 master-card">
                             <img src="../assets/img/generic-avatar.webp" alt="Master Image" class="img-fluid">
-                            <h3 class="text-center mt-1">Great Wizard</h3>
-                            <p>Description of my skills</p>
+                            <h3 class="text-center mt-1">{{ gm.user.name }}</h3>
+                            <p><span v-for="(system, index) in gm.game_systems" :key="index">
+                                    {{ system.name
+                                    }}{{ index < gm.game_systems.length - 1 ? ", " : "" }} </span>
+                            </p>
                         </div>
                         <!-- Add more master details here -->
                     </div>
