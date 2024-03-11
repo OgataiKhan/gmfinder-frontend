@@ -74,7 +74,7 @@ export default {
       </div>
       <div>
         <h6>Average Rating</h6>
-        <p>{{ gm.average_rating }}</p>
+        <p>{{ gm.average_rating === 0 ? 'None yet' : gm.average_rating }}</p>
       </div>
       <div class="gm-show" v-if="gmShow">
         <div>
@@ -87,10 +87,6 @@ export default {
         <div>
           <h6>Campaign Description</h6>
           <p>{{ gm.game_description }}</p>
-        </div>
-        <div>
-          <h6>Average Rating</h6>
-          <p>{{ gm.average_rating }}</p>
         </div>
         <div>
           <h6>Game Master Since</h6>
