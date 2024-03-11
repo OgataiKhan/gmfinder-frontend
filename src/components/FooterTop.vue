@@ -69,19 +69,19 @@ export default {
             <ul class="d-flex gap-4 justify-content-end">
               <li>
                 <a href="#" class="link"
-                  ><i class="bi bi-instagram fs-2"></i
+                  ><i class="bi bi-instagram fs-3"></i
                 ></a>
               </li>
               <li>
                 <a href="#" class="link"
-                  ><i class="bi bi-twitter-x fs-2"></i
+                  ><i class="bi bi-twitter-x fs-3"></i
                 ></a>
               </li>
               <li>
-                <a href="#" class="link"><i class="bi bi-facebook fs-2"></i></a>
+                <a href="#" class="link"><i class="bi bi-facebook fs-3"></i></a>
               </li>
               <li>
-                <a href="#" class="link"><i class="bi bi-tiktok fs-2"></i></a>
+                <a href="#" class="link"><i class="bi bi-tiktok fs-3"></i></a>
               </li>
             </ul>
           </div>
