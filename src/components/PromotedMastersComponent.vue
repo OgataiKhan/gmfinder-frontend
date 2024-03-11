@@ -111,7 +111,8 @@ export default {
 
 .navigation-controls {
     position: absolute;
-    top: 45%;
+    top: 50%;
+    transform: translateY(-50%);
     left: 0;
     width: 100%;
 
