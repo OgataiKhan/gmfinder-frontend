@@ -139,6 +139,7 @@ export default {
       <!-- Average Rating Select -->
       <select class="form-select mt-2 my-select" v-model="store.selectedAvgRating">
         <option disabled value="">Select Average Rating</option>
+        <option value="">Any Rating</option>
         <option value="1">1+</option>
         <option value="2">2+</option>
         <option value="3">3+</option>
