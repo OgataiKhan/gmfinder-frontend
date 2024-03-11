@@ -4,6 +4,7 @@ import GmCardComponent from '../components/GmCardComponent.vue';
 import store from '../store/store.js';
 import axios from 'axios';
 import { mapActions, mapState } from 'vuex';
+import ShowReviewsComponent from '../components/ShowReviewsComponent.vue';
 
 export default {
   data() {
@@ -19,6 +20,7 @@ export default {
   components: {
     ReviewsComponent,
     GmCardComponent,
+    ShowReviewsComponent,
   },
   methods: {
     postRating() {
@@ -117,6 +119,8 @@ export default {
       <div class="review-container mt-4">
         <ReviewsComponent />
       </div>
+
+
       <!-- select to give rating -->
       <div class="my-3 container text-start">
         <form>
@@ -134,10 +138,19 @@ export default {
           </div>
         </form>
       </div>
+
+      <div class="show-review-container">
+        <ShowReviewsComponent />
+      </div>
+
+
+
+
       <div class="my-3 container text-start">
         <button type="submit" @click="backToSearch">Back to Search</button>
       </div>
     </div>
+    <!-- if gm not found -->
     <div v-else class="text-center">
       <h1>Game Master not found</h1>
       <router-link :to="{ name: 'advanced-search' }" class="nav-link mt-3"><button>Back to
