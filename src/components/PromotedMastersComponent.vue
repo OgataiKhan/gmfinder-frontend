@@ -18,6 +18,7 @@ export default {
             featuredMasters: [], // store the masters data from the API
             store,
             currentPage: 1, // store the current page number
+            lastPage: 1, // store the last page number
         }
     },
     methods: {
@@ -31,9 +32,9 @@ export default {
                 }
             })
                 .then(response => {
-                    console.log('Featured masters', response.data);
                     this.featuredMasters = response.data.results.data;
-                    console.log('Featured masters', this.featuredMasters);
+                    this.lastPage = response.data.results.last_page;
+
                 })
                 .catch(error => {
                     console.error('Error fetching promoted masters', error);
@@ -43,9 +44,14 @@ export default {
         // Function to display the next set of masters
         next() {
             // Check if currentPage is within bounds
-            if (this.currentPage < this.featuredMasters.length) {
+            if (this.currentPage < this.lastPage) {
                 // Call api to get the results of the next page
                 this.getFeaturedMasters(this.currentPage++);
+            }
+            //if we are at the last page, return to first page
+            else if (this.currentPage === this.lastPage) {
+                this.currentPage = 1;
+                this.getFeaturedMasters(this.currentPage);
             }
             console.log('Current page', this.currentPage);
         },
@@ -56,7 +62,12 @@ export default {
                 // Call api to get the results of the previous page
                 this.getFeaturedMasters(this.currentPage--);
             }
-            console.log('Current page', this.currentPage);
+            //if we are at the first page, return to last page
+            else if (this.currentPage === 1) {
+                this.currentPage = this.lastPage;
+                this.getFeaturedMasters(this.currentPage);
+            }
+
         }
     },
     created() {
