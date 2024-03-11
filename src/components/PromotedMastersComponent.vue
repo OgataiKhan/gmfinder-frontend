@@ -19,7 +19,11 @@ export default {
         //api call to get masters
         getFeaturedMasters() {
             //get list of gm where promotion is active
-            axios.get(this.store.api.baseURL + this.store.api.apiUrls.featured)
+            axios.get(this.store.api.baseURL + this.store.api.apiUrls.featured, {
+                params: {
+                    page: this.currentPage
+                }
+            })
                 .then(response => {
                     console.log('Featured masters', response.data);
                     this.featuredMasters = response.data.results.data;
@@ -30,24 +34,16 @@ export default {
                 });
         },
 
-        // // Function to display the next set of masters
-        // next() {
-        //     // If there are more masters to display, increment the visibleStartIndex
-        //     if (this.visibleStartIndex + 4 < this.featuredMasters.length) {
-        //         this.visibleStartIndex += 4;
-        //     } else {
-        //         this.visibleStartIndex = 0; // Loop back to start if at the end
-        //     }
-        // },
-        // // Function to display the previous set of masters
-        // prev() {
-        //     //if there are more masters to display, decrement the visibleStartIndex
-        //     if (this.visibleStartIndex - 4 >= 0) {
-        //         this.visibleStartIndex -= 4;
-        //     } else {
-        //         this.visibleStartIndex = this.masters.length - 4; // Loop back to end if at the start
-        //     }
-        // }
+        // Function to display the next set of masters
+        next() {
+            //call api to get the results of the next page
+            this.getFeaturedMasters(this.currentPage++);
+        },
+        // Function to display the previous set of masters
+        prev() {
+            //call api to get the results of the previous page
+            this.getFeaturedMasters(this.currentPage--);
+        }
     },
     created() {
         // Call the getMasters function when the component is mounted
