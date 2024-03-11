@@ -72,6 +72,10 @@ export default {
         <h6>Max Players</h6>
         <p>{{ gm.max_players }}</p>
       </div>
+      <div>
+        <h6>Average Rating</h6>
+        <p>{{ gm.average_rating }}</p>
+      </div>
       <div class="gm-show" v-if="gmShow">
         <div>
           <h6>Availability</h6>
@@ -85,10 +89,13 @@ export default {
           <p>{{ gm.game_description }}</p>
         </div>
         <div>
+          <h6>Average Rating</h6>
+          <p>{{ gm.average_rating }}</p>
+        </div>
+        <div>
           <h6>Game Master Since</h6>
           <p>{{ formatLocalDate(gm.created_at) }}</p>
         </div>
-
       </div>
     </div>
   </div>

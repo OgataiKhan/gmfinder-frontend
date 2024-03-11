@@ -137,8 +137,9 @@ export default {
 <template>
   <div class="d-flex align-items-center flex-column justify-content-center search-component-box">
     <form @submit.prevent="searchGm(store.selectedGameSystem)"
-      class="d-flex flex-column flex-md-row align-items-center mx-auto w-75 mb-2">
+      class="d-flex flex-column align-items-center mx-auto w-75 mb-2">
       <!-- Select Game System -->
+      <label for="gameSystem" class="form-label mt-2">Game System</label>
       <select class="form-select mt-0 my-select" aria-label="Default select example" v-model="store.selectedGameSystem">
         <option disabled value="">Select a Game System</option>
         <option v-for="game in store.gameSystems" :value="game.id">
@@ -146,30 +147,35 @@ export default {
         </option>
       </select>
       <!-- /Select Game System -->
-
-      <div>
+      <div class="d-flex flex-column align-items-center justify-content-center flex-md-row w-100">
         <!-- Average Rating Select -->
-        <select class="form-select mt-2 my-select" v-model="store.selectedAvgRating">
-          <option disabled value="">Select Average Rating</option>
-          <option value="">Any Rating</option>
-          <option value="1">1+</option>
-          <option value="2">2+</option>
-          <option value="3">3+</option>
-          <option value="4">4+</option>
-          <option value="5">5</option>
-        </select>
+        <div class="d-flex flex-column align-items-center">
+          <label for="avgRating" class="form-label mt-2">Average Rating</label>
+          <select class="form-select avg-rating" v-model="store.selectedAvgRating">
+            <option disabled value="">Select Average Rating</option>
+            <option value="">Any Rating</option>
+            <option value="1">1+</option>
+            <option value="2">2+</option>
+            <option value="3">3+</option>
+            <option value="4">4+</option>
+            <option value="5">5</option>
+          </select>
+        </div>
 
-        <!-- input number reviews -->
-        <input type="number" class="form-control mt-2 my-select" placeholder="Min Reviews"
-          v-model="store.selectedMinReviews" />
+        <!-- /Average Rating Select -->
+        <!-- Input number reviews -->
+        <div class="d-flex flex-column align-items-center">
+          <label class="form-label mt-2">Min Reviews</label>
+          <input type="number" class="form-control min-reviews" placeholder="Min Reviews"
+            v-model="store.selectedMinReviews" />
+        </div>
       </div>
-
-
-
-
-
+      <!-- /Input number reviews -->
       <!-- submit button -->
-      <button type="submit" class="mx-auto ms-md-3 mt-4 mt-md-0">Search</button>
+      <div>
+        <button type="submit" class="mx-auto mt-4 mt-md-2">Search</button>
+      </div>
+      <!-- /submit button -->
     </form>
     <!-- Validation Message -->
     <div v-if="validationError" class="validation-alert w-75">
@@ -191,5 +197,10 @@ export default {
 
 .search-component-box {
   position: relative;
+}
+
+.min-reviews,
+.avg-rating {
+  width: 50%;
 }
 </style>
