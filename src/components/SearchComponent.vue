@@ -17,7 +17,6 @@ export default {
       gameSystem = this.store.selectedGameSystem,
       page = this.store.currentPage,
       avgRating = this.store.selectedAvgRating,
-      promoted = this.store.selectedPromotionStatus
     ) {
       this.store.searchInitiated = true;
       if (gameSystem) {
@@ -27,8 +26,7 @@ export default {
         let params = {
           key: gameSystem,
           page: correctedPage,
-          rating: avgRating,
-          promoted: promoted
+          min_average_rating: avgRating,
         };
 
         axios
@@ -48,12 +46,13 @@ export default {
                 query: {
                   gameSystem: gameSystem,
                   page: page < 1 ? 1 : this.store.lastPage,
+                  avgRating: avgRating,
                 },
               });
             } else {
               this.$router.push({
                 name: 'advanced-search',
-                query: { gameSystem: gameSystem, page: correctedPage },
+                query: { gameSystem: gameSystem, page: correctedPage, avgRating: avgRating },
               });
             }
 
@@ -107,12 +106,14 @@ export default {
       }
 
       this.store.currentPage = this.urlPage;
-      this.searchGm(this.$route.query.gameSystem, this.$route.query.page);
+      this.searchGm(this.$route.query.gameSystem, this.$route.query.page, this.$route.query.avgRating);
       this.store.selectedGameSystem = this.$route.query.gameSystem;
+      this.store.selectedAvgRating = this.$route.query.avgRating;
     } else {
       //if the query is not present, clear the gameMastersResults
       this.store.gameMastersResults = [];
       this.store.selectedGameSystem = '';
+      this.store.selectedAvgRating = '';
     }
   },
 };
@@ -140,11 +141,11 @@ export default {
       </select>
 
       <!-- Promotion Status Select -->
-      <select class="form-select mt-2 my-select" v-model="store.selectedPromotionStatus">
+      <!-- <select class="form-select mt-2 my-select" v-model="store.selectedPromotionStatus">
         <option disabled value="">Select Promotion Status</option>
         <option value="yes">Yes</option>
         <option value="no">No</option>
-      </select>
+      </select> -->
 
 
       <!-- submit button -->

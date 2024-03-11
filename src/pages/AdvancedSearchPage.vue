@@ -67,7 +67,8 @@ export default {
       handler(newQuery) {
         this.updateSearchParams({
           page: newQuery.page || null,
-          selectedGame: newQuery.gameSystem || null, // Assuming 'gameSystem' is the query parameter for the selected game
+          selectedGame: newQuery.gameSystem || null,
+          selectedAvgRating: newQuery.avgRating || null,
         });
       },
     },

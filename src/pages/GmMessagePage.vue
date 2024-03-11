@@ -69,8 +69,6 @@ export default {
     },
     mounted() {
         this.fetchGameMasterData();
-        console.log(this.store.selectedGameMaster);
-        console.log(this.slug);
     },
 };
 </script>
