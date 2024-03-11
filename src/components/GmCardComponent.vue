@@ -60,7 +60,7 @@ export default {
     </div>
     <div class="card-body">
       <div class="text-center text-md-start">
-        <h4 class="card-title">{{ gm.user.name }} <span v-if="gm.has_future_promotion">(I am promoted!)</span></h4>
+        <h4 class="card-title">{{ gm.user.name }} <span v-if="gm.has_future_promotion"> <i class="bi bi-stars"></i></span></h4>
       </div>
       <hr />
       <div>
@@ -134,6 +134,10 @@ export default {
         height: 300px;
       }
     }
+  }
+
+  .bi-stars {
+    color: #38bebe;
   }
 }
 </style>
