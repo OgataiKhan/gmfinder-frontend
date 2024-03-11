@@ -20,7 +20,7 @@ const store = reactive({
     gameMastersResults: [],
     gameSystems: [],
     selectedGameSystem: '',
-    selectedAvgRating: '',
+    selectedAvgRating: 0,
     selectedPromotionStatus: '',
     currentPage: null,
     lastPage: null,

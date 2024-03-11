@@ -23,11 +23,17 @@ export default {
         this.validationError = false;
         // Check and correct for negative page numbers
         let correctedPage = Math.max(1, page);
+
+        //base params
         let params = {
           key: gameSystem,
           page: correctedPage,
-          min_average_rating: avgRating,
         };
+
+        //if avgRating is present, add it to the params
+        if (avgRating) {
+          params.min_average_rating = avgRating;
+        }
 
         axios
           .get(this.store.api.baseURL + this.store.api.apiUrls.game_masters, {
@@ -46,13 +52,13 @@ export default {
                 query: {
                   gameSystem: gameSystem,
                   page: page < 1 ? 1 : this.store.lastPage,
-                  avgRating: avgRating,
+                  avgRating: avgRating ? avgRating : undefined
                 },
               });
             } else {
               this.$router.push({
                 name: 'advanced-search',
-                query: { gameSystem: gameSystem, page: correctedPage, avgRating: avgRating },
+                query: { gameSystem: gameSystem, page: correctedPage, avgRating: avgRating ? avgRating : undefined },
               });
             }
 
