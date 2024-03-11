@@ -15,18 +15,27 @@ export default {
   methods: {
     searchGm(
       gameSystem = this.store.selectedGameSystem,
-      page = this.store.currentPage
+      page = this.store.currentPage,
+      avgRating = this.store.selectedAvgRating,
+      promoted = this.store.selectedPromotionStatus
     ) {
       this.store.searchInitiated = true;
       if (gameSystem) {
         this.validationError = false;
         // Check and correct for negative page numbers
         let correctedPage = Math.max(1, page);
+        let params = {
+          key: gameSystem,
+          page: correctedPage,
+          rating: avgRating,
+          promoted: promoted
+        };
 
         axios
           .get(this.store.api.baseURL + this.store.api.apiUrls.game_masters, {
-            params: { key: gameSystem, page: correctedPage },
-          })
+            params
+          },
+          )
           .then((response) => {
             this.store.gameMastersResults = response.data.results.data;
             this.store.totalResults = response.data.results.total;
@@ -110,23 +119,33 @@ export default {
 </script>
 
 <template>
-  <div
-    class="d-flex align-items-center flex-column justify-content-center search-component-box"
-  >
-    <form
-      @submit.prevent="searchGm(store.selectedGameSystem)"
-      class="d-flex flex-column flex-md-row align-items-center mx-auto w-75 mb-2"
-    >
-      <select
-        class="form-select mt-0 my-select"
-        aria-label="Default select example"
-        v-model="store.selectedGameSystem"
-      >
+  <div class="d-flex align-items-center flex-column justify-content-center search-component-box">
+    <form @submit.prevent="searchGm(store.selectedGameSystem)"
+      class="d-flex flex-column flex-md-row align-items-center mx-auto w-75 mb-2">
+      <select class="form-select mt-0 my-select" aria-label="Default select example" v-model="store.selectedGameSystem">
         <option disabled value="">Select a Game System</option>
         <option v-for="game in store.gameSystems" :value="game.id">
           {{ game.name }}
         </option>
       </select>
+
+      <!-- Average Rating Select -->
+      <select class="form-select mt-2 my-select" v-model="store.selectedAvgRating">
+        <option disabled value="">Select Average Rating</option>
+        <option value="1">1+</option>
+        <option value="2">2+</option>
+        <option value="3">3+</option>
+        <option value="4">4+</option>
+        <option value="5">5</option>
+      </select>
+
+      <!-- Promotion Status Select -->
+      <select class="form-select mt-2 my-select" v-model="store.selectedPromotionStatus">
+        <option disabled value="">Select Promotion Status</option>
+        <option value="yes">Yes</option>
+        <option value="no">No</option>
+      </select>
+
 
       <!-- submit button -->
       <button type="submit" class="mx-auto ms-md-3 mt-4 mt-md-0">Search</button>

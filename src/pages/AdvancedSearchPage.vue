@@ -104,55 +104,7 @@ export default {
             <li v-for="gm in store.gameMastersResults" :key="gm.id">
               <!-- route link for clickable card -->
               <router-link :to="{ name: 'game-master' }" class="nav-link" @click="selectGm(gm)">
-
-
-
-
                 <GmCardComponent :gm="gm" :gmShow="false" />
-
-
-
-
-
-
-
-
-
-
-                <!-- create card for each gm -->
-                <!-- <div class="card d-flex flex-md-row">
-                  <div class="card-header border-bottom-0">
-                    <img :src="gm.profile_img
-              ? this.store.api.baseURL +
-              this.store.api.apiUrls.storage +
-              gm.profile_img
-              : '/img/generic-avatar.jpg'
-              " class="card-img-top" alt="profile pic" />
-                  </div>
-                  <div class="card-body">
-                    <div class="text-center text-md-start">
-                      <h4 class="card-title">{{ gm.user.name }}</h4>
-                    </div>
-                    <hr />
-                    <div>
-                      <h6>Game Systems</h6>
-                      <p>
-                        <span v-for="(system, index) in gm.game_systems" :key="index">
-                          {{ system.name
-                          }}{{ index < gm.game_systems.length - 1 ? ', ' : '' }} </span>
-                      </p>
-                    </div>
-                    <div>
-                      <h6>Location</h6>
-                      <p>{{ gm.location }}</p>
-                    </div>
-                    <div>
-                      <h6>Max Players</h6>
-                      <p>{{ gm.max_players }}</p>
-                    </div>
-                  </div>
-                </div> -->
-                <!-- /create card for each gm -->
               </router-link>
             </li>
           </ul>

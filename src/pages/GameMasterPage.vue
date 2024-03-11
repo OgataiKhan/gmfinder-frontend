@@ -11,10 +11,9 @@ export default {
       store,
       msg: 'Summon the Lorekeeper',
       formData: {
-        text: null,
-        name: null,
-        email: null,
-      }
+        rating_id: null,
+      },
+      ratingSuccess: false,
     };
   },
   components: {
@@ -22,20 +21,47 @@ export default {
     GmCardComponent,
   },
   methods: {
-    //method to send message to game master
-    postMessage() {
+    postRating() {
       const data = {
+        rating_id: this.formData.rating_id,
         game_master_id: store.selectedGameMaster.id,
-        text: this.formData.text,
-        name: this.formData.name,
-        email: this.formData.email
-      }
-      axios.post(this.store.api.baseURL + this.store.api.apiUrls.messages, data).then(response => {
-        console.log('inviato!')
-      }).catch(error => {
-        console.error(error)
-      })
+      };
+
+      axios.post(this.store.api.baseURL + this.store.api.apiUrls.ratings, data)
+        .then(response => {
+          console.log('Selected gm', store.selectedGameMaster.id);
+          console.log('Rating selected', this.formData.rating_id);
+
+
+          this.ratingSuccess = true;
+          console.log("Rating submitted successfully", response.data);
+          // Reset formData
+          this.formData.rating_id = null;
+        })
+        .catch(error => {
+          console.error("Error submitting review", error);
+        });
     },
+
+
+
+
+
+
+    //method to send message to game master
+    // postMessage() {
+    //   const data = {
+    //     game_master_id: store.selectedGameMaster.id,
+    //     text: this.formData.text,
+    //     name: this.formData.name,
+    //     email: this.formData.email
+    //   }
+    //   axios.post(this.store.api.baseURL + this.store.api.apiUrls.messages, data).then(response => {
+    //     console.log('inviato!')
+    //   }).catch(error => {
+    //     console.error(error)
+    //   })
+    // },
     //method to go back to the search page
     backToSearch() {
       // Use the Vuex store's state to navigate back with the stored search parameters
@@ -90,6 +116,23 @@ export default {
       <!-- Reviews -->
       <div class="review-container mt-4">
         <ReviewsComponent />
+      </div>
+      <!-- select to give rating -->
+      <div class="my-3 container text-start">
+        <form>
+          <select name="rating" id="rating" v-model="formData.rating_id">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
+          <div class="py-3 d-flex">
+            <button type="submit" class="mx-auto" @click.prevent="postRating">
+              send rating
+            </button>
+          </div>
+        </form>
       </div>
       <div class="my-3 container text-start">
         <button type="submit" @click="backToSearch">Back to Search</button>
