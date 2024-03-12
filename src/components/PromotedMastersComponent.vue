@@ -68,7 +68,16 @@ export default {
                 this.getFeaturedMasters(this.currentPage);
             }
 
-        }
+        },
+
+        selectGm(gm) {
+            this.store.selectedGameMaster = gm;
+            //redirect to game master page with query params
+            this.$router.push({
+                name: 'game-master',
+                query: { gameMaster: gm.slug },
+            });
+        },
     },
     created() {
         // Call the getMasters function when the component is mounted
@@ -85,24 +94,25 @@ export default {
         <div class="masters-container pb-3">
             <div class="masters-grid container">
                 <div class="row g-3">
-                    <div class="col-md-6 col-lg-3" v-for="gm in featuredMasters">
-                        <div class="card">
-                            <img :src="gm.profile_img
+                    <div class="col-md-6 col-lg-3" v-for="gm in featuredMasters" :key="gm.id">
+                        <router-link :to="{ name: 'game-master' }" class="nav-link" @click="selectGm(gm)">
+                            <div class="card featured-card">
+                                <img :src="gm.profile_img
                 ? this.store.api.baseURL +
                 this.store.api.apiUrls.storage +
                 gm.profile_img
                 : '/img/generic-avatar.jpg'
-                " class="" alt="profile pic" />
-                            <div class="card-body">
-                                <h4>{{ gm.user.name }}</h4>
-                                <p>
-                                    <span v-for="(system, index) in gm.game_systems" :key="index">
-                                        {{ system.name
-                                        }}{{ index < gm.game_systems.length - 1 ? ", " : "" }} </span>
-                                </p>
+                " class="featured-image" alt="profile pic" />
+                                <div class="card-body">
+                                    <h4>{{ gm.user.name }}</h4>
+                                    <p>
+                                        <span v-for="(system, index) in gm.game_systems" :key="index">
+                                            {{ system.name
+                                            }}{{ index < gm.game_systems.length - 1 ? ", " : "" }} </span>
+                                    </p>
+                                </div>
                             </div>
-                        </div>
-                        <!-- Add more master details here -->
+                        </router-link>
                     </div>
                 </div>
             </div>
@@ -126,16 +136,36 @@ export default {
     color: $light-color;
 }
 
+.nav-link {
+    cursor: pointer;
+}
+
+.featured-card {
+
+    &:hover {
+        transform: scale(1.05);
+        transition: transform 0.3s;
+    }
+
+    .featured-image {
+        width: 100%;
+        height: 300px;
+        object-fit: cover;
+
+        &hover {
+            transform: scale(1.05);
+            transition: transform 0.3s;
+        }
+    }
+
+
+}
+
 .masters-container {
     background-color: $primary-color;
     position: relative;
 }
 
-.master-card {
-    background-color: $light-color;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-}
 
 .navigation-controls {
     position: absolute;
@@ -162,12 +192,5 @@ export default {
 .card {
     padding: 0.5rem;
     height: 100%;
-
-    img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        border-radius: 10px;
-    }
 }
 </style>
