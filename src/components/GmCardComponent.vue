@@ -80,8 +80,10 @@ export default {
         .then((response) => {
           this.ratingSuccess = true;
           console.log("Rating submitted successfully", response.data);
-          // Reset formData
+          // Reset formData (might be redundant if we're reloading the page)
           this.formData.rating_id = null;
+          // Force a reload of the page
+          window.location.reload();
         })
         .catch((error) => {
           console.error("Error submitting review", error);
@@ -119,12 +121,17 @@ export default {
   <!-- create card for each gm -->
   <div class="card d-flex flex-md-row">
     <div class="card-header border-bottom-0">
-      <img :src="gm.profile_img
-        ? this.store.api.baseURL +
-        this.store.api.apiUrls.storage +
-        gm.profile_img
-        : '/img/generic-avatar.jpg'
-        " class="card-img-top" alt="profile pic" />
+      <img
+        :src="
+          gm.profile_img
+            ? this.store.api.baseURL +
+              this.store.api.apiUrls.storage +
+              gm.profile_img
+            : '/img/generic-avatar.jpg'
+        "
+        class="card-img-top"
+        alt="profile pic"
+      />
       <div class="card-button mt-4 text-center" v-if="gmShow">
         <!-- select to give rating -->
         <div class="my-3 text-start">
@@ -152,7 +159,8 @@ export default {
               <i class="bi bi-shield-fill gm-icons fs-3 align-middle"></i>
               <p class="mb-0 ms-2">Rate this GM</p>
             </div>
-            <!-- Modal -->
+            <!-- /rate icon -->
+            <!-- Rating modal -->
             <div
               class="modal fade"
               id="exampleModal"
@@ -175,35 +183,23 @@ export default {
                   </div>
                   <div class="modal-body">
                     <form>
-                      
                       <GmRatingComponent @rating-selected="ratingSelected" />
                       <div class="py-3 d-flex">
                         <button
                           type="button"
                           class="mx-auto"
-                          @click.prevent="postRating" data-bs-dismiss="modal"
+                          @click.prevent="postRating"
+                          data-bs-dismiss="modal"
                         >
                           Send Rating
                         </button>
                       </div>
                     </form>
                   </div>
-                  <!-- <div class="modal-footer">
-                    <button
-                      type="button"
-                      class="btn btn-secondary"
-                      data-bs-dismiss="modal"
-                    >
-                      Close
-                    </button>
-                    <button type="button" class="btn btn-primary">
-                      Save changes
-                    </button>
-                  </div> -->
                 </div>
               </div>
             </div>
-            <!-- /rate icon -->
+            <!-- /Rating modal -->
           </div>
         </div>
       </div>
@@ -218,8 +214,13 @@ export default {
           ></span>
         </h4>
         <!-- send message icon -->
-        <div class="d-flex align-items-center px-2 msg-send" data-bs-toggle="offcanvas"
-          data-bs-target="#offcanvasMessage" aria-controls="offcanvasMessage" v-if="gmShow">
+        <div
+          class="d-flex align-items-center px-2 msg-send"
+          data-bs-toggle="offcanvas"
+          data-bs-target="#offcanvasMessage"
+          aria-controls="offcanvasMessage"
+          v-if="gmShow"
+        >
           <p class="mb-0 me-2">Send a Message</p>
           <i class="bi bi-send-fill gm-icons fs-3"></i>
         </div>
