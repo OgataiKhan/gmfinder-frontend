@@ -1,9 +1,9 @@
 <script>
-import store from '../store/store.js';
+import store from "../store/store.js";
 //import axios
-import axios from 'axios';
+import axios from "axios";
 export default {
-  name: 'SearchComponent',
+  name: "SearchComponent",
   data() {
     return {
       store,
@@ -49,9 +49,8 @@ export default {
 
         axios
           .get(this.store.api.baseURL + this.store.api.apiUrls.game_masters, {
-            params
-          },
-          )
+            params,
+          })
           .then((response) => {
             this.store.gameMastersResults = response.data.results.data;
             this.store.totalResults = response.data.results.total;
@@ -60,7 +59,7 @@ export default {
             // Check if the initially requested page was out of bounds
             if (page < 1 || page > this.store.lastPage) {
               this.$router.push({
-                name: 'advanced-search',
+                name: "advanced-search",
                 query: {
                   gameSystem: gameSystem,
                   page: page < 1 ? 1 : this.store.lastPage,
@@ -70,12 +69,17 @@ export default {
               });
             } else {
               this.$router.push({
-                name: 'advanced-search',
-                query: { gameSystem: gameSystem, page: correctedPage, avgRating: avgRating ? avgRating : undefined, minReviews: minReviews ? minReviews : undefined },
+                name: "advanced-search",
+                query: {
+                  gameSystem: gameSystem,
+                  page: correctedPage,
+                  avgRating: avgRating ? avgRating : undefined,
+                  minReviews: minReviews ? minReviews : undefined,
+                },
               });
             }
 
-            this.$emit('dataReceived', response.data);
+            this.$emit("dataReceived", response.data);
           })
           .catch((error) => {
             console.log(error);
@@ -86,13 +90,13 @@ export default {
     },
   },
   watch: {
-    '$route.query.gameSystem'(newVal) {
+    "$route.query.gameSystem"(newVal) {
       if (newVal) {
         this.searchGm(newVal, this.$route.query.page);
       }
     },
 
-    '$route.query.page'(newVal) {
+    "$route.query.page"(newVal) {
       if (newVal && !isNaN(newVal)) {
         this.store.currentPage = parseInt(newVal);
         this.searchGm(this.store.selectedGameSystem, newVal);
@@ -125,40 +129,62 @@ export default {
       }
 
       this.store.currentPage = this.urlPage;
-      this.searchGm(this.$route.query.gameSystem, this.$route.query.page, this.$route.query.avgRating, this.$route.query.minReviews);
+      this.searchGm(
+        this.$route.query.gameSystem,
+        this.$route.query.page,
+        this.$route.query.avgRating,
+        this.$route.query.minReviews
+      );
       this.store.selectedGameSystem = this.$route.query.gameSystem;
       this.store.selectedAvgRating = this.$route.query.avgRating;
       this.store.selectedMinReviews = this.$route.query.minReviews;
     } else {
       //if the query is not present, clear the gameMastersResults
       this.store.gameMastersResults = [];
-      this.store.selectedGameSystem = '';
-      this.store.selectedAvgRating = '';
-      this.store.selectedMinReviews = '';
+      this.store.selectedGameSystem = "";
+      this.store.selectedAvgRating = "";
+      this.store.selectedMinReviews = "";
     }
   },
 };
 </script>
 
 <template>
-  <div class="d-flex align-items-center flex-column justify-content-center search-component-box">
-    <form @submit.prevent="searchGm(store.selectedGameSystem)"
-      class="d-flex flex-column align-items-center mx-auto w-75 mb-2">
+  <div
+    class="d-flex align-items-center flex-column justify-content-center search-component-box"
+  >
+    <form
+      @submit.prevent="searchGm(store.selectedGameSystem)"
+      class="d-flex flex-column align-items-center mx-auto w-75 mb-2"
+    >
       <!-- Select Game System -->
       <label for="gameSystem" class="form-label mt-2">Game System</label>
-      <select class="form-select mt-0 my-select input-focus-orange" aria-label="Default select example"
-        v-model="store.selectedGameSystem">
+      <select
+        class="form-select mt-0 my-select input-focus-orange"
+        aria-label="Default select example"
+        v-model="store.selectedGameSystem"
+      >
         <option disabled value="">Select a Game System</option>
         <option v-for="game in store.gameSystems" :value="game.id">
           {{ game.name }}
         </option>
       </select>
+      <!-- Validation Message -->
+      <div v-if="validationError" class="validation-alert align-self-start">
+        Please select a game system
+      </div>
       <!-- /Select Game System -->
-      <div class="d-flex flex-column align-items-center justify-content-center flex-md-row w-100" v-if="advanced">
+      <div
+        class="d-flex flex-column align-items-center justify-content-center flex-md-row w-100"
+        v-if="advanced"
+      >
         <!-- Average Rating Select -->
         <div class="d-flex flex-column align-items-center">
           <label for="avgRating" class="form-label mt-2">Average Rating</label>
-          <select class="form-select avg-rating input-focus-orange" v-model="store.selectedAvgRating">
+          <select
+            class="form-select avg-rating input-focus-orange"
+            v-model="store.selectedAvgRating"
+          >
             <option disabled value="">Select Average Rating</option>
             <option value="">Any Rating</option>
             <option value="1">1+</option>
@@ -173,8 +199,12 @@ export default {
         <!-- Input number reviews -->
         <div class="d-flex flex-column align-items-center">
           <label class="form-label mt-2">Min Reviews</label>
-          <input type="number" class="form-control min-reviews input-focus-orange" placeholder="Min Reviews"
-            v-model="store.selectedMinReviews" />
+          <input
+            type="number"
+            class="form-control min-reviews input-focus-orange"
+            placeholder="Min Reviews"
+            v-model="store.selectedMinReviews"
+          />
         </div>
       </div>
       <!-- /Input number reviews -->
@@ -184,21 +214,17 @@ export default {
       </div>
       <!-- /submit button -->
     </form>
-    <!-- Validation Message -->
-    <div v-if="validationError" class="validation-alert w-75">
-      Please select a game system
-    </div>
   </div>
 </template>
 
 <style scoped lang="scss">
-@use '../scss/helpers/variables' as *;
+@use "../scss/helpers/variables" as *;
 
 .validation-alert {
   color: $danger-color;
   font-size: 0.8rem;
   margin: 0;
-  position: absolute;
+  // position: absolute;
   top: calc(50% + 17px);
 }
 
