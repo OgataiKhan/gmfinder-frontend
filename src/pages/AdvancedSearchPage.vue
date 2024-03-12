@@ -189,7 +189,9 @@ export default {
 }
 
 .card.promotedGm {
-  box-shadow: 0 0 10px #d1b201;
+  background-color: #fcebd6;
+  //give golden box shadow
+  box-shadow: 0 0 15px #e4a96b;
 }
 
 .card:hover {
