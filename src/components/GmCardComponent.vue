@@ -175,15 +175,7 @@ export default {
                   </div>
                   <div class="modal-body">
                     <form>
-                      <!-- <label for="rating">Rate this GM</label>
-                      <select name="rating" id="rating" v-model="formData.rating_id"
-                        class="form-select w-100 input-focus-orange">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                      </select> -->
+                      
                       <GmRatingComponent @rating-selected="ratingSelected" />
                       <div class="py-3 d-flex">
                         <button
