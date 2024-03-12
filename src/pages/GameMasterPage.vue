@@ -89,26 +89,47 @@ export default {
 </script>
 
 <template>
-  <div class="gm-page flex-grow-1">
+  <div class="gm-page flex-grow-1" v-cloak>
     <div class="container p-2 mb-3" v-if="store.selectedGameMaster">
       <h1>{{ msg }}</h1>
       <GmCardComponent v-if="store.selectedGameMaster" :gm="store.selectedGameMaster" :gmShow="true" />
-      <!-- Reviews -->
-      <div class="review-container mt-4">
-        <ReviewsComponent />
-      </div>
-      <div class="show-review-container">
-        <ShowReviewsComponent />
-      </div>
-      <div class="my-3 container text-start">
-        <button type="submit" @click="backToSearch">Back to Search</button>
+
+
+
+      <!-- Reviews OffCanvas -->
+
+      <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample"
+        aria-labelledby="offcanvasExampleLabel">
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title" id="offcanvasExampleLabel">Review</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+          <ReviewsComponent />
+        </div>
       </div>
     </div>
-    <!-- if gm not found -->
     <div v-else class="text-center">
       <h1>Game Master not found</h1>
       <router-link :to="{ name: 'advanced-search' }" class="nav-link mt-3"><button>Back to
           Search</button></router-link>
+    </div>
+
+    <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample"
+      aria-controls="offcanvasExample">
+      Button with data-bs-target
+    </button>
+
+
+
+
+
+
+    <div class="show-review-container">
+      <ShowReviewsComponent />
+    </div>
+    <div class="my-3 container text-start">
+      <button type="submit" @click="backToSearch">Back to Search</button>
     </div>
   </div>
 </template>
@@ -125,6 +146,22 @@ export default {
     margin-top: 40px;
     margin-bottom: 40px;
     text-align: center;
+  }
+}
+
+
+// media queries for offcanvas. mobile first
+
+
+@media (min-width: 768px) {
+  .offcanvas {
+    width: 50%;
+  }
+}
+
+@media (min-width: 992px) {
+  .offcanvas {
+    width: 25%;
   }
 }
 </style>

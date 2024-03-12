@@ -51,19 +51,22 @@ export default {
     </div>
     <div class="col-8 mx-auto form-div" v-if="!reviewSuccess">
       <form @submit.prevent="sendReview">
-        <div class="d-flex justify-content-between">
-          <div class="my-4 col-5">
+        <div>
+          <div class="py-2">
             <label for="userEmailAddress" class="form-label">Thy Name</label>
             <input type="text" class="form-control input-focus-orange" id="userName" placeholder="Enter your name"
               v-model="formData.name" />
           </div>
-          <div class="my-4 col-5">
+
+
+          <div class="py-2">
             <label for="userEmailAddress" class="form-label">Raven-Email Address</label>
             <input type="email" class="form-control input-focus-orange" id="userEmailAddress"
               placeholder="Enter your email address" v-model="formData.email" />
           </div>
+
         </div>
-        <div class="mb-3">
+        <div class="py-2">
           <label for="msgText" class="form-label">Thy Missive</label>
           <textarea class="form-control input-focus-orange" id="msgText" rows="3" v-model="formData.text"></textarea>
         </div>
