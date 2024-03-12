@@ -97,21 +97,6 @@ export default {
       <div class="card-button mt-4 text-center" v-if="gmShow">
         <!-- select to give rating -->
         <div class="my-3 text-start">
-          <!-- <form>
-            <label for="rating">Rate this GM</label>
-            <select name="rating" id="rating" v-model="formData.rating_id" class="form-select w-100 input-focus-orange">
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-            </select>
-            <div class="py-3 d-flex">
-              <button type="submit" class="mx-auto" @click.prevent="postRating">
-                Send Rating
-              </button>
-            </div>
-          </form> -->
           <div class="d-flex justify-content-around flex-md-column bg-light border rounded">
             <!-- review icon -->
             <div class="d-flex align-items-center p-1 flex-grow-1 justify-content-center icon-container"
@@ -137,7 +122,22 @@ export default {
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
                   <div class="modal-body">
-                    ...
+                    <form>
+                      <label for="rating">Rate this GM</label>
+                      <select name="rating" id="rating" v-model="formData.rating_id"
+                        class="form-select w-100 input-focus-orange">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                      </select>
+                      <div class="py-3 d-flex">
+                        <button type="submit" class="mx-auto" @click.prevent="postRating">
+                          Send Rating
+                        </button>
+                      </div>
+                    </form>
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
