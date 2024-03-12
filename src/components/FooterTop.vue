@@ -30,7 +30,7 @@ export default {
     <div class="container">
       <div class="row align-items-center d-flex flex-column">
         <!-- left col -->
-        <div class="col col-md-6 d-flex flex-column align-items-center">
+        <div class="col col-md-6 d-flex flex-column align-items-center order-2 d-none d-md-block">
           <!-- link -->
           <div class="col p-3">
             <h4 class="text-uppercase mb-3">About</h4>
@@ -41,17 +41,17 @@ export default {
             </ul>
           </div>
           <div class="col p-3">
-            <h4 class="text-uppercase mb-3">Community</h4>
-            <ul>
-              <ul class="text-center">
-                <li v-for="item in footerInfo.community" :key="item.name">
-                  <a :href="item.link" class="link">{{ item.name }}</a>
-                </li>
-              </ul>
+            <h4 class="text-uppercase mb-3">Community
+            </h4>
+            <ul class="text-center">
+              <li v-for="item in footerInfo.community" :key="item.name">
+                <a :href="item.link" class="link">{{ item.name }}</a>
+              </li>
             </ul>
           </div>
           <div class="col p-3">
-            <h4 class="text-uppercase mb-3 text-center">Legal</h4>
+            <h4 class="text-uppercase mb-3 text-center">Legal
+            </h4>
             <ul class="text-center">
               <li v-for="item in footerInfo.legal" :key="item.name">
                 <a :href="item.link" class="link">{{ item.name }}</a>
@@ -63,7 +63,7 @@ export default {
         <!-- /left col -->
 
         <!-- right col -->
-        <div class="d-flex flex-column col">
+        <div class="d-flex flex-column col order-1">
           <div>
             <!-- newsletter e button -->
             <form>
@@ -142,5 +142,11 @@ button:hover {
 
 hr {
   border: 1px solid white;
+}
+
+@media (min-width: 768px) {
+  .collapse {
+    display: block !important;
+  }
 }
 </style>
