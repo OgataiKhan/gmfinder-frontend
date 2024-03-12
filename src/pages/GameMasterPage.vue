@@ -5,6 +5,7 @@ import store from '../store/store.js';
 import axios from 'axios';
 import { mapActions, mapState } from 'vuex';
 import ShowReviewsComponent from '../components/ShowReviewsComponent.vue';
+import GmMessageComponent from '../components/GmMessageComponent.vue';
 
 export default {
   data() {
@@ -21,6 +22,7 @@ export default {
     ReviewsComponent,
     GmCardComponent,
     ShowReviewsComponent,
+    GmMessageComponent,
   },
   methods: {
 
@@ -97,9 +99,7 @@ export default {
 
 
       <!-- Reviews OffCanvas -->
-
-      <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample"
-        aria-labelledby="offcanvasExampleLabel">
+      <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasReview" aria-labelledby="offcanvasReview">
         <div class="offcanvas-header">
           <h5 class="offcanvas-title" id="offcanvasExampleLabel">Review</h5>
           <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
@@ -108,14 +108,28 @@ export default {
           <ReviewsComponent />
         </div>
       </div>
+      <!-- /Reviews OffCanvas -->
+
+      <!-- Message OffCanvas -->
+      <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasMessage" aria-labelledby="offcanvasMessage">
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title" id="offcanvasExampleLabel">Message</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+          <GmMessageComponent />
+        </div>
+      </div>
+      <!-- /Message OffCanvas -->
+
       <!-- write review button -->
       <div class="d-flex align-items-center justify-content-between py-3">
-        <button type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample"
+        <button type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasReview"
           aria-controls="offcanvasExample">
           Write a Review
         </button>
-        <button type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample"
-          aria-controls="offcanvasExample">
+        <button type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasMessage"
+          aria-controls="offcanvasMessage">
           Send a Message
         </button>
       </div>
@@ -125,10 +139,10 @@ export default {
       <router-link :to="{ name: 'advanced-search' }" class="nav-link mt-3"><button>Back to
           Search</button></router-link>
     </div>
-    <!-- Show Reviews -->
+    <!-- Show Reviews
     <div class="show-review-container">
       <ShowReviewsComponent />
-    </div>
+    </div> -->
     <div class="my-3 container text-start">
       <button type="submit" @click="backToSearch">Back to Search</button>
     </div>
@@ -151,7 +165,11 @@ export default {
 }
 
 
-// media queries for offcanvas. mobile first
+// media queries for offcanvas
+
+.offcanvas {
+  background-color: $light-color;
+}
 
 
 @media (min-width: 768px) {
