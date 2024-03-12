@@ -119,7 +119,7 @@ export default {
       </div>
       <!-- /Reviews OffCanvas -->
       <!-- Message OffCanvas -->
-      <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasMessage" aria-labelledby="offcanvasMessage">
+      <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasMessage" aria-labelledby="offcanvasMessage">
         <div class="offcanvas-header">
           <h5 class="offcanvas-title" id="offcanvasExampleLabel">Message</h5>
           <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
