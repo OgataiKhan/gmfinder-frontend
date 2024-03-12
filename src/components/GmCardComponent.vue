@@ -93,7 +93,6 @@ export default {
         gm.profile_img
         : '/img/generic-avatar.jpg'
         " class="card-img-top" alt="profile pic" />
-      <!-- button to send msg, route to GmMessagePage -->
       <div class="card-button mt-4 text-center" v-if="gmShow">
         <!-- select to give rating -->
         <div class="my-3 text-start">
@@ -161,10 +160,9 @@ export default {
         </h4>
         <!-- send message icon -->
         <div class="d-flex align-items-center px-2 msg-send" data-bs-toggle="offcanvas"
-          data-bs-target="#offcanvasMessage" aria-controls="offcanvasMessage">
+          data-bs-target="#offcanvasMessage" aria-controls="offcanvasMessage" v-if="gmShow">
           <p class="mb-0 me-2">Send a Message</p>
           <i class="bi bi-send-fill gm-icons fs-3"></i>
-
         </div>
       </div>
       <hr />
