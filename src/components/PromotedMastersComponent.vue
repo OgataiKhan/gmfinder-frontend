@@ -1,196 +1,206 @@
 <script>
-import 'bootstrap-icons/font/bootstrap-icons.css';
+import "bootstrap-icons/font/bootstrap-icons.css";
 //import store
-import store from '../store/store.js';
+import store from "../store/store.js";
 //import axios
-import axios from 'axios';
-import GmCardComponent from './GmCardComponent.vue';
+import axios from "axios";
+import GmCardComponent from "./GmCardComponent.vue";
 export default {
-    name: 'PromotedMastersComponent',
+  name: "PromotedMastersComponent",
 
-    components: {
-        GmCardComponent,
+  components: {
+    GmCardComponent,
+  },
+
+  data() {
+    return {
+      title: "Featured Masters of the Realm",
+      featuredMasters: [], // store the masters data from the API
+      store,
+      currentPage: 1, // store the current page number
+      lastPage: 1, // store the last page number
+    };
+  },
+  methods: {
+    //api call to get masters
+    getFeaturedMasters() {
+      //get list of gm where promotion is active
+      axios
+        .get(this.store.api.baseURL + this.store.api.apiUrls.featured, {
+          params: {
+            page: this.currentPage,
+          },
+        })
+        .then((response) => {
+          this.featuredMasters = response.data.results.data;
+          this.lastPage = response.data.results.last_page;
+        })
+        .catch((error) => {
+          console.error("Error fetching promoted masters", error);
+        });
     },
 
-    data() {
-        return {
-            title: 'Featured Masters of the Realm',
-            featuredMasters: [], // store the masters data from the API
-            store,
-            currentPage: 1, // store the current page number
-            lastPage: 1, // store the last page number
-        }
+    // Function to display the next set of masters
+    next() {
+      // Check if currentPage is within bounds
+      if (this.currentPage < this.lastPage) {
+        // Call api to get the results of the next page
+        this.getFeaturedMasters(this.currentPage++);
+      }
+      //if we are at the last page, return to first page
+      else if (this.currentPage === this.lastPage) {
+        this.currentPage = 1;
+        this.getFeaturedMasters(this.currentPage);
+      }
+      console.log("Current page", this.currentPage);
     },
-    methods: {
-
-        //api call to get masters
-        getFeaturedMasters() {
-            //get list of gm where promotion is active
-            axios.get(this.store.api.baseURL + this.store.api.apiUrls.featured, {
-                params: {
-                    page: this.currentPage
-                }
-            })
-                .then(response => {
-                    this.featuredMasters = response.data.results.data;
-                    this.lastPage = response.data.results.last_page;
-
-                })
-                .catch(error => {
-                    console.error('Error fetching promoted masters', error);
-                });
-        },
-
-        // Function to display the next set of masters
-        next() {
-            // Check if currentPage is within bounds
-            if (this.currentPage < this.lastPage) {
-                // Call api to get the results of the next page
-                this.getFeaturedMasters(this.currentPage++);
-            }
-            //if we are at the last page, return to first page
-            else if (this.currentPage === this.lastPage) {
-                this.currentPage = 1;
-                this.getFeaturedMasters(this.currentPage);
-            }
-            console.log('Current page', this.currentPage);
-        },
-        // Function to display the previous set of masters
-        prev() {
-            // Check if currentPage is greater than 1
-            if (this.currentPage > 1) {
-                // Call api to get the results of the previous page
-                this.getFeaturedMasters(this.currentPage--);
-            }
-            //if we are at the first page, return to last page
-            else if (this.currentPage === 1) {
-                this.currentPage = this.lastPage;
-                this.getFeaturedMasters(this.currentPage);
-            }
-
-        },
-
-        selectGm(gm) {
-            this.store.selectedGameMaster = gm;
-            //redirect to game master page with query params
-            this.$router.push({
-                name: 'game-master',
-                query: { gameMaster: gm.slug },
-            });
-        },
+    // Function to display the previous set of masters
+    prev() {
+      // Check if currentPage is greater than 1
+      if (this.currentPage > 1) {
+        // Call api to get the results of the previous page
+        this.getFeaturedMasters(this.currentPage--);
+      }
+      //if we are at the first page, return to last page
+      else if (this.currentPage === 1) {
+        this.currentPage = this.lastPage;
+        this.getFeaturedMasters(this.currentPage);
+      }
     },
-    created() {
-        // Call the getMasters function when the component is mounted
-        this.getFeaturedMasters();
-    }
+
+    selectGm(gm) {
+      this.store.selectedGameMaster = gm;
+      //redirect to game master page with query params
+      this.$router.push({
+        name: "game-master",
+        query: { gameMaster: gm.slug },
+      });
+    },
+  },
+  created() {
+    // Call the getMasters function when the component is mounted
+    this.getFeaturedMasters();
+  },
 };
 </script>
 
 <template>
-    <div class="promoted-masters">
-        <div class="title p-3">
-            <h3 class="text-center">{{ title }}</h3>
-        </div>
-        <div class="masters-container pb-3">
-            <div class="masters-grid container">
-                <div class="row g-3">
-                    <div class="col-md-6 col-lg-3" v-for="gm in featuredMasters" :key="gm.id">
-                        <router-link :to="{ name: 'game-master' }" class="nav-link" @click="selectGm(gm)">
-                            <div class="card featured-card">
-                                <img :src="gm.profile_img
-                ? this.store.api.baseURL +
-                this.store.api.apiUrls.storage +
-                gm.profile_img
-                : '/img/generic-avatar.jpg'
-                " class="featured-image" alt="profile pic" />
-                                <div class="card-body">
-                                    <h4>{{ gm.user.name }}</h4>
-                                    <p>
-                                        <span v-for="(system, index) in gm.game_systems" :key="index">
-                                            {{ system.name
-                                            }}{{ index < gm.game_systems.length - 1 ? ", " : "" }} </span>
-                                    </p>
-                                </div>
-                            </div>
-                        </router-link>
-                    </div>
-                </div>
-            </div>
-            <div class="navigation-controls d-flex justify-content-between">
-                <button @click="prev">
-                    <i class="bi bi-chevron-left"></i>
-                </button>
-                <button @click="next">
-                    <i class="bi bi-chevron-right"></i>
-                </button>
-            </div>
-        </div>
+  <div class="promoted-masters">
+    <div class="title p-3">
+      <h3 class="text-center">{{ title }}</h3>
     </div>
+    <div class="masters-container pb-3">
+      <div class="masters-grid container">
+        <div class="row g-3">
+          <div
+            class="col-md-6 col-lg-3"
+            v-for="gm in featuredMasters"
+            :key="gm.id"
+          >
+            <router-link
+              :to="{ name: 'game-master' }"
+              class="nav-link"
+              @click="selectGm(gm)"
+            >
+              <div class="card featured-card">
+                <img
+                  :src="
+                    gm.profile_img
+                      ? this.store.api.baseURL +
+                        this.store.api.apiUrls.storage +
+                        gm.profile_img
+                      : '/img/generic-avatar.jpg'
+                  "
+                  class="featured-image"
+                  alt="profile pic"
+                />
+                <div class="card-body">
+                  <h4>{{ gm.user.name }}</h4>
+                  <p>
+                    <span
+                      v-for="(system, index) in gm.game_systems.slice(0, 2)"
+                      :key="index"
+                    >
+                      {{ system.name }}{{ index < 1 ? ", " : "" }}
+                    </span>
+                  </p>
+                </div>
+              </div>
+            </router-link>
+          </div>
+        </div>
+      </div>
+      <div class="navigation-controls d-flex justify-content-between">
+        <button @click="prev">
+          <i class="bi bi-chevron-left"></i>
+        </button>
+        <button @click="next">
+          <i class="bi bi-chevron-right"></i>
+        </button>
+      </div>
+    </div>
+  </div>
 </template>
 
 <style scoped lang="scss">
 @use "../scss/helpers/variables" as *;
 
 .title {
-    background-color: $primary-color;
-    color: $light-color;
+  background-color: $primary-color;
+  color: $light-color;
 }
 
 .nav-link {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .featured-card {
+  &:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s;
+  }
 
-    &:hover {
-        transform: scale(1.05);
-        transition: transform 0.3s;
+  .featured-image {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+
+    &hover {
+      transform: scale(1.05);
+      transition: transform 0.3s;
     }
-
-    .featured-image {
-        width: 100%;
-        height: 300px;
-        object-fit: cover;
-
-        &hover {
-            transform: scale(1.05);
-            transition: transform 0.3s;
-        }
-    }
-
-
+  }
 }
 
 .masters-container {
-    background-color: $primary-color;
-    position: relative;
+  background-color: $primary-color;
+  position: relative;
 }
 
-
 .navigation-controls {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    left: 0;
-    width: 100%;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 0;
+  width: 100%;
 
-    button {
-        background-color: transparent;
-        border: none;
-        cursor: pointer;
-    }
+  button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+  }
 
-    .bi {
-        cursor: pointer;
-        z-index: 99;
-        color: $contrast-color;
-        font-size: 3.5rem;
-        font-weight: bold;
-    }
+  .bi {
+    cursor: pointer;
+    z-index: 99;
+    color: $contrast-color;
+    font-size: 3.5rem;
+    font-weight: bold;
+  }
 }
 
 .card {
-    padding: 0.5rem;
-    height: 100%;
+  padding: 0.5rem;
+  height: 100%;
 }
 </style>
