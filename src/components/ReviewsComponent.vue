@@ -46,10 +46,10 @@ export default {
 <template>
   <div v-if="store.selectedGameMaster">
     <!-- send message -->
-    <div class="text-center">
-      <h3 class="pt-2">{{ msg }}</h3>
-    </div>
     <div class="col-8 mx-auto form-div" v-if="!reviewSuccess">
+      <div>
+        <h3 class="pt-2">{{ msg }}</h3>
+      </div>
       <form @submit.prevent="sendReview">
         <div>
           <div class="py-2">
@@ -57,14 +57,11 @@ export default {
             <input type="text" class="form-control input-focus-orange" id="userName" placeholder="Enter your name"
               v-model="formData.name" />
           </div>
-
-
           <div class="py-2">
             <label for="userEmailAddress" class="form-label">Raven-Email Address</label>
             <input type="email" class="form-control input-focus-orange" id="userEmailAddress"
               placeholder="Enter your email address" v-model="formData.email" />
           </div>
-
         </div>
         <div class="py-2">
           <label for="msgText" class="form-label">Thy Missive</label>
@@ -80,22 +77,11 @@ export default {
     <!-- if message success is true -->
     <div class="col-8 mx-auto form-div" v-else>
       <h3 class="text-center">Your message has been sent!</h3>
-      <div class="mt-4">
+      <div class="mt-4 d-flex justify-content-center">
         <button type="submit" @click="reviewReset">Send Another Review</button>
       </div>
     </div>
   </div>
 </template>
 
-<style scoped lang="scss">
-.reviews {
-  margin: 0 auto;
-  border: 1px solid #ccc;
-
-  ul.review-list {
-    li {
-      border: 1px solid #ccc;
-    }
-  }
-}
-</style>
+<style scoped lang="scss"></style>
