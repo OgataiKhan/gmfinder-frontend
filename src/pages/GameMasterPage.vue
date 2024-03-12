@@ -92,12 +92,21 @@ export default {
 
 <template>
   <div class="gm-page flex-grow-1" v-cloak>
-    <div class="container p-2 mb-3" v-if="store.selectedGameMaster">
-      <h1>{{ msg }}</h1>
+    <!-- back to Search button -->
+    <div class="mt-3 container text-start">
+      <button type="submit" @click="backToSearch">Back to Search</button>
+    </div>
+    <!-- /back to Search button -->
+    <!-- gm page start -->
+    <div class="container mb-3" v-if="store.selectedGameMaster">
+      <!-- title div -->
+      <div class="text-center py-2">
+        <h2>{{ msg }}</h2>
+      </div>
+      <!-- /title div -->
+      <!-- GM CARD -->
       <GmCardComponent v-if="store.selectedGameMaster" :gm="store.selectedGameMaster" :gmShow="true" />
-
-
-
+      <!-- /GM CARD -->
       <!-- Reviews OffCanvas -->
       <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasReview" aria-labelledby="offcanvasReview">
         <div class="offcanvas-header">
@@ -109,7 +118,6 @@ export default {
         </div>
       </div>
       <!-- /Reviews OffCanvas -->
-
       <!-- Message OffCanvas -->
       <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasMessage" aria-labelledby="offcanvasMessage">
         <div class="offcanvas-header">
@@ -121,30 +129,15 @@ export default {
         </div>
       </div>
       <!-- /Message OffCanvas -->
-
-      <!-- write review button -->
-      <div class="d-flex align-items-center justify-content-between py-3">
-        <button type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasReview"
-          aria-controls="offcanvasExample">
-          Write a Review
-        </button>
-        <button type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasMessage"
-          aria-controls="offcanvasMessage">
-          Send a Message
-        </button>
-      </div>
     </div>
     <div v-else class="text-center">
       <h1>Game Master not found</h1>
       <router-link :to="{ name: 'advanced-search' }" class="nav-link mt-3"><button>Back to
           Search</button></router-link>
     </div>
-    <!-- Show Reviews
+    <!-- Show Reviews -->
     <div class="show-review-container">
       <ShowReviewsComponent />
-    </div> -->
-    <div class="my-3 container text-start">
-      <button type="submit" @click="backToSearch">Back to Search</button>
     </div>
   </div>
 </template>

@@ -95,9 +95,6 @@ export default {
         " class="card-img-top" alt="profile pic" />
       <!-- button to send msg, route to GmMessagePage -->
       <div class="card-button mt-4 text-center" v-if="gmShow">
-        <button @click="goToGmMessagePage(store.selectedGameMaster.slug)" class="w-100">
-          Send Message
-        </button>
         <!-- select to give rating -->
         <div class="my-3 text-start">
           <form>
@@ -115,6 +112,23 @@ export default {
               </button>
             </div>
           </form>
+          <!-- send a message button -->
+          <div class="py-2">
+            <button type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasMessage"
+              aria-controls="offcanvasMessage" class="w-100">
+              Send a Message
+            </button>
+          </div>
+          <!-- /send a message button -->
+          <!-- review button -->
+          <div class="py-2">
+            <button type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasReview"
+              aria-controls="offcanvasExample" class="w-100">
+              Write a Review
+            </button>
+          </div>
+          <!-- /review button -->
+
         </div>
       </div>
     </div>
