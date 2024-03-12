@@ -58,12 +58,23 @@ export default {
   },
   computed: {
     shieldRating() {
-      const rating = Math.round(this.gm.average_rating);
+      const rating = this.gm.average_rating;
+
+      if (rating === 0) {
+        return [];
+      }
+      // Round to the nearest half
+      const roundedRating = Math.round(rating * 2) / 2;
       const shields = [];
 
-      // Determine if each shield should be filled or not, push booleans
       for (let i = 1; i <= 5; i++) {
-        shields.push(i <= rating);
+        if (i <= Math.floor(roundedRating)) {
+          shields.push('full');
+        } else if (i - 0.5 === roundedRating) {
+          shields.push('half');
+        } else {
+          shields.push('empty');
+        }
       }
 
       return shields;
@@ -150,15 +161,20 @@ export default {
       <div>
         <h6>Average Rating</h6>
         <!-- <p>{{ gm.average_rating === 0 ? "None yet" : gm.average_rating }}</p> -->
-        <p class="shield-rating">
+        <p v-if="gm.average_rating > 0" class="shield-rating">
           <i
             v-for="(shield, index) in shieldRating"
             :key="index"
             class="bi"
-            :class="{ 'bi-shield-fill': shield, 'bi-shield': !shield }"
+            :class="{
+              'bi-shield-fill': shield === 'full',
+              'bi-shield-shaded': shield === 'half',
+              'bi-shield': shield === 'empty',
+            }"
           >
           </i>
         </p>
+        <p v-else>None yet</p>
       </div>
       <div class="gm-show" v-if="gmShow">
         <div>
