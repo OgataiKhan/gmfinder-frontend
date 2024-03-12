@@ -108,23 +108,24 @@ export default {
           <ReviewsComponent />
         </div>
       </div>
+      <!-- write review button -->
+      <div class="d-flex align-items-center justify-content-between py-3">
+        <button type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample"
+          aria-controls="offcanvasExample">
+          Write a Review
+        </button>
+        <button type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample"
+          aria-controls="offcanvasExample">
+          Send a Message
+        </button>
+      </div>
     </div>
     <div v-else class="text-center">
       <h1>Game Master not found</h1>
       <router-link :to="{ name: 'advanced-search' }" class="nav-link mt-3"><button>Back to
           Search</button></router-link>
     </div>
-
-    <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample"
-      aria-controls="offcanvasExample">
-      Button with data-bs-target
-    </button>
-
-
-
-
-
-
+    <!-- Show Reviews -->
     <div class="show-review-container">
       <ShowReviewsComponent />
     </div>
