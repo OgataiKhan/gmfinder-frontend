@@ -17,8 +17,8 @@ export default {
 <template>
 
     <div class="container py-5">
-        <h3 class="mb-4">Reviews: {{ store.selectedGameMaster.reviews ? store.selectedGameMaster.reviews.length :
-            'No Reviews' }}</h3>
+        <h3 class="mb-4">Reviews ({{ store.selectedGameMaster.reviews ? store.selectedGameMaster.reviews.length :
+            'No Reviews' }})</h3>
         <ul class="card p-4 mb-4 reviews">
             <li v-for="review in store.selectedGameMaster.reviews" class="review card p-4 mb-4 ">
                 <div class="row justify-content-between">
