@@ -8,7 +8,7 @@ export default {
   <footer>
     <div class="container">
       <div class="row align-items-center">
-        <!-- col di sinistra -->
+        <!-- left col -->
         <div class="col-6 d-flex">
           <!-- link -->
           <div class="col-4">
@@ -37,9 +37,9 @@ export default {
           </div>
           <!-- /link -->
         </div>
-        <!-- /col di sinistra -->
+        <!-- /left col -->
 
-        <!-- col di destra -->
+        <!-- right col -->
         <div class="col-6 ps-5">
           <div class="d-flex align-items-center justify-content-end">
             <!-- newsletter e button -->
@@ -49,12 +49,7 @@ export default {
               </div>
               <div class="col-auto">
                 <label for="inputEmail" class="visually-hidden">Password</label>
-                <input
-                  type="email"
-                  class="form-control"
-                  id="inputEmail"
-                  placeholder="Your Email Address"
-                />
+                <input type="email" class="form-control" id="inputEmail" placeholder="Your Email Address" />
               </div>
               <div class="col-auto">
                 <button type="submit" class="btn btn-orange mb-3">
@@ -68,14 +63,10 @@ export default {
           <div class="mt-3">
             <ul class="d-flex gap-4 justify-content-end">
               <li>
-                <a href="#" class="link"
-                  ><i class="bi bi-instagram fs-3"></i
-                ></a>
+                <a href="#" class="link"><i class="bi bi-instagram fs-3"></i></a>
               </li>
               <li>
-                <a href="#" class="link"
-                  ><i class="bi bi-twitter-x fs-3"></i
-                ></a>
+                <a href="#" class="link"><i class="bi bi-twitter-x fs-3"></i></a>
               </li>
               <li>
                 <a href="#" class="link"><i class="bi bi-facebook fs-3"></i></a>
@@ -87,7 +78,7 @@ export default {
           </div>
           <!-- /icons -->
         </div>
-        <!-- /col di destra -->
+        <!-- /right col -->
       </div>
       <hr />
     </div>
