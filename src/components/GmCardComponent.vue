@@ -112,23 +112,22 @@ export default {
               </button>
             </div>
           </form> -->
-          <div class="d-flex justify-content-around flex-md-column bg-light border">
+          <div class="d-flex justify-content-around flex-md-column bg-light border icon-container">
             <!-- review icon -->
-            <div class="d-flex align-items-center p-1">
-              <i class="bi bi-chat-left-text-fill gm-icons fs-3" data-bs-toggle="offcanvas"
-                data-bs-target="#offcanvasReview" aria-controls="offcanvasExample"></i>
-              <p class="mb-2 ms-2">Write a Review</p>
+            <div class="d-flex align-items-center p-1 flex-grow-1 justify-content-center" data-bs-toggle="offcanvas"
+              data-bs-target="#offcanvasReview" aria-controls="offcanvasExample">
+              <i class="bi bi-chat-left-text-fill gm-icons fs-3"></i>
+              <p class="ms-2 mb-0">Write a Review</p>
             </div>
             <!-- /review icon -->
             <!-- rate icon -->
-            <div class="d-flex align-items-center p-1">
-              <i class="bi bi-shield-fill gm-icons fs-3" data-bs-toggle="offcanvas" data-bs-target="#offcanvasReview"
-                aria-controls="offcanvasExample"></i>
-              <p class="mb-1 ms-2">Rate this GM</p>
+            <div class="d-flex align-items-center p-1 icon-container flex-grow-1 justify-content-center"
+              data-bs-toggle="offcanvas" data-bs-target="#offcanvasReview" aria-controls="offcanvasExample">
+              <i class="bi bi-shield-fill gm-icons fs-3 align-middle"></i>
+              <p class="mb-0 ms-2">Rate this GM</p>
             </div>
             <!-- /rate icon -->
           </div>
-
         </div>
       </div>
     </div>
@@ -140,10 +139,14 @@ export default {
           <span v-if="gm.has_future_promotion">
             <i class="bi bi-stars"></i></span>
         </h4>
+
+
         <!-- send message icon -->
-        <div>
-          <i class="bi bi-send-fill fs-3 px-2 mb-1 gm-icons" data-bs-toggle="offcanvas"
-            data-bs-target="#offcanvasMessage" aria-controls="offcanvasMessage"></i>
+        <div class="d-flex align-items-center px-2 msg-send" data-bs-toggle="offcanvas"
+          data-bs-target="#offcanvasMessage" aria-controls="offcanvasMessage">
+          <p class="mb-0 me-2">Send a Message</p>
+          <i class="bi bi-send-fill gm-icons fs-3"></i>
+
         </div>
       </div>
       <hr />
@@ -240,5 +243,26 @@ export default {
     font-size: 1.5em;
     color: #800020;
   }
+
+  .icon-container {
+    cursor: pointer;
+    border-radius: 5px;
+
+    :hover {
+      background-color: #f1f0eb;
+      color: $primary-color;
+    }
+  }
+
+  .msg-send {
+    cursor: pointer;
+
+    &:hover {
+      color: $primary-color;
+      background-color: #f1f0eb;
+      border-radius: 5px;
+    }
+  }
+
 }
 </style>
