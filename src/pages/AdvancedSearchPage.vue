@@ -188,6 +188,10 @@ export default {
   border-radius: 10px;
 }
 
+.card.promoted-gm {
+  box-shadow: 0 0 10px #d1b201;
+}
+
 .card:hover {
   border: 1px solid $contrast-color;
   cursor: pointer;
