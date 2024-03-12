@@ -95,12 +95,9 @@ export default {
         " class="card-img-top" alt="profile pic" />
       <!-- button to send msg, route to GmMessagePage -->
       <div class="card-button mt-4 text-center" v-if="gmShow">
-        <button @click="goToGmMessagePage(store.selectedGameMaster.slug)" class="w-100">
-          Send Message
-        </button>
         <!-- select to give rating -->
         <div class="my-3 text-start">
-          <form>
+          <!-- <form>
             <label for="rating">Rate this GM</label>
             <select name="rating" id="rating" v-model="formData.rating_id" class="form-select w-100 input-focus-orange">
               <option value="1">1</option>
@@ -114,17 +111,43 @@ export default {
                 Send Rating
               </button>
             </div>
-          </form>
+          </form> -->
+          <div class="d-flex justify-content-around flex-md-column bg-light border icon-container">
+            <!-- review icon -->
+            <div class="d-flex align-items-center p-1 flex-grow-1 justify-content-center" data-bs-toggle="offcanvas"
+              data-bs-target="#offcanvasReview" aria-controls="offcanvasExample">
+              <i class="bi bi-chat-left-text-fill gm-icons fs-3"></i>
+              <p class="ms-2 mb-0">Write a Review</p>
+            </div>
+            <!-- /review icon -->
+            <!-- rate icon -->
+            <div class="d-flex align-items-center p-1 icon-container flex-grow-1 justify-content-center"
+              data-bs-toggle="offcanvas" data-bs-target="#offcanvasReview" aria-controls="offcanvasExample">
+              <i class="bi bi-shield-fill gm-icons fs-3 align-middle"></i>
+              <p class="mb-0 ms-2">Rate this GM</p>
+            </div>
+            <!-- /rate icon -->
+          </div>
         </div>
       </div>
     </div>
     <div class="card-body">
-      <div class="text-center text-md-start">
-        <h4 class="card-title">
+      <div class="d-flex justify-content-between align-items-center">
+        <!-- card title -->
+        <h4 class="card-title mb-0">
           {{ gm.user.name }}
           <span v-if="gm.has_future_promotion">
             <i class="bi bi-stars"></i></span>
         </h4>
+
+
+        <!-- send message icon -->
+        <div class="d-flex align-items-center px-2 msg-send" data-bs-toggle="offcanvas"
+          data-bs-target="#offcanvasMessage" aria-controls="offcanvasMessage">
+          <p class="mb-0 me-2">Send a Message</p>
+          <i class="bi bi-send-fill gm-icons fs-3"></i>
+
+        </div>
       </div>
       <hr />
       <div>
@@ -145,7 +168,6 @@ export default {
       </div>
       <div>
         <h6>Average Rating</h6>
-        <!-- <p>{{ gm.average_rating === 0 ? "None yet" : gm.average_rating }}</p> -->
         <p v-if="gm.average_rating > 0" class="shield-rating">
           <i v-for="(shield, index) in shieldRating" :key="index" class="bi" :class="{
         'bi-shield-fill': shield === 'full',
@@ -208,6 +230,11 @@ export default {
     }
   }
 
+  .gm-icons {
+    color: $contrast-color;
+    cursor: pointer;
+  }
+
   .bi-stars {
     color: #38bebe;
   }
@@ -216,5 +243,26 @@ export default {
     font-size: 1.5em;
     color: #800020;
   }
+
+  .icon-container {
+    cursor: pointer;
+    border-radius: 5px;
+
+    :hover {
+      background-color: #f1f0eb;
+      color: $primary-color;
+    }
+  }
+
+  .msg-send {
+    cursor: pointer;
+
+    &:hover {
+      color: $primary-color;
+      background-color: #f1f0eb;
+      border-radius: 5px;
+    }
+  }
+
 }
 </style>

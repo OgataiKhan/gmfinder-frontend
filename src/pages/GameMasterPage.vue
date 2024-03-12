@@ -5,6 +5,7 @@ import store from '../store/store.js';
 import axios from 'axios';
 import { mapActions, mapState } from 'vuex';
 import ShowReviewsComponent from '../components/ShowReviewsComponent.vue';
+import GmMessageComponent from '../components/GmMessageComponent.vue';
 
 export default {
   data() {
@@ -21,6 +22,7 @@ export default {
     ReviewsComponent,
     GmCardComponent,
     ShowReviewsComponent,
+    GmMessageComponent,
   },
   methods: {
 
@@ -90,16 +92,23 @@ export default {
 
 <template>
   <div class="gm-page flex-grow-1" v-cloak>
-    <div class="container p-2 mb-3" v-if="store.selectedGameMaster">
-      <h1>{{ msg }}</h1>
+    <!-- back to Search button -->
+    <div class="mt-3 container text-start">
+      <button type="submit" @click="backToSearch">Back to Search</button>
+    </div>
+    <!-- /back to Search button -->
+    <!-- gm page start -->
+    <div class="container mb-3" v-if="store.selectedGameMaster">
+      <!-- title div -->
+      <div class="text-center py-2">
+        <h2>{{ msg }}</h2>
+      </div>
+      <!-- /title div -->
+      <!-- GM CARD -->
       <GmCardComponent v-if="store.selectedGameMaster" :gm="store.selectedGameMaster" :gmShow="true" />
-
-
-
+      <!-- /GM CARD -->
       <!-- Reviews OffCanvas -->
-
-      <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample"
-        aria-labelledby="offcanvasExampleLabel">
+      <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasReview" aria-labelledby="offcanvasReview">
         <div class="offcanvas-header">
           <h5 class="offcanvas-title" id="offcanvasExampleLabel">Review</h5>
           <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
@@ -108,17 +117,18 @@ export default {
           <ReviewsComponent />
         </div>
       </div>
-      <!-- write review button -->
-      <div class="d-flex align-items-center justify-content-between py-3">
-        <button type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample"
-          aria-controls="offcanvasExample">
-          Write a Review
-        </button>
-        <button type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample"
-          aria-controls="offcanvasExample">
-          Send a Message
-        </button>
+      <!-- /Reviews OffCanvas -->
+      <!-- Message OffCanvas -->
+      <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasMessage" aria-labelledby="offcanvasMessage">
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title" id="offcanvasExampleLabel">Message</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+          <GmMessageComponent />
+        </div>
       </div>
+      <!-- /Message OffCanvas -->
     </div>
     <div v-else class="text-center">
       <h1>Game Master not found</h1>
@@ -128,9 +138,6 @@ export default {
     <!-- Show Reviews -->
     <div class="show-review-container">
       <ShowReviewsComponent />
-    </div>
-    <div class="my-3 container text-start">
-      <button type="submit" @click="backToSearch">Back to Search</button>
     </div>
   </div>
 </template>
@@ -151,18 +158,22 @@ export default {
 }
 
 
-// media queries for offcanvas. mobile first
+// media queries for offcanvas
+
+.offcanvas {
+  background-color: $light-color;
+}
 
 
 @media (min-width: 768px) {
   .offcanvas {
-    width: 50%;
+    width: 60%;
   }
 }
 
 @media (min-width: 992px) {
   .offcanvas {
-    width: 25%;
+    width: 30%;
   }
 }
 </style>
