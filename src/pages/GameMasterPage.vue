@@ -180,7 +180,7 @@ export default {
 
 @media (min-width: 992px) {
   .offcanvas {
-    width: 25%;
+    width: 30%;
   }
 }
 </style>
