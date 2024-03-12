@@ -195,14 +195,14 @@ export default {
                         <button
                           type="button"
                           class="mx-auto"
-                          @click.prevent="postRating"
+                          @click.prevent="postRating" data-bs-dismiss="modal"
                         >
                           Send Rating
                         </button>
                       </div>
                     </form>
                   </div>
-                  <div class="modal-footer">
+                  <!-- <div class="modal-footer">
                     <button
                       type="button"
                       class="btn btn-secondary"
@@ -213,7 +213,7 @@ export default {
                     <button type="button" class="btn btn-primary">
                       Save changes
                     </button>
-                  </div>
+                  </div> -->
                 </div>
               </div>
             </div>
