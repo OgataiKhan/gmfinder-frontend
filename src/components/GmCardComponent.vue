@@ -97,7 +97,7 @@ export default {
       <div class="card-button mt-4 text-center" v-if="gmShow">
         <!-- select to give rating -->
         <div class="my-3 text-start">
-          <form>
+          <!-- <form>
             <label for="rating">Rate this GM</label>
             <select name="rating" id="rating" v-model="formData.rating_id" class="form-select w-100 input-focus-orange">
               <option value="1">1</option>
@@ -111,33 +111,40 @@ export default {
                 Send Rating
               </button>
             </div>
-          </form>
-          <!-- send a message button -->
-          <div class="py-2">
-            <button type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasMessage"
-              aria-controls="offcanvasMessage" class="w-100">
-              Send a Message
-            </button>
+          </form> -->
+          <div class="d-flex justify-content-around flex-md-column bg-light border">
+            <!-- review icon -->
+            <div class="d-flex align-items-center p-1">
+              <i class="bi bi-chat-left-text-fill gm-icons fs-3" data-bs-toggle="offcanvas"
+                data-bs-target="#offcanvasReview" aria-controls="offcanvasExample"></i>
+              <p class="mb-2 ms-2">Write a Review</p>
+            </div>
+            <!-- /review icon -->
+            <!-- rate icon -->
+            <div class="d-flex align-items-center p-1">
+              <i class="bi bi-shield-fill gm-icons fs-3" data-bs-toggle="offcanvas" data-bs-target="#offcanvasReview"
+                aria-controls="offcanvasExample"></i>
+              <p class="mb-1 ms-2">Rate this GM</p>
+            </div>
+            <!-- /rate icon -->
           </div>
-          <!-- /send a message button -->
-          <!-- review button -->
-          <div class="py-2">
-            <button type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasReview"
-              aria-controls="offcanvasExample" class="w-100">
-              Write a Review
-            </button>
-          </div>
-          <!-- /review button -->
+
         </div>
       </div>
     </div>
     <div class="card-body">
-      <div class="text-center text-md-start">
-        <h4 class="card-title">
+      <div class="d-flex justify-content-between align-items-center">
+        <!-- card title -->
+        <h4 class="card-title mb-0">
           {{ gm.user.name }}
           <span v-if="gm.has_future_promotion">
             <i class="bi bi-stars"></i></span>
         </h4>
+        <!-- send message icon -->
+        <div>
+          <i class="bi bi-send-fill fs-3 px-2 mb-1 gm-icons" data-bs-toggle="offcanvas"
+            data-bs-target="#offcanvasMessage" aria-controls="offcanvasMessage"></i>
+        </div>
       </div>
       <hr />
       <div>
@@ -158,7 +165,6 @@ export default {
       </div>
       <div>
         <h6>Average Rating</h6>
-        <!-- <p>{{ gm.average_rating === 0 ? "None yet" : gm.average_rating }}</p> -->
         <p v-if="gm.average_rating > 0" class="shield-rating">
           <i v-for="(shield, index) in shieldRating" :key="index" class="bi" :class="{
         'bi-shield-fill': shield === 'full',
@@ -219,6 +225,11 @@ export default {
         height: 300px;
       }
     }
+  }
+
+  .gm-icons {
+    color: $contrast-color;
+    cursor: pointer;
   }
 
   .bi-stars {

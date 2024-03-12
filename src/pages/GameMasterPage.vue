@@ -167,7 +167,7 @@ export default {
 
 @media (min-width: 768px) {
   .offcanvas {
-    width: 50%;
+    width: 60%;
   }
 }
 
