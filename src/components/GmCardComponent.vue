@@ -25,7 +25,7 @@ export default {
     gmShow: {
       type: Boolean,
       default: false,
-    },
+    }
   },
   methods: {
     goToGmMessagePage(slug) {
@@ -87,35 +87,22 @@ export default {
   <!-- create card for each gm -->
   <div class="card d-flex flex-md-row">
     <div class="card-header border-bottom-0">
-      <img
-        :src="
-          gm.profile_img
-            ? this.store.api.baseURL +
-              this.store.api.apiUrls.storage +
-              gm.profile_img
-            : '/img/generic-avatar.jpg'
-        "
-        class="card-img-top"
-        alt="profile pic"
-      />
+      <img :src="gm.profile_img
+        ? this.store.api.baseURL +
+        this.store.api.apiUrls.storage +
+        gm.profile_img
+        : '/img/generic-avatar.jpg'
+        " class="card-img-top" alt="profile pic" />
       <!-- button to send msg, route to GmMessagePage -->
       <div class="card-button mt-4 text-center" v-if="gmShow">
-        <button
-          @click="goToGmMessagePage(store.selectedGameMaster.slug)"
-          class="w-100"
-        >
+        <button @click="goToGmMessagePage(store.selectedGameMaster.slug)" class="w-100">
           Send Message
         </button>
         <!-- select to give rating -->
         <div class="my-3 text-start">
           <form>
             <label for="rating">Rate this GM</label>
-            <select
-              name="rating"
-              id="rating"
-              v-model="formData.rating_id"
-              class="form-select w-100 input-focus-orange"
-            >
+            <select name="rating" id="rating" v-model="formData.rating_id" class="form-select w-100 input-focus-orange">
               <option value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>
@@ -136,8 +123,7 @@ export default {
         <h4 class="card-title">
           {{ gm.user.name }}
           <span v-if="gm.has_future_promotion">
-            <i class="bi bi-stars"></i
-          ></span>
+            <i class="bi bi-stars"></i></span>
         </h4>
       </div>
       <hr />
@@ -146,8 +132,7 @@ export default {
         <p>
           <span v-for="(system, index) in gm.game_systems" :key="index">
             {{ system.name
-            }}{{ index < gm.game_systems.length - 1 ? ", " : "" }}
-          </span>
+            }}{{ index < gm.game_systems.length - 1 ? ", " : "" }} </span>
         </p>
       </div>
       <div>
@@ -162,16 +147,11 @@ export default {
         <h6>Average Rating</h6>
         <!-- <p>{{ gm.average_rating === 0 ? "None yet" : gm.average_rating }}</p> -->
         <p v-if="gm.average_rating > 0" class="shield-rating">
-          <i
-            v-for="(shield, index) in shieldRating"
-            :key="index"
-            class="bi"
-            :class="{
-              'bi-shield-fill': shield === 'full',
-              'bi-shield-shaded': shield === 'half',
-              'bi-shield': shield === 'empty',
-            }"
-          >
+          <i v-for="(shield, index) in shieldRating" :key="index" class="bi" :class="{
+        'bi-shield-fill': shield === 'full',
+        'bi-shield-shaded': shield === 'half',
+        'bi-shield': shield === 'empty',
+      }">
           </i>
         </p>
         <p v-else>None yet</p>
@@ -179,13 +159,10 @@ export default {
       <div class="gm-show" v-if="gmShow">
         <div>
           <h6>Availability</h6>
-          <p
-            v-html="
-              gm.is_available
-                ? 'Available <span style=\'color:green;\'>●</span>'
-                : 'Not Available <span style=\'color:red;\'>●</span>'
-            "
-          ></p>
+          <p v-html="gm.is_available
+        ? 'Available <span style=\'color:green;\'>●</span>'
+        : 'Not Available <span style=\'color:red;\'>●</span>'
+        "></p>
         </div>
         <div>
           <h6>Campaign Description</h6>

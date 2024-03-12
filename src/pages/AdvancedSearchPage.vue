@@ -106,7 +106,7 @@ export default {
             <li v-for="gm in store.gameMastersResults" :key="gm.id">
               <!-- route link for clickable card -->
               <router-link :to="{ name: 'game-master' }" class="nav-link" @click="selectGm(gm)">
-                <GmCardComponent :gm="gm" :gmShow="false" />
+                <GmCardComponent :gm="gm" :gmShow="false" :class="{ promotedGm: gm.has_future_promotion }" />
               </router-link>
             </li>
           </ul>
@@ -188,7 +188,7 @@ export default {
   border-radius: 10px;
 }
 
-.card.promoted-gm {
+.card.promotedGm {
   box-shadow: 0 0 10px #d1b201;
 }
 
