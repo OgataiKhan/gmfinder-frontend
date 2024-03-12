@@ -112,19 +112,39 @@ export default {
               </button>
             </div>
           </form> -->
-          <div class="d-flex justify-content-around flex-md-column bg-light border icon-container">
+          <div class="d-flex justify-content-around flex-md-column bg-light border rounded">
             <!-- review icon -->
-            <div class="d-flex align-items-center p-1 flex-grow-1 justify-content-center" data-bs-toggle="offcanvas"
-              data-bs-target="#offcanvasReview" aria-controls="offcanvasExample">
+            <div class="d-flex align-items-center p-1 flex-grow-1 justify-content-center icon-container"
+              data-bs-toggle="offcanvas" data-bs-target="#offcanvasReview" aria-controls="offcanvasExample">
               <i class="bi bi-chat-left-text-fill gm-icons fs-3"></i>
               <p class="ms-2 mb-0">Write a Review</p>
             </div>
             <!-- /review icon -->
             <!-- rate icon -->
+            <!-- Button trigger modal -->
             <div class="d-flex align-items-center p-1 icon-container flex-grow-1 justify-content-center"
-              data-bs-toggle="offcanvas" data-bs-target="#offcanvasReview" aria-controls="offcanvasExample">
+              data-bs-toggle="modal" data-bs-target="#exampleModal">
               <i class="bi bi-shield-fill gm-icons fs-3 align-middle"></i>
               <p class="mb-0 ms-2">Rate this GM</p>
+            </div>
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+              aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    ...
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                  </div>
+                </div>
+              </div>
             </div>
             <!-- /rate icon -->
           </div>
@@ -139,8 +159,6 @@ export default {
           <span v-if="gm.has_future_promotion">
             <i class="bi bi-stars"></i></span>
         </h4>
-
-
         <!-- send message icon -->
         <div class="d-flex align-items-center px-2 msg-send" data-bs-toggle="offcanvas"
           data-bs-target="#offcanvasMessage" aria-controls="offcanvasMessage">
@@ -248,7 +266,7 @@ export default {
     cursor: pointer;
     border-radius: 5px;
 
-    :hover {
+    &:hover {
       background-color: #f1f0eb;
       color: $primary-color;
     }
