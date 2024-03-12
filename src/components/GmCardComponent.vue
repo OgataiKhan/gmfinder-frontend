@@ -1,5 +1,6 @@
 <script>
 import store from "../store/store.js";
+import GmRatingComponent from "../components/GmRatingComponent.vue";
 // Import Luxon
 import { DateTime } from "luxon";
 import axios from "axios";
@@ -16,6 +17,9 @@ export default {
       ratingSuccess: false,
     };
   },
+  components: {
+    GmRatingComponent,
+  },
 
   props: {
     gm: {
@@ -25,27 +29,55 @@ export default {
     gmShow: {
       type: Boolean,
       default: false,
-    }
+    },
   },
   methods: {
     goToGmMessagePage(slug) {
       this.$router.push({ name: "message-gamemaster", params: { slug } });
     },
+
     formatLocalDate(dateStr) {
       return DateTime.fromISO(dateStr).toLocaleString(DateTime.DATE_MED);
     },
+
+    ratingSelected(rating) {
+      this.formData.rating_id = rating;
+    },
+
+    // postRating() {
+    //   const data = {
+    //     rating_id: this.formData.rating_id,
+    //     game_master_id: store.selectedGameMaster.id,
+    //   };
+
+    //   axios
+    //     .post(this.store.api.baseURL + this.store.api.apiUrls.ratings, data)
+    //     .then((response) => {
+    //       console.log("Selected gm", store.selectedGameMaster.id);
+    //       console.log("Rating selected", this.formData.rating_id);
+
+    //       this.ratingSuccess = true;
+    //       console.log("Rating submitted successfully", response.data);
+    //       // Reset formData
+    //       this.formData.rating_id = null;
+    //     })
+    //     .catch((error) => {
+    //       console.error("Error submitting review", error);
+    //     });
+    // },
     postRating() {
+      if (!this.formData.rating_id) {
+        console.error("No rating selected.");
+        return;
+      }
       const data = {
         rating_id: this.formData.rating_id,
-        game_master_id: store.selectedGameMaster.id,
+        game_master_id: this.store.selectedGameMaster.id,
       };
 
       axios
         .post(this.store.api.baseURL + this.store.api.apiUrls.ratings, data)
         .then((response) => {
-          console.log("Selected gm", store.selectedGameMaster.id);
-          console.log("Rating selected", this.formData.rating_id);
-
           this.ratingSuccess = true;
           console.log("Rating submitted successfully", response.data);
           // Reset formData
@@ -69,11 +101,11 @@ export default {
 
       for (let i = 1; i <= 5; i++) {
         if (i <= Math.floor(roundedRating)) {
-          shields.push('full');
+          shields.push("full");
         } else if (i - 0.5 === roundedRating) {
-          shields.push('half');
+          shields.push("half");
         } else {
-          shields.push('empty');
+          shields.push("empty");
         }
       }
 
@@ -87,43 +119,69 @@ export default {
   <!-- create card for each gm -->
   <div class="card d-flex flex-md-row">
     <div class="card-header border-bottom-0">
-      <img :src="gm.profile_img
-        ? this.store.api.baseURL +
-        this.store.api.apiUrls.storage +
-        gm.profile_img
-        : '/img/generic-avatar.jpg'
-        " class="card-img-top" alt="profile pic" />
+      <img
+        :src="
+          gm.profile_img
+            ? this.store.api.baseURL +
+              this.store.api.apiUrls.storage +
+              gm.profile_img
+            : '/img/generic-avatar.jpg'
+        "
+        class="card-img-top"
+        alt="profile pic"
+      />
       <!-- button to send msg, route to GmMessagePage -->
       <div class="card-button mt-4 text-center" v-if="gmShow">
         <!-- select to give rating -->
         <div class="my-3 text-start">
-          <div class="d-flex justify-content-around flex-md-column bg-light border rounded">
+          <div
+            class="d-flex justify-content-around flex-md-column bg-light border rounded"
+          >
             <!-- review icon -->
-            <div class="d-flex align-items-center p-1 flex-grow-1 justify-content-center icon-container"
-              data-bs-toggle="offcanvas" data-bs-target="#offcanvasReview" aria-controls="offcanvasExample">
+            <div
+              class="d-flex align-items-center p-1 flex-grow-1 justify-content-center icon-container"
+              data-bs-toggle="offcanvas"
+              data-bs-target="#offcanvasReview"
+              aria-controls="offcanvasExample"
+            >
               <i class="bi bi-chat-left-text-fill gm-icons fs-3"></i>
               <p class="ms-2 mb-0">Write a Review</p>
             </div>
             <!-- /review icon -->
             <!-- rate icon -->
             <!-- Button trigger modal -->
-            <div class="d-flex align-items-center p-1 icon-container flex-grow-1 justify-content-center"
-              data-bs-toggle="modal" data-bs-target="#exampleModal">
+            <div
+              class="d-flex align-items-center p-1 icon-container flex-grow-1 justify-content-center"
+              data-bs-toggle="modal"
+              data-bs-target="#exampleModal"
+            >
               <i class="bi bi-shield-fill gm-icons fs-3 align-middle"></i>
               <p class="mb-0 ms-2">Rate this GM</p>
             </div>
             <!-- Modal -->
-            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-              aria-hidden="true">
+            <div
+              class="modal fade"
+              id="exampleModal"
+              tabindex="-1"
+              aria-labelledby="exampleModalLabel"
+              aria-hidden="true"
+            >
               <div class="modal-dialog">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">
+                      Rate Your GM
+                    </h1>
+                    <button
+                      type="button"
+                      class="btn-close"
+                      data-bs-dismiss="modal"
+                      aria-label="Close"
+                    ></button>
                   </div>
                   <div class="modal-body">
                     <form>
-                      <label for="rating">Rate this GM</label>
+                      <!-- <label for="rating">Rate this GM</label>
                       <select name="rating" id="rating" v-model="formData.rating_id"
                         class="form-select w-100 input-focus-orange">
                         <option value="1">1</option>
@@ -131,17 +189,30 @@ export default {
                         <option value="3">3</option>
                         <option value="4">4</option>
                         <option value="5">5</option>
-                      </select>
+                      </select> -->
+                      <GmRatingComponent @rating-selected="ratingSelected" />
                       <div class="py-3 d-flex">
-                        <button type="submit" class="mx-auto" @click.prevent="postRating">
+                        <button
+                          type="button"
+                          class="mx-auto"
+                          @click.prevent="postRating"
+                        >
                           Send Rating
                         </button>
                       </div>
                     </form>
                   </div>
                   <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <button
+                      type="button"
+                      class="btn btn-secondary"
+                      data-bs-dismiss="modal"
+                    >
+                      Close
+                    </button>
+                    <button type="button" class="btn btn-primary">
+                      Save changes
+                    </button>
                   </div>
                 </div>
               </div>
@@ -157,14 +228,18 @@ export default {
         <h4 class="card-title mb-0">
           {{ gm.user.name }}
           <span v-if="gm.has_future_promotion">
-            <i class="bi bi-stars"></i></span>
+            <i class="bi bi-stars"></i
+          ></span>
         </h4>
         <!-- send message icon -->
-        <div class="d-flex align-items-center px-2 msg-send" data-bs-toggle="offcanvas"
-          data-bs-target="#offcanvasMessage" aria-controls="offcanvasMessage">
+        <div
+          class="d-flex align-items-center px-2 msg-send"
+          data-bs-toggle="offcanvas"
+          data-bs-target="#offcanvasMessage"
+          aria-controls="offcanvasMessage"
+        >
           <p class="mb-0 me-2">Send a Message</p>
           <i class="bi bi-send-fill gm-icons fs-3"></i>
-
         </div>
       </div>
       <hr />
@@ -173,7 +248,8 @@ export default {
         <p>
           <span v-for="(system, index) in gm.game_systems" :key="index">
             {{ system.name
-            }}{{ index < gm.game_systems.length - 1 ? ", " : "" }} </span>
+            }}{{ index < gm.game_systems.length - 1 ? ", " : "" }}
+          </span>
         </p>
       </div>
       <div>
@@ -187,11 +263,16 @@ export default {
       <div>
         <h6>Average Rating</h6>
         <p v-if="gm.average_rating > 0" class="shield-rating">
-          <i v-for="(shield, index) in shieldRating" :key="index" class="bi" :class="{
-        'bi-shield-fill': shield === 'full',
-        'bi-shield-shaded': shield === 'half',
-        'bi-shield': shield === 'empty',
-      }">
+          <i
+            v-for="(shield, index) in shieldRating"
+            :key="index"
+            class="bi"
+            :class="{
+              'bi-shield-fill': shield === 'full',
+              'bi-shield-shaded': shield === 'half',
+              'bi-shield': shield === 'empty',
+            }"
+          >
           </i>
         </p>
         <p v-else>None yet</p>
@@ -199,10 +280,13 @@ export default {
       <div class="gm-show" v-if="gmShow">
         <div>
           <h6>Availability</h6>
-          <p v-html="gm.is_available
-        ? 'Available <span style=\'color:green;\'>●</span>'
-        : 'Not Available <span style=\'color:red;\'>●</span>'
-        "></p>
+          <p
+            v-html="
+              gm.is_available
+                ? 'Available <span style=\'color:green;\'>●</span>'
+                : 'Not Available <span style=\'color:red;\'>●</span>'
+            "
+          ></p>
         </div>
         <div>
           <h6>Campaign Description</h6>
@@ -281,6 +365,5 @@ export default {
       border-radius: 5px;
     }
   }
-
 }
 </style>
