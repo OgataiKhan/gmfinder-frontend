@@ -2,7 +2,7 @@
 import store from "../store/store.js";
 // Import Luxon
 import { DateTime } from "luxon";
-import axios from 'axios';
+import axios from "axios";
 
 export default {
   name: "GmCardComponent",
@@ -40,20 +40,33 @@ export default {
         game_master_id: store.selectedGameMaster.id,
       };
 
-      axios.post(this.store.api.baseURL + this.store.api.apiUrls.ratings, data)
-        .then(response => {
-          console.log('Selected gm', store.selectedGameMaster.id);
-          console.log('Rating selected', this.formData.rating_id);
-
+      axios
+        .post(this.store.api.baseURL + this.store.api.apiUrls.ratings, data)
+        .then((response) => {
+          console.log("Selected gm", store.selectedGameMaster.id);
+          console.log("Rating selected", this.formData.rating_id);
 
           this.ratingSuccess = true;
           console.log("Rating submitted successfully", response.data);
           // Reset formData
           this.formData.rating_id = null;
         })
-        .catch(error => {
+        .catch((error) => {
           console.error("Error submitting review", error);
         });
+    },
+  },
+  computed: {
+    shieldRating() {
+      const rating = Math.round(this.gm.average_rating);
+      const shields = [];
+
+      // Determine if each shield should be filled or not, push booleans
+      for (let i = 1; i <= 5; i++) {
+        shields.push(i <= rating);
+      }
+
+      return shields;
     },
   },
 };
@@ -63,22 +76,35 @@ export default {
   <!-- create card for each gm -->
   <div class="card d-flex flex-md-row">
     <div class="card-header border-bottom-0">
-      <img :src="gm.profile_img
-        ? this.store.api.baseURL +
-        this.store.api.apiUrls.storage +
-        gm.profile_img
-        : '/img/generic-avatar.jpg'
-        " class="card-img-top" alt="profile pic" />
+      <img
+        :src="
+          gm.profile_img
+            ? this.store.api.baseURL +
+              this.store.api.apiUrls.storage +
+              gm.profile_img
+            : '/img/generic-avatar.jpg'
+        "
+        class="card-img-top"
+        alt="profile pic"
+      />
       <!-- button to send msg, route to GmMessagePage -->
       <div class="card-button mt-4 text-center" v-if="gmShow">
-        <button @click="goToGmMessagePage(store.selectedGameMaster.slug)" class="w-100">
+        <button
+          @click="goToGmMessagePage(store.selectedGameMaster.slug)"
+          class="w-100"
+        >
           Send Message
         </button>
         <!-- select to give rating -->
         <div class="my-3 text-start">
           <form>
             <label for="rating">Rate this GM</label>
-            <select name="rating" id="rating" v-model="formData.rating_id" class="form-select w-100 input-focus-orange">
+            <select
+              name="rating"
+              id="rating"
+              v-model="formData.rating_id"
+              class="form-select w-100 input-focus-orange"
+            >
               <option value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>
@@ -96,8 +122,12 @@ export default {
     </div>
     <div class="card-body">
       <div class="text-center text-md-start">
-        <h4 class="card-title">{{ gm.user.name }} <span v-if="gm.has_future_promotion"> <i
-              class="bi bi-stars"></i></span></h4>
+        <h4 class="card-title">
+          {{ gm.user.name }}
+          <span v-if="gm.has_future_promotion">
+            <i class="bi bi-stars"></i
+          ></span>
+        </h4>
       </div>
       <hr />
       <div>
@@ -105,7 +135,8 @@ export default {
         <p>
           <span v-for="(system, index) in gm.game_systems" :key="index">
             {{ system.name
-            }}{{ index < gm.game_systems.length - 1 ? ", " : "" }} </span>
+            }}{{ index < gm.game_systems.length - 1 ? ", " : "" }}
+          </span>
         </p>
       </div>
       <div>
@@ -118,15 +149,27 @@ export default {
       </div>
       <div>
         <h6>Average Rating</h6>
-        <p>{{ gm.average_rating === 0 ? 'None yet' : gm.average_rating }}</p>
+        <!-- <p>{{ gm.average_rating === 0 ? "None yet" : gm.average_rating }}</p> -->
+        <p class="shield-rating">
+          <i
+            v-for="(shield, index) in shieldRating"
+            :key="index"
+            class="bi"
+            :class="{ 'bi-shield-fill': shield, 'bi-shield': !shield }"
+          >
+          </i>
+        </p>
       </div>
       <div class="gm-show" v-if="gmShow">
         <div>
           <h6>Availability</h6>
-          <p v-html="gm.is_available
-        ? 'Available <span style=\'color:green;\'>●</span>'
-        : 'Not Available <span style=\'color:red;\'>●</span>'
-        "></p>
+          <p
+            v-html="
+              gm.is_available
+                ? 'Available <span style=\'color:green;\'>●</span>'
+                : 'Not Available <span style=\'color:red;\'>●</span>'
+            "
+          ></p>
         </div>
         <div>
           <h6>Campaign Description</h6>
@@ -174,6 +217,11 @@ export default {
 
   .bi-stars {
     color: #38bebe;
+  }
+
+  .shield-rating {
+    font-size: 1.5em;
+    color: #800020;
   }
 }
 </style>
