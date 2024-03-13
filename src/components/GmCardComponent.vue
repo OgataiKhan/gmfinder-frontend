@@ -143,7 +143,7 @@ export default {
               class="d-flex align-items-center p-1 flex-grow-1 justify-content-center icon-container"
               data-bs-toggle="offcanvas"
               data-bs-target="#offcanvasReview"
-              aria-controls="offcanvasExample"
+              aria-controls="offcanvasReview"
             >
               <i class="bi bi-chat-left-text-fill gm-icons fs-3"></i>
               <p class="ms-2 mb-0">Write a Review</p>
@@ -154,7 +154,7 @@ export default {
             <div
               class="d-flex align-items-center p-1 icon-container flex-grow-1 justify-content-center"
               data-bs-toggle="modal"
-              data-bs-target="#exampleModal"
+              data-bs-target="#ratingModal"
             >
               <i class="bi bi-shield-fill gm-icons fs-3 align-middle"></i>
               <p class="mb-0 ms-2">Rate this GM</p>
@@ -163,15 +163,15 @@ export default {
             <!-- Rating modal -->
             <div
               class="modal fade"
-              id="exampleModal"
+              id="ratingModal"
               tabindex="-1"
-              aria-labelledby="exampleModalLabel"
+              aria-labelledby="ratingModalLabel"
               aria-hidden="true"
             >
               <div class="modal-dialog">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">
+                    <h1 class="modal-title fs-5" id="ratingModalLabel">
                       Rate Your GM
                     </h1>
                     <button

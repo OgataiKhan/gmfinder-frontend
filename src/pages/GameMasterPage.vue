@@ -110,7 +110,7 @@ export default {
       <!-- Reviews OffCanvas -->
       <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasReview" aria-labelledby="offcanvasReview">
         <div class="offcanvas-header">
-          <h5 class="offcanvas-title" id="offcanvasExampleLabel">Review</h5>
+          <h5 class="offcanvas-title" id="offcanvasReviewLabel">Review</h5>
           <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
         <div class="offcanvas-body">
@@ -121,7 +121,7 @@ export default {
       <!-- Message OffCanvas -->
       <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasMessage" aria-labelledby="offcanvasMessage">
         <div class="offcanvas-header">
-          <h5 class="offcanvas-title" id="offcanvasExampleLabel">Message</h5>
+          <h5 class="offcanvas-title" id="offcanvasMessageLabel">Message</h5>
           <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
         <div class="offcanvas-body">
@@ -157,13 +157,11 @@ export default {
   }
 }
 
-
-// media queries for offcanvas
-
 .offcanvas {
   background-color: $light-color;
 }
 
+// media queries for offcanvas
 
 @media (min-width: 768px) {
   .offcanvas {
