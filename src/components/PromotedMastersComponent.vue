@@ -103,19 +103,21 @@ export default {
         <div class="row g-3 flex-column flex-md-row">
           <FeaturedCard v-for="gm in featuredMasters" :key="gm.id" :gm="gm" @select="selectGm" />
           <!-- Empty cards -->
-
           <EmptyCardComponent v-for="i in emptyCards" :key="'empty' + i" />
-
         </div>
       </div>
-      <div class="navigation-controls d-flex justify-content-between">
+      <div class="arrow-prev">
         <button @click="prev">
           <i class="bi bi-chevron-left"></i>
         </button>
+      </div>
+      <div class="arrow-next">
         <button @click="next">
           <i class="bi bi-chevron-right"></i>
         </button>
       </div>
+
+
     </div>
   </div>
 </template>
@@ -135,14 +137,37 @@ export default {
 .masters-container {
   background-color: $primary-color;
   position: relative;
+
 }
 
-.navigation-controls {
+.arrow-prev {
   position: absolute;
   top: 50%;
-  transform: translateY(-50%);
   left: 0;
-  width: 100%;
+  transform: translateY(-50%);
+  z-index: 99;
+
+  button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+  }
+
+  .bi {
+    cursor: pointer;
+    z-index: 99;
+    color: $contrast-color;
+    font-size: 3.5rem;
+    font-weight: bold;
+  }
+}
+
+.arrow-next {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  z-index: 99;
 
   button {
     background-color: transparent;
