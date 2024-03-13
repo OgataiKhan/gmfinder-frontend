@@ -61,7 +61,6 @@ export default {
           <!-- /link -->
         </div>
         <!-- /left col -->
-
         <!-- right col -->
         <div class="d-flex flex-column col order-1">
           <div>
@@ -71,21 +70,17 @@ export default {
                 <h3>Newsletter</h3>
               </div>
               <div class="d-lg-flex">
-
                 <div class="py-2 d-flex justify-content-center justify-content-lg-start  flex-grow-1">
                   <input type="email" class="form-control news-email input-focus-orange me-lg-3" id="inputEmail"
                     placeholder="Your Email Address" />
                 </div>
-
                 <div class="d-flex justify-content-center justify-content-lg-start align-items-center">
                   <button type="submit" class="btn-sm btn-orange mb-3 mb-lg-0">
                     <strong>Subscribe</strong>
                   </button>
                 </div>
-
               </div>
             </form>
-
             <!-- /newsletter e button -->
           </div>
           <!-- icons -->
