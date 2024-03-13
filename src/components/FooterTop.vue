@@ -15,7 +15,7 @@ export default {
           { name: 'Guides', link: '#' },
         ],
         legal: [
-          { name: 'Terme of Service', link: '#' },
+          { name: 'Terms of Service', link: '#' },
           { name: 'Privacy Policy', link: '#' },
           { name: 'Accessibility', link: '#' },
         ],
@@ -28,31 +28,31 @@ export default {
 <template>
   <footer>
     <div class="container">
-      <div class="row align-items-center d-flex flex-column">
+      <div class="row d-flex">
         <!-- left col -->
-        <div class="col col-md-6 d-flex flex-column align-items-center order-2 d-none d-md-block">
+        <div class="col col-md-6 d-flex justify-content-between order-2 order-md-1 d-none d-md-flex">
           <!-- link -->
-          <div class="col p-3">
-            <h4 class="text-uppercase mb-3">About</h4>
-            <ul class="text-center">
+          <div class="col col-md-4 p-3">
+            <h5 class="text-uppercase mb-3">About</h5>
+            <ul>
               <li v-for="item in footerInfo.about" :key="item.name">
                 <a :href="item.link" class="link">{{ item.name }}</a>
               </li>
             </ul>
           </div>
-          <div class="col p-3">
-            <h4 class="text-uppercase mb-3">Community
-            </h4>
-            <ul class="text-center">
+          <div class="col p-3 col-md-4">
+            <h5 class="text-uppercase mb-3">Community
+            </h5>
+            <ul>
               <li v-for="item in footerInfo.community" :key="item.name">
                 <a :href="item.link" class="link">{{ item.name }}</a>
               </li>
             </ul>
           </div>
-          <div class="col p-3">
-            <h4 class="text-uppercase mb-3 text-center">Legal
-            </h4>
-            <ul class="text-center">
+          <div class="col p-3 col-md-4">
+            <h5 class="text-uppercase mb-3">Legal
+            </h5>
+            <ul>
               <li v-for="item in footerInfo.legal" :key="item.name">
                 <a :href="item.link" class="link">{{ item.name }}</a>
               </li>
@@ -61,30 +61,30 @@ export default {
           <!-- /link -->
         </div>
         <!-- /left col -->
-
         <!-- right col -->
         <div class="d-flex flex-column col order-1">
           <div>
             <!-- newsletter e button -->
             <form>
-              <div class="d-flex flex-column">
-                <div class="text-center">
-                  <h3>Newsletter</h3>
-                </div>
-                <div class="py-2 d-flex justify-content-center">
-                  <input type="email" class="form-control w-75" id="inputEmail" placeholder="Your Email Address" />
-                </div>
+              <div class="text-center text-lg-start">
+                <h3>Newsletter</h3>
               </div>
-              <div class="d-flex justify-content-center">
-                <button type="submit" class="btn btn-orange mb-3">
-                  <strong>Subscribe</strong>
-                </button>
+              <div class="d-lg-flex">
+                <div class="py-2 d-flex justify-content-center justify-content-lg-start  flex-grow-1">
+                  <input type="email" class="form-control news-email input-focus-orange me-lg-3" id="inputEmail"
+                    placeholder="Your Email Address" />
+                </div>
+                <div class="d-flex justify-content-center justify-content-lg-start align-items-center">
+                  <button type="submit" class="btn-sm btn-orange mb-3 mb-lg-0">
+                    <strong>Subscribe</strong>
+                  </button>
+                </div>
               </div>
             </form>
             <!-- /newsletter e button -->
           </div>
           <!-- icons -->
-          <div class="mt-3 d-flex justify-content-center">
+          <div class="mt-3 d-flex justify-content-center justify-content-lg-start">
             <ul class="d-flex gap-4">
               <li>
                 <a href="#" class="link"><i class="bi bi-instagram fs-3"></i></a>
@@ -144,9 +144,30 @@ hr {
   border: 1px solid white;
 }
 
-@media (min-width: 768px) {
-  .collapse {
-    display: block !important;
+// email input
+
+.news-email {
+  border-radius: 5px;
+  border: 1px solid $contrast-color;
+  width: 100%;
+  transition: border-color 0.3s;
+
+  //media query, tablet width is 75%
+  @media (max-width: 768px) {
+    width: 75%;
+  }
+}
+
+//footer ul titles
+h5 {
+  font-size: 14px
+}
+
+ul {
+  list-style: none;
+
+  li {
+    font-size: 12px;
   }
 }
 </style>
