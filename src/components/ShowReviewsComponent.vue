@@ -82,12 +82,13 @@ export default {
                 </div>
             </li>
         </ul>
+        <!-- navigation buttons -->
+        <div class="d-flex">
+            <button class="me-auto" @click="prevPage" v-if="currentPage > 1">Previous</button>
+            <button class="ms-auto" @click="nextPage" v-if="currentPage < lastPage">Next</button>
+        </div>
     </div>
-    <!-- //button for next page -->
-    <div class="d-flex justify-content-center">
-        <button class="btn btn-primary" @click="nextPage">Next</button>
-        <button class="btn btn-secondary" @click="prevPage" :disabled="!prevPageUrl">Previous</button>
-    </div>
+
 </template>
 
 <style scoped lang="scss">
