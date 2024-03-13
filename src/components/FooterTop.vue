@@ -28,7 +28,7 @@ export default {
 <template>
   <footer>
     <div class="container">
-      <div class="row align-items-center d-flex">
+      <div class="row d-flex">
         <!-- left col -->
         <div class="col col-md-6 d-flex justify-content-between order-2 order-md-1 d-none d-md-flex">
           <!-- link -->
