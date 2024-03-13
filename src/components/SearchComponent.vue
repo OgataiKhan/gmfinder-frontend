@@ -78,7 +78,6 @@ export default {
                 },
               });
             }
-
             this.$emit("dataReceived", response.data);
           })
           .catch((error) => {
@@ -150,20 +149,13 @@ export default {
 </script>
 
 <template>
-  <div
-    class="d-flex align-items-center flex-column justify-content-center search-component-box"
-  >
-    <form
-      @submit.prevent="searchGm(store.selectedGameSystem)"
-      class="d-flex flex-column align-items-center mx-auto w-75 mb-2"
-    >
+  <div class="d-flex align-items-center flex-column justify-content-center search-component-box">
+    <form @submit.prevent="searchGm(store.selectedGameSystem)"
+      class="d-flex flex-column align-items-center mx-auto w-75 mb-2">
       <!-- Select Game System -->
       <label for="gameSystem" class="form-label mt-2">Game System</label>
-      <select
-        class="form-select mt-0 my-select input-focus-orange"
-        aria-label="Default select example"
-        v-model="store.selectedGameSystem"
-      >
+      <select class="form-select mt-0 my-select input-focus-orange" aria-label="Default select example"
+        v-model="store.selectedGameSystem">
         <option disabled value="">Select a Game System</option>
         <option v-for="game in store.gameSystems" :value="game.id">
           {{ game.name }}
@@ -174,18 +166,12 @@ export default {
         Please select a game system
       </div>
       <!-- /Select Game System -->
-      <div
-        class="d-flex flex-column align-items-center justify-content-center flex-md-row w-100"
-        v-if="advanced"
-      >
+      <div class="d-flex flex-column align-items-center justify-content-around flex-md-row w-100" v-if="advanced">
         <!-- Average Rating Select -->
         <div class="d-flex flex-column align-items-center">
           <label for="avgRating" class="form-label mt-2">Average Rating</label>
-          <select
-            class="form-select avg-rating input-focus-orange"
-            v-model="store.selectedAvgRating"
-          >
-            <option disabled value="">Select Average Rating</option>
+          <select class="form-select avg-rating input-focus-orange advanced-input" v-model="store.selectedAvgRating">
+            <option disabled value=""></option>
             <option value="">Any Rating</option>
             <option value="1">1+</option>
             <option value="2">2+</option>
@@ -194,17 +180,12 @@ export default {
             <option value="5">5</option>
           </select>
         </div>
-
         <!-- /Average Rating Select -->
         <!-- Input number reviews -->
         <div class="d-flex flex-column align-items-center">
           <label class="form-label mt-2">Min Reviews</label>
-          <input
-            type="number"
-            class="form-control min-reviews input-focus-orange"
-            placeholder="Min Reviews"
-            v-model="store.selectedMinReviews"
-          />
+          <input type="number" class="form-control min-reviews input-focus-orange advanced-input"
+            v-model="store.selectedMinReviews" />
         </div>
       </div>
       <!-- /Input number reviews -->
@@ -235,5 +216,10 @@ export default {
 .min-reviews,
 .avg-rating {
   width: 50%;
+}
+
+.advanced-input {
+  margin-top: 0.5rem;
+  width: 100px;
 }
 </style>
