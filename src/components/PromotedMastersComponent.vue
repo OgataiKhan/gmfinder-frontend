@@ -130,22 +130,6 @@ export default {
   cursor: pointer;
 }
 
-.featured-card {
-
-  &:hover {
-    transform: scale(1.05);
-    transition: transform 0.3s;
-  }
-
-  .featured-image {
-
-    &hover {
-      transform: scale(1.05);
-      transition: transform 0.3s;
-    }
-  }
-}
-
 .masters-container {
   background-color: $primary-color;
   position: relative;
@@ -171,10 +155,5 @@ export default {
     font-size: 3.5rem;
     font-weight: bold;
   }
-}
-
-.card {
-  padding: 0.5rem;
-  height: 100%;
 }
 </style>./PromotedMastersComponent.vue/index.js
