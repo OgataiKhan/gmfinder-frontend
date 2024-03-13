@@ -15,8 +15,8 @@ export default {
           { name: 'Guides', link: '#' },
         ],
         legal: [
-          { name: 'Terms of Service', link: '#' },
-          { name: 'Privacy Policy', link: '#' },
+          { name: 'Service', link: '#' },
+          { name: 'Privacy', link: '#' },
           { name: 'Accessibility', link: '#' },
         ],
       },
@@ -160,14 +160,14 @@ hr {
 
 //footer ul titles
 h5 {
-  font-size: 14px
+  font-size: 16px
 }
 
 ul {
   list-style: none;
 
   li {
-    font-size: 12px;
+    font-size: 14px;
   }
 }
 </style>
