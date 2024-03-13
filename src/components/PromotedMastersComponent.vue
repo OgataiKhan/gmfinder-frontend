@@ -5,12 +5,14 @@ import store from "../store/store.js";
 //import axios
 import axios from "axios";
 import FeaturedCard from "./FeaturedCard.vue";
+import EmptyCardComponent from "./EmptyCardComponent.vue";
 export default {
   name
     : "PromotedMastersComponent",
 
   components: {
     FeaturedCard,
+    EmptyCardComponent,
   },
 
   data() {
@@ -82,6 +84,12 @@ export default {
     // Call the getMasters function when the component is mounted
     this.getFeaturedMasters();
   },
+  computed: {
+    emptyCards() {
+      const remainder = this.featuredMasters.length % 4;
+      return remainder === 0 ? 0 : 4 - remainder;
+    }
+  }
 };
 </script>
 
@@ -90,22 +98,16 @@ export default {
     <div class="title p-3">
       <h3 class="text-center">{{ title }}</h3>
     </div>
-
-
-
-
-
-
     <div class="masters-container pb-3">
       <div class="masters-grid container">
         <div class="row g-3 flex-column flex-md-row">
           <FeaturedCard v-for="gm in featuredMasters" :key="gm.id" :gm="gm" @select="selectGm" />
+          <!-- Empty cards -->
+
+          <EmptyCardComponent v-for="i in emptyCards" :key="'empty' + i" />
+
         </div>
       </div>
-
-
-
-
       <div class="navigation-controls d-flex justify-content-between">
         <button @click="prev">
           <i class="bi bi-chevron-left"></i>
@@ -156,4 +158,4 @@ export default {
     font-weight: bold;
   }
 }
-</style>./PromotedMastersComponent.vue/index.js
+</style>
