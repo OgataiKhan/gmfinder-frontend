@@ -56,17 +56,18 @@ export default {
                     <div class="py-2">
                         <label for="userEmailAddress" class="form-label">Thy Name</label>
                         <input type="text" class="form-control" id="userName" placeholder="Enter your name"
+                        required minlength="3" maxlength="100"
                             v-model="formData.name" />
                     </div>
                     <div class="py-2">
                         <label for="userEmailAddress" class="form-label">Raven-Email Address</label>
                         <input type="email" class="form-control" id="userEmailAddress"
-                            placeholder="Enter your email address" v-model="formData.email" />
+                            placeholder="Enter your email address" required v-model="formData.email" />
                     </div>
                 </div>
                 <div class="py-2">
                     <label for="msgText" class="form-label">Thy Missive</label>
-                    <textarea class="form-control" id="msgText" rows="3" v-model="formData.text"></textarea>
+                    <textarea class="form-control" id="msgText" rows="3" v-model="formData.text" required minlength="2"></textarea>
                 </div>
                 <div class="py-2 d-flex">
                     <button type="submit" class="w-100" @click.prevent="postMessage">
