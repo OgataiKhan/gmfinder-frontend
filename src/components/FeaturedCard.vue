@@ -30,7 +30,7 @@ export default {
                     <h4>{{ gm.user.name }}</h4>
                     <p>
                         <span v-for="(system, index) in gm.game_systems.slice(0, 2)" :key="index">
-                            {{ system.name }}{{ index < 1 ? ", " : "" }} </span>
+                            {{ system.name }}{{ index < 1 ? " " : "" }} </span>
                     </p>
                 </div>
             </div>
