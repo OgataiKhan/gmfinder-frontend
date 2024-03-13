@@ -9,7 +9,9 @@ export default {
     data() {
         return {
             store,
-            reviews: {}
+            reviews: {},
+            currentPage: 1,
+            nextPageUrl: null,
         }
     },
     methods: {
@@ -17,29 +19,49 @@ export default {
             return DateTime.fromISO(dateStr).toLocaleString(DateTime.DATE_MED);
         },
 
-        nextPage() {
-            //api call to fetch next page of reviews
+        fetchReviews() {
+            let url;
+            if (this.nextPageUrl) {
+                // If nextPageUrl is set, use it for the API call
+                url = this.nextPageUrl;
+            } else {
+                // Otherwise, construct the URL for the first page
+                url = this.store.api.baseURL + this.store.api.apiUrls.game_masters + '/' + this.$route.query.gameMaster;
+            }
+            axios
+                .get(
+                    url
+                )
+                .then((response) => {
+                    this.nextPageUrl = response.data.reviews.next_page_url;
+                    this.currentPage = response.data.reviews.current_page;
+                    this.lastPage = response.data.reviews.last_page;
+                    this.prevPageUrl = response.data.reviews.prev_page_url;
+                    this.reviews = response.data.reviews.data;
+                    console.log(this.reviews);
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        },
 
-        }
+        nextPage() {
+            if (this.currentPage < this.lastPage) {
+                this.fetchReviews(); // Now fetchReviews uses nextPageUrl if set
+            }
+        },
+
+        prevPage() {
+            if (this.prevPageUrl) { // Check if there's a previous page available
+                this.nextPageUrl = this.prevPageUrl; // Set the nextPageUrl to the prevPageUrl
+                this.fetchReviews(); // Fetch the "previous" page, which is now set as nextPageUrl
+            }
+        },
     },
     mounted() {
         //api call to fetch reviews
 
-        axios
-            .get(
-                this.store.api.baseURL +
-                this.store.api.apiUrls.game_masters +
-                '/' +
-                //get the slug from the url
-                this.$route.query.gameMaster
-            )
-            .then((response) => {
-                this.reviews = response.data.reviews.data;
-                console.log(this.reviews);
-            })
-            .catch((error) => {
-                console.log(error);
-            });
+        this.fetchReviews();
     }
 
 }
@@ -64,6 +86,7 @@ export default {
     <!-- //button for next page -->
     <div class="d-flex justify-content-center">
         <button class="btn btn-primary" @click="nextPage">Next</button>
+        <button class="btn btn-secondary" @click="prevPage" :disabled="!prevPageUrl">Previous</button>
     </div>
 </template>
 
