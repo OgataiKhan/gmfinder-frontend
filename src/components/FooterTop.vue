@@ -67,24 +67,29 @@ export default {
           <div>
             <!-- newsletter e button -->
             <form>
-              <div class="d-flex flex-column">
-                <div class="text-center">
-                  <h3>Newsletter</h3>
-                </div>
-                <div class="py-2 d-flex justify-content-center">
-                  <input type="email" class="form-control w-75" id="inputEmail" placeholder="Your Email Address" />
-                </div>
+              <div class="text-center text-lg-start">
+                <h3>Newsletter</h3>
               </div>
-              <div class="d-flex justify-content-center">
-                <button type="submit" class="btn btn-orange mb-3">
-                  <strong>Subscribe</strong>
-                </button>
+              <div class="d-lg-flex">
+
+                <div class="py-2 d-flex justify-content-center justify-content-lg-start  flex-grow-1">
+                  <input type="email" class="form-control news-email input-focus-orange me-lg-3" id="inputEmail"
+                    placeholder="Your Email Address" />
+                </div>
+
+                <div class="d-flex justify-content-center justify-content-lg-start align-items-center">
+                  <button type="submit" class="btn-sm btn-orange mb-3 mb-lg-0">
+                    <strong>Subscribe</strong>
+                  </button>
+                </div>
+
               </div>
             </form>
+
             <!-- /newsletter e button -->
           </div>
           <!-- icons -->
-          <div class="mt-3 d-flex justify-content-center">
+          <div class="mt-3 d-flex justify-content-center justify-content-lg-start">
             <ul class="d-flex gap-4">
               <li>
                 <a href="#" class="link"><i class="bi bi-instagram fs-3"></i></a>
@@ -142,6 +147,20 @@ button:hover {
 
 hr {
   border: 1px solid white;
+}
+
+// email input
+
+.news-email {
+  border-radius: 5px;
+  border: 1px solid $contrast-color;
+  width: 100%;
+  transition: border-color 0.3s;
+
+  //media query, tablet width is 75%
+  @media (max-width: 768px) {
+    width: 75%;
+  }
 }
 
 //footer ul titles
