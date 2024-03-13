@@ -92,37 +92,20 @@ export default {
     <div class="masters-container pb-3">
       <div class="masters-grid container">
         <div class="row g-3">
-          <div
-            class="col-md-6 col-lg-3"
-            v-for="gm in featuredMasters"
-            :key="gm.id"
-          >
-            <router-link
-              :to="{ name: 'game-master' }"
-              class="nav-link"
-              @click="selectGm(gm)"
-            >
+          <div class="col-md-6 col-lg-3 d-md-flex" v-for="gm in featuredMasters" :key="gm.id">
+            <router-link :to="{ name: 'game-master' }" class="nav-link" @click="selectGm(gm)">
               <div class="card featured-card">
-                <img
-                  :src="
-                    gm.profile_img
-                      ? this.store.api.baseURL +
-                        this.store.api.apiUrls.storage +
-                        gm.profile_img
-                      : '/img/generic-avatar.jpg'
-                  "
-                  class="featured-image"
-                  alt="profile pic"
-                />
+                <img :src="gm.profile_img
+        ? this.store.api.baseURL +
+        this.store.api.apiUrls.storage +
+        gm.profile_img
+        : '/img/generic-avatar.jpg'
+        " class="featured-image" alt="profile pic" />
                 <div class="card-body">
                   <h4>{{ gm.user.name }}</h4>
                   <p>
-                    <span
-                      v-for="(system, index) in gm.game_systems.slice(0, 2)"
-                      :key="index"
-                    >
-                      {{ system.name }}{{ index < 1 ? ", " : "" }}
-                    </span>
+                    <span v-for="(system, index) in gm.game_systems.slice(0, 2)" :key="index">
+                      {{ system.name }}{{ index < 1 ? ", " : "" }} </span>
                   </p>
                 </div>
               </div>
@@ -155,6 +138,7 @@ export default {
 }
 
 .featured-card {
+
   &:hover {
     transform: scale(1.05);
     transition: transform 0.3s;
@@ -168,6 +152,13 @@ export default {
     &hover {
       transform: scale(1.05);
       transition: transform 0.3s;
+    }
+
+    //media query for smaller screens
+    @media (max-width: 768px) {
+      height: 400px;
+      width: 100%;
+      object-fit: cover;
     }
   }
 }
