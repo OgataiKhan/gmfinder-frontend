@@ -188,7 +188,7 @@ export default {
         <p>{{ gm.location }}</p>
       </div>
       <div>
-        <h6>Average Rating {{ this.store.selectedGameMaster.ratings_count }}</h6>
+        <h6>Average Rating</h6>
         <p v-if="gm.average_rating > 0" class="shield-rating">
           <i v-for="(shield, index) in shieldRating" :key="index" class="bi" :class="{
         'bi-shield-fill': shield === 'full',
@@ -196,6 +196,7 @@ export default {
         'bi-shield': shield === 'empty',
       }">
           </i>
+          <span class="rating-count">({{ this.store.selectedGameMaster.ratings_count }})</span>
         </p>
         <p v-else>None yet</p>
       </div>
@@ -293,5 +294,10 @@ export default {
       border-radius: 5px;
     }
   }
+}
+
+.rating-count {
+  font-size: 0.8em;
+  color: $primary-color;
 }
 </style>
