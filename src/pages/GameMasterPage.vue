@@ -26,24 +26,6 @@ export default {
   },
   methods: {
 
-
-
-
-
-    //method to send message to game master
-    // postMessage() {
-    //   const data = {
-    //     game_master_id: store.selectedGameMaster.id,
-    //     text: this.formData.text,
-    //     name: this.formData.name,
-    //     email: this.formData.email
-    //   }
-    //   axios.post(this.store.api.baseURL + this.store.api.apiUrls.messages, data).then(response => {
-    //     console.log('inviato!')
-    //   }).catch(error => {
-    //     console.error(error)
-    //   })
-    // },
     //method to go back to the search page
     backToSearch() {
       // Use the Vuex store's state to navigate back with the stored search parameters
@@ -72,6 +54,7 @@ export default {
         .then((response) => {
           // Store the fetched game master in the store
           this.store.selectedGameMaster = response.data.result;
+          this.reviews = response.data.reviews;
         })
         .catch((error) => {
           console.error(error);
