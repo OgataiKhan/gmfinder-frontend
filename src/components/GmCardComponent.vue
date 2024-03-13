@@ -244,7 +244,7 @@ export default {
         <p>{{ gm.max_players }}</p>
       </div>
       <div>
-        <h6>Average Rating</h6>
+        <h6>Average Rating ({{ this.store.selectedGameMaster.ratings_count }})</h6>
         <p v-if="gm.average_rating > 0" class="shield-rating">
           <i
             v-for="(shield, index) in shieldRating"

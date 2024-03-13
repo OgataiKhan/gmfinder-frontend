@@ -1,5 +1,6 @@
 <script>
 
+import { DateTime } from 'luxon';
 import store from '../store/store.js';
 
 export default {
@@ -9,6 +10,11 @@ export default {
             store,
         }
     },
+    methods:{
+        formatLocalDate(dateStr) {
+      return DateTime.fromISO(dateStr).toLocaleString(DateTime.DATE_MED);
+    },
+    }
 }
 
 
@@ -21,8 +27,9 @@ export default {
             'No Reviews' }})</h3>
         <ul class="card p-4 mb-4 reviews">
             <li v-for="review in store.selectedGameMaster.reviews" class="review card p-4 mb-4 ">
-                <div class="row justify-content-between">
+                <div class="d-flex justify-content-between">
                     <h5 class="col-auto">{{ review.name }}</h5>
+                    <span>{{ formatLocalDate(review.created_at) }}</span>
                 </div>
                 <div class="card-body">
                     <p class="card-text">{{ review.text }}</p>
