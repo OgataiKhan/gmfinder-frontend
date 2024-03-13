@@ -15,7 +15,7 @@ export default {
           { name: 'Guides', link: '#' },
         ],
         legal: [
-          { name: 'Terme of Service', link: '#' },
+          { name: 'Terms of Service', link: '#' },
           { name: 'Privacy Policy', link: '#' },
           { name: 'Accessibility', link: '#' },
         ],
@@ -28,31 +28,31 @@ export default {
 <template>
   <footer>
     <div class="container">
-      <div class="row align-items-center d-flex flex-column">
+      <div class="row align-items-center d-flex">
         <!-- left col -->
-        <div class="col col-md-6 d-flex flex-column align-items-center order-2 d-none d-md-block">
+        <div class="col col-md-6 d-flex justify-content-between order-2 order-md-1 d-none d-md-flex">
           <!-- link -->
-          <div class="col p-3">
-            <h4 class="text-uppercase mb-3">About</h4>
-            <ul class="text-center">
+          <div class="col col-md-4 p-3">
+            <h5 class="text-uppercase mb-3">About</h5>
+            <ul>
               <li v-for="item in footerInfo.about" :key="item.name">
                 <a :href="item.link" class="link">{{ item.name }}</a>
               </li>
             </ul>
           </div>
-          <div class="col p-3">
-            <h4 class="text-uppercase mb-3">Community
-            </h4>
-            <ul class="text-center">
+          <div class="col p-3 col-md-4">
+            <h5 class="text-uppercase mb-3">Community
+            </h5>
+            <ul>
               <li v-for="item in footerInfo.community" :key="item.name">
                 <a :href="item.link" class="link">{{ item.name }}</a>
               </li>
             </ul>
           </div>
-          <div class="col p-3">
-            <h4 class="text-uppercase mb-3 text-center">Legal
-            </h4>
-            <ul class="text-center">
+          <div class="col p-3 col-md-4">
+            <h5 class="text-uppercase mb-3">Legal
+            </h5>
+            <ul>
               <li v-for="item in footerInfo.legal" :key="item.name">
                 <a :href="item.link" class="link">{{ item.name }}</a>
               </li>
@@ -144,9 +144,16 @@ hr {
   border: 1px solid white;
 }
 
-@media (min-width: 768px) {
-  .collapse {
-    display: block !important;
+//footer ul titles
+h5 {
+  font-size: 14px
+}
+
+ul {
+  list-style: none;
+
+  li {
+    font-size: 12px;
   }
 }
 </style>
