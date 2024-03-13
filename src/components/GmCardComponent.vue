@@ -163,8 +163,13 @@ export default {
             <i class="bi bi-stars"></i></span>
         </h4>
         <!-- send message icon -->
-        <div class="d-flex align-items-center px-2 msg-send" data-bs-toggle="offcanvas"
-          data-bs-target="#offcanvasMessage" aria-controls="offcanvasMessage" v-if="gmShow">
+        <div
+          class="d-flex align-items-center px-2 msg-send"
+          data-bs-toggle="offcanvas"
+          data-bs-target="#offcanvasMessage"
+          aria-controls="offcanvasMessage"
+          v-if="gmShow&&this.store.selectedGameMaster.is_available"
+        >
           <p class="mb-0 me-2">Send a Message</p>
           <i class="bi bi-send-fill gm-icons fs-3"></i>
         </div>
