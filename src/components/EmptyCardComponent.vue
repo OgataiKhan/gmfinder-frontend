@@ -20,10 +20,10 @@ export default {
                     <img src='/img/generic-avatar.jpg' class="card-img-top" alt="profile pic" />
                 </div>
                 <div class="card-body flex-shrink-0">
-                    <h4>Become a Featured GM</h4>
+                    <h4>Featured GM</h4>
                     <p>
                         <span>
-                            Become a Featured Game Master
+                            Featured Game Master
                         </span>
                     </p>
                 </div>
