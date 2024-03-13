@@ -116,8 +116,6 @@ export default {
           <i class="bi bi-chevron-right"></i>
         </button>
       </div>
-
-
     </div>
   </div>
 </template>
