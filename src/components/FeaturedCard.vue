@@ -17,7 +17,7 @@ export default {
 </script>
 
 <template>
-    <div class="col col-md-6 col-lg-3 d-flex flex-column">
+    <div class="col col-md-6 col-lg-3 d-flex flex-column align-items-center">
         <router-link :to="{ name: 'game-master' }" class="nav-link flex-grow-1 d-flex" @click="selectGm">
 
 
