@@ -4,12 +4,13 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import store from "../store/store.js";
 //import axios
 import axios from "axios";
-import GmCardComponent from "./GmCardComponent.vue";
+import FeaturedCard from "./FeaturedCard.vue";
 export default {
-  name: "PromotedMastersComponent",
+  name
+    : "PromotedMastersComponent",
 
   components: {
-    GmCardComponent,
+    FeaturedCard,
   },
 
   data() {
@@ -89,30 +90,22 @@ export default {
     <div class="title p-3">
       <h3 class="text-center">{{ title }}</h3>
     </div>
+
+
+
+
+
+
     <div class="masters-container pb-3">
       <div class="masters-grid container">
-        <div class="row g-3">
-          <div class="col-md-6 col-lg-3 d-md-flex" v-for="gm in featuredMasters" :key="gm.id">
-            <router-link :to="{ name: 'game-master' }" class="nav-link" @click="selectGm(gm)">
-              <div class="card featured-card">
-                <img :src="gm.profile_img
-        ? this.store.api.baseURL +
-        this.store.api.apiUrls.storage +
-        gm.profile_img
-        : '/img/generic-avatar.jpg'
-        " class="featured-image" alt="profile pic" />
-                <div class="card-body">
-                  <h4>{{ gm.user.name }}</h4>
-                  <p>
-                    <span v-for="(system, index) in gm.game_systems.slice(0, 2)" :key="index">
-                      {{ system.name }}{{ index < 1 ? ", " : "" }} </span>
-                  </p>
-                </div>
-              </div>
-            </router-link>
-          </div>
+        <div class="row g-3 flex-column flex-md-row">
+          <FeaturedCard v-for="gm in featuredMasters" :key="gm.id" :gm="gm" @select="selectGm" />
         </div>
       </div>
+
+
+
+
       <div class="navigation-controls d-flex justify-content-between">
         <button @click="prev">
           <i class="bi bi-chevron-left"></i>
@@ -145,21 +138,38 @@ export default {
   }
 
   .featured-image {
-    width: 100%;
-    height: 300px;
-    object-fit: cover;
 
     &hover {
       transform: scale(1.05);
       transition: transform 0.3s;
     }
 
-    //media query for smaller screens
-    @media (max-width: 768px) {
-      height: 400px;
-      width: 100%;
-      object-fit: cover;
-    }
+
+    // // media query for larger screens
+    // @media (max-width: 1400px) {
+    //   height: 295px;
+    //   width: 295px;
+    // }
+
+
+    // // media query for larger screens
+    // @media (max-width: 1200px) {
+    //   height: 205px;
+    //   width: 205px;
+    // }
+
+
+    // // media query for larger screens
+    // @media (max-width: 992px) {
+    //   height: 325px;
+    //   width: 325px;
+    // }
+
+    // // media query for smaller screens 
+    // @media (max-width: 768px) {
+    //   height: 500px;
+    //   width: 500px;
+    // }
   }
 }
 
@@ -194,4 +204,4 @@ export default {
   padding: 0.5rem;
   height: 100%;
 }
-</style>
+</style>./PromotedMastersComponent.vue/index.js
