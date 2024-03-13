@@ -71,7 +71,7 @@ export default {
     <div class="container py-5">
         <h3 class="mb-4">Reviews ({{ store.selectedGameMaster.reviews ? store.selectedGameMaster.reviews.length :
             'No Reviews' }})</h3>
-        <ul class="card p-4 mb-4 reviews">
+        <ul class="card p-4 mb-4 reviews" v-if="reviews.length">
             <li v-for="review in reviews" class="review card p-4 mb-4 ">
                 <div class="d-flex justify-content-between">
                     <h5 class="col-auto">{{ review.name }}</h5>
