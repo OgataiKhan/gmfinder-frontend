@@ -19,9 +19,6 @@ export default {
 <template>
     <div class="col col-md-6 col-lg-3 d-flex flex-column align-items-center">
         <router-link :to="{ name: 'game-master' }" class="nav-link flex-grow-1 d-flex" @click="selectGm">
-
-
-
             <div class="card d-flex flex-column">
                 <div class="img-container flex-grow-1">
                     <img :src="gm.profile_img
@@ -37,11 +34,6 @@ export default {
                     </p>
                 </div>
             </div>
-
-
-
-
-
         </router-link>
     </div>
 

@@ -143,33 +143,6 @@ export default {
       transform: scale(1.05);
       transition: transform 0.3s;
     }
-
-
-    // // media query for larger screens
-    // @media (max-width: 1400px) {
-    //   height: 295px;
-    //   width: 295px;
-    // }
-
-
-    // // media query for larger screens
-    // @media (max-width: 1200px) {
-    //   height: 205px;
-    //   width: 205px;
-    // }
-
-
-    // // media query for larger screens
-    // @media (max-width: 992px) {
-    //   height: 325px;
-    //   width: 325px;
-    // }
-
-    // // media query for smaller screens 
-    // @media (max-width: 768px) {
-    //   height: 500px;
-    //   width: 500px;
-    // }
   }
 }
 
