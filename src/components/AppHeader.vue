@@ -79,8 +79,8 @@ header {
 
 /* logo */
 .logo {
-  width: 65px;
-  height: 65px;
+  width: 85px;
+  height: 85px;
 }
 
 .logo img {
