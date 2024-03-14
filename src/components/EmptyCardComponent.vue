@@ -39,6 +39,17 @@ export default {
 .card {
     height: 400px;
 
+    &:hover {
+        border: 1px solid $contrast-color;
+        cursor: pointer;
+        transition: border 0.2s;
+        transition: transform 0.2s;
+        //border shadow
+        box-shadow: 0 0 10px $contrast-color;
+        //make bigger
+        transform: scale(1.02);
+    }
+
 }
 
 .img-container {
