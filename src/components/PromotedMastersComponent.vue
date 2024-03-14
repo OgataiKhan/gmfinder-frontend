@@ -103,7 +103,7 @@ export default {
         <div class="row g-3 flex-column flex-md-row">
           <FeaturedCard v-for="gm in featuredMasters" :key="gm.id" :gm="gm" @select="selectGm" />
           <!-- Empty cards -->
-          <EmptyCardComponent v-for="i in emptyCards" :key="'empty' + i" />
+          <!-- <EmptyCardComponent v-for="i in emptyCards" :key="'empty' + i" /> -->
         </div>
       </div>
       <div class="arrow-prev">
