@@ -204,7 +204,7 @@ export default {
           <input
             type="number"
             class="form-control min-reviews input-focus-orange"
-            placeholder="Min Reviews"
+            placeholder="Min Reviews" min="0"
             v-model="store.selectedMinReviews"
           />
         </div>
