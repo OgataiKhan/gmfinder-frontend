@@ -196,7 +196,7 @@ export default {
         'bi-shield': shield === 'empty',
       }">
           </i>
-          <span class="rating-count">({{ this.store.selectedGameMaster.ratings_count }})</span>
+          <span class="rating-count">({{ gm.ratings_count }})</span>
         </p>
         <p v-else>None yet</p>
       </div>
