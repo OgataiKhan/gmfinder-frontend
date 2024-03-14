@@ -13,7 +13,6 @@ export default {
       this.store.gameMastersResults = [];
       this.store.selectedGameSystem = '';
       this.store.currentPage = 1;
-
     },
   },
 };
@@ -28,18 +27,31 @@ export default {
           <!-- logo -->
           <div class="logo pt-2">
             <router-link :to="{ name: 'home' }" class="text-decoration-none">
-              <img src="/img/logo.png" alt="logo" /></router-link>
+              <img src="/img/logo.png" alt="logo"
+            /></router-link>
           </div>
           <!-- /logo -->
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" id="header-button"
-            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-            aria-label="Toggle navigation">
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            id="header-button"
+            data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto mb-2 mb-md-0 gap-3">
               <li class="nav-item">
-                <router-link :to="{ name: 'home' }" class="nav-link" @click="clearResults">Home</router-link>
+                <router-link
+                  :to="{ name: 'home' }"
+                  class="nav-link"
+                  @click="clearResults"
+                  >Home</router-link
+                >
               </li>
               <li class="nav-item">
                 <a class="nav-link" id="nav-link">Games</a>
@@ -48,17 +60,31 @@ export default {
                 <a class="nav-link" id="nav-link">FAQ</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" id="nav-link">Contact</a>
+                <a class="nav-link" id="nav-link">Contact US</a>
               </li>
               <li class="nav-item">
-                <router-link :to="{ name: 'advanced-search' }" class="nav-link"
-                  @click="clearResults">Search</router-link>
+                <router-link
+                  :to="{ name: 'advanced-search' }"
+                  class="nav-link"
+                  @click="clearResults"
+                  >Search</router-link
+                >
               </li>
               <li class="nav-item">
-                <a :href="store.api.baseURL + 'login'" class="nav-link" id="nav-link">My Account</a>
+                <a
+                  :href="store.api.baseURL + 'login'"
+                  class="nav-link"
+                  id="nav-link"
+                  >My Account</a
+                >
               </li>
               <li class="nav-item">
-                <a :href="store.api.baseURL + 'register'" class="nav-link" id="nav-link">Sign Up</a>
+                <a
+                  :href="store.api.baseURL + 'register'"
+                  class="nav-link"
+                  id="nav-link"
+                  >Sign Up</a
+                >
               </li>
             </ul>
           </div>
