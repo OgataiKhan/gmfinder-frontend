@@ -47,7 +47,7 @@ export default {
         //border shadow
         box-shadow: 0 0 10px $contrast-color;
         //make bigger
-        transform: scale(1.02);
+        transform: scale(1.04);
     }
 
 }
