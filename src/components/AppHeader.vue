@@ -60,7 +60,7 @@ export default {
                 <a class="nav-link" id="nav-link">FAQ</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" id="nav-link">Contact US</a>
+                <a class="nav-link" id="nav-link">Contact Us</a>
               </li>
               <li class="nav-item">
                 <router-link

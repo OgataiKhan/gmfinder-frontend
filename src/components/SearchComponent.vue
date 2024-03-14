@@ -1,9 +1,9 @@
 <script>
-import store from "../store/store.js";
+import store from '../store/store.js';
 //import axios
-import axios from "axios";
+import axios from 'axios';
 export default {
-  name: "SearchComponent",
+  name: 'SearchComponent',
   data() {
     return {
       store,
@@ -59,7 +59,7 @@ export default {
             // Check if the initially requested page was out of bounds
             if (page < 1 || page > this.store.lastPage) {
               this.$router.push({
-                name: "advanced-search",
+                name: 'advanced-search',
                 query: {
                   gameSystem: gameSystem,
                   page: page < 1 ? 1 : this.store.lastPage,
@@ -69,7 +69,7 @@ export default {
               });
             } else {
               this.$router.push({
-                name: "advanced-search",
+                name: 'advanced-search',
                 query: {
                   gameSystem: gameSystem,
                   page: correctedPage,
@@ -79,7 +79,7 @@ export default {
               });
             }
 
-            this.$emit("dataReceived", response.data);
+            this.$emit('dataReceived', response.data);
           })
           .catch((error) => {
             console.log(error);
@@ -90,13 +90,13 @@ export default {
     },
   },
   watch: {
-    "$route.query.gameSystem"(newVal) {
+    '$route.query.gameSystem'(newVal) {
       if (newVal) {
         this.searchGm(newVal, this.$route.query.page);
       }
     },
 
-    "$route.query.page"(newVal) {
+    '$route.query.page'(newVal) {
       if (newVal && !isNaN(newVal)) {
         this.store.currentPage = parseInt(newVal);
         this.searchGm(this.store.selectedGameSystem, newVal);
@@ -141,9 +141,9 @@ export default {
     } else {
       //if the query is not present, clear the gameMastersResults
       this.store.gameMastersResults = [];
-      this.store.selectedGameSystem = "";
-      this.store.selectedAvgRating = "";
-      this.store.selectedMinReviews = "";
+      this.store.selectedGameSystem = '';
+      this.store.selectedAvgRating = '';
+      this.store.selectedMinReviews = '';
     }
   },
 };
@@ -158,7 +158,9 @@ export default {
       class="d-flex flex-column align-items-center mx-auto w-75 mb-2"
     >
       <!-- Select Game System -->
-      <label for="gameSystem" class="form-label mt-2">Game System</label>
+      <label for="gameSystem" class="form-label mt-2 visually-hidden"
+        >Game System</label
+      >
       <select
         class="form-select mt-0 my-select input-focus-orange"
         aria-label="Default select example"
@@ -218,7 +220,7 @@ export default {
 </template>
 
 <style scoped lang="scss">
-@use "../scss/helpers/variables" as *;
+@use '../scss/helpers/variables' as *;
 
 .validation-alert {
   color: $danger-color;
