@@ -99,7 +99,7 @@ export default {
 <template>
   <!-- create card for each gm -->
   <div class="card d-flex flex-md-row">
-    <div class="card-header border-bottom-0">
+    <div class="card-header border-bottom-0 p-3">
       <img :src="gm.profile_img
         ? this.store.api.baseURL +
         this.store.api.apiUrls.storage +
