@@ -25,7 +25,6 @@ export default {
     GmMessageComponent,
   },
   methods: {
-
     //method to go back to the search page
     backToSearch() {
       // Use the Vuex store's state to navigate back with the stored search parameters
@@ -47,9 +46,9 @@ export default {
       axios
         .get(
           this.store.api.baseURL +
-          this.store.api.apiUrls.game_masters +
-          '/' +
-          slug
+            this.store.api.apiUrls.game_masters +
+            '/' +
+            slug
         )
         .then((response) => {
           // Store the fetched game master in the store
@@ -65,9 +64,9 @@ export default {
     //this creates a computed property that maps the store's state to the component's data i.e. a computed property that changes when the store's state (data) changes
     ...mapState({
       //creates a computed property named 'page' that reflects state.searchParams.page
-      page: state => state.searchParams.page,
+      page: (state) => state.searchParams.page,
       //creates a computed property named 'selectedGame' that reflects state.searchParams.selectedGame
-      selectedGame: state => state.searchParams.selectedGame,
+      selectedGame: (state) => state.searchParams.selectedGame,
     }),
   },
 };
@@ -83,18 +82,34 @@ export default {
     <!-- gm page start -->
     <div class="container mb-3" v-if="store.selectedGameMaster">
       <!-- title div -->
-      <div class="text-center py-2">
-        <h2>{{ msg }}</h2>
+      <div class="text-center pt-2 pb-4 font-medieval">
+        <h2>
+          <strong>{{ msg }}</strong>
+        </h2>
       </div>
       <!-- /title div -->
       <!-- GM CARD -->
-      <GmCardComponent v-if="store.selectedGameMaster" :gm="store.selectedGameMaster" :gmShow="true" />
+      <GmCardComponent
+        v-if="store.selectedGameMaster"
+        :gm="store.selectedGameMaster"
+        :gmShow="true"
+      />
       <!-- /GM CARD -->
       <!-- Reviews OffCanvas -->
-      <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasReview" aria-labelledby="offcanvasReview">
+      <div
+        class="offcanvas offcanvas-start"
+        tabindex="-1"
+        id="offcanvasReview"
+        aria-labelledby="offcanvasReview"
+      >
         <div class="offcanvas-header">
           <h5 class="offcanvas-title" id="offcanvasReviewLabel">Review</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="offcanvas"
+            aria-label="Close"
+          ></button>
         </div>
         <div class="offcanvas-body">
           <ReviewsComponent />
@@ -102,10 +117,20 @@ export default {
       </div>
       <!-- /Reviews OffCanvas -->
       <!-- Message OffCanvas -->
-      <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasMessage" aria-labelledby="offcanvasMessage">
+      <div
+        class="offcanvas offcanvas-end"
+        tabindex="-1"
+        id="offcanvasMessage"
+        aria-labelledby="offcanvasMessage"
+      >
         <div class="offcanvas-header">
           <h5 class="offcanvas-title" id="offcanvasMessageLabel">Message</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="offcanvas"
+            aria-label="Close"
+          ></button>
         </div>
         <div class="offcanvas-body">
           <GmMessageComponent />
@@ -115,8 +140,9 @@ export default {
     </div>
     <div v-else class="text-center">
       <h1>Game Master not found</h1>
-      <router-link :to="{ name: 'advanced-search' }" class="nav-link mt-3"><button>Back to
-          Search</button></router-link>
+      <router-link :to="{ name: 'advanced-search' }" class="nav-link mt-3"
+        ><button>Back to Search</button></router-link
+      >
     </div>
     <!-- Show Reviews -->
     <div class="show-review-container">

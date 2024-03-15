@@ -86,8 +86,14 @@ export default {
         <div class="col d-flex" id="advanced-search-top">
           <!-- search component with red to access method -->
           <div class="p-3 search-component col-9 mx-auto">
-            <h3 class="text-center mb-4">Advanced Search</h3>
-            <SearchComponent @dataReceived="handleData" ref="SearchComponent" :advanced="true" />
+            <h3 class="text-center mb-3 mt-1 font-medieval">
+              <strong>Advanced Search</strong>
+            </h3>
+            <SearchComponent
+              @dataReceived="handleData"
+              ref="SearchComponent"
+              :advanced="true"
+            />
           </div>
         </div>
       </div>
@@ -96,8 +102,11 @@ export default {
       <!-- create ul to show search results -->
       <div class="row mx-auto mt-2 align-items-center">
         <div class="col mb-5">
-          <h3 v-if="this.store.searchInitiated" class="text-center my-4 text-black">
-            Total results:
+          <h3
+            v-if="this.store.searchInitiated"
+            class="text-center my-4 text-black"
+          >
+            <span class="font-medieval">Total results: </span>
             <span v-if="apiResponse && store.gameMastersResults.length">{{
               apiResponse.results.total
             }}</span>
@@ -105,12 +114,23 @@ export default {
           <ul class="d-flex gap-3 flex-column">
             <li v-for="gm in store.gameMastersResults" :key="gm.id">
               <!-- route link for clickable card -->
-              <router-link :to="{ name: 'game-master' }" class="nav-link" @click="selectGm(gm)">
-                <GmCardComponent :gm="gm" :gmShow="false" :class="{ promotedGm: gm.has_future_promotion }" />
+              <router-link
+                :to="{ name: 'game-master' }"
+                class="nav-link"
+                @click="selectGm(gm)"
+              >
+                <GmCardComponent
+                  :gm="gm"
+                  :gmShow="false"
+                  :class="{ promotedGm: gm.has_future_promotion }"
+                />
               </router-link>
             </li>
           </ul>
-          <p v-if="store.gameMastersResults.length === 0 && apiResponse" class="text-center fst-italic">
+          <p
+            v-if="store.gameMastersResults.length === 0 && apiResponse"
+            class="text-center fst-italic"
+          >
             There's no loot here. Also, the chest was a mimic. Roll initiative.
           </p>
         </div>
@@ -121,15 +141,21 @@ export default {
         <ul class="pagination d-flex justify-content-between px-3 pb-3">
           <!-- Previous -->
           <li>
-            <div class="page-item" v-if="apiResponse && this.$route.query.page"
-              v-show="apiResponse.results?.prev_page_url">
+            <div
+              class="page-item"
+              v-if="apiResponse && this.$route.query.page"
+              v-show="apiResponse.results?.prev_page_url"
+            >
               <button class="page-link" @click="previousPage">Previous</button>
             </div>
           </li>
           <!-- Next -->
           <li>
-            <div class="page-item" v-if="apiResponse && this.$route.query.page"
-              v-show="apiResponse.results?.next_page_url">
+            <div
+              class="page-item"
+              v-if="apiResponse && this.$route.query.page"
+              v-show="apiResponse.results?.next_page_url"
+            >
               <button class="btn btn-info" @click="nextPage">Next</button>
             </div>
           </li>

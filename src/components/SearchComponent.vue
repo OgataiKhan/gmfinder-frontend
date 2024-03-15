@@ -204,14 +204,15 @@ export default {
           <input
             type="number"
             class="form-control min-reviews input-focus-orange"
-            placeholder="Min Reviews" min="0"
+            placeholder="Min Reviews"
+            min="0"
             v-model="store.selectedMinReviews"
           />
         </div>
       </div>
       <!-- /Input number reviews -->
       <!-- submit button -->
-      <div>
+      <div class="mt-1">
         <button type="submit" class="mx-auto mt-4 mt-md-2">Search</button>
       </div>
       <!-- /submit button -->
