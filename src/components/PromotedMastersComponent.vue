@@ -1,14 +1,13 @@
 <script>
-import "bootstrap-icons/font/bootstrap-icons.css";
+import 'bootstrap-icons/font/bootstrap-icons.css';
 //import store
-import store from "../store/store.js";
+import store from '../store/store.js';
 //import axios
-import axios from "axios";
-import FeaturedCard from "./FeaturedCard.vue";
-import EmptyCardComponent from "./EmptyCardComponent.vue";
+import axios from 'axios';
+import FeaturedCard from './FeaturedCard.vue';
+import EmptyCardComponent from './EmptyCardComponent.vue';
 export default {
-  name
-    : "PromotedMastersComponent",
+  name: 'PromotedMastersComponent',
 
   components: {
     FeaturedCard,
@@ -17,7 +16,7 @@ export default {
 
   data() {
     return {
-      title: "Featured Masters of the Realm",
+      title: 'Featured Masters of the Realm',
       featuredMasters: [], // store the masters data from the API
       store,
       currentPage: 1, // store the current page number
@@ -39,7 +38,7 @@ export default {
           this.lastPage = response.data.results.last_page;
         })
         .catch((error) => {
-          console.error("Error fetching promoted masters", error);
+          console.error('Error fetching promoted masters', error);
         });
     },
 
@@ -55,7 +54,7 @@ export default {
         this.currentPage = 1;
         this.getFeaturedMasters(this.currentPage);
       }
-      console.log("Current page", this.currentPage);
+      console.log('Current page', this.currentPage);
     },
     // Function to display the previous set of masters
     prev() {
@@ -75,7 +74,7 @@ export default {
       this.store.selectedGameMaster = gm;
       //redirect to game master page with query params
       this.$router.push({
-        name: "game-master",
+        name: 'game-master',
         query: { gameMaster: gm.slug },
       });
     },
@@ -88,20 +87,27 @@ export default {
     emptyCards() {
       const remainder = this.featuredMasters.length % 4;
       return remainder === 0 ? 0 : 4 - remainder;
-    }
-  }
+    },
+  },
 };
 </script>
 
 <template>
   <div class="promoted-masters">
     <div class="title p-3">
-      <h3 class="text-center">{{ title }}</h3>
+      <h3 class="text-center font-medieval">
+        {{ title }}
+      </h3>
     </div>
     <div class="masters-container pb-3">
       <div class="masters-grid container">
         <div class="row g-3 flex-column flex-md-row">
-          <FeaturedCard v-for="gm in featuredMasters" :key="gm.id" :gm="gm" @select="selectGm" />
+          <FeaturedCard
+            v-for="gm in featuredMasters"
+            :key="gm.id"
+            :gm="gm"
+            @select="selectGm"
+          />
           <!-- Empty cards -->
           <!-- <EmptyCardComponent v-for="i in emptyCards" :key="'empty' + i" /> -->
         </div>
@@ -121,7 +127,7 @@ export default {
 </template>
 
 <style scoped lang="scss">
-@use "../scss/helpers/variables" as *;
+@use '../scss/helpers/variables' as *;
 
 .title {
   background-color: $primary-color;
@@ -135,7 +141,6 @@ export default {
 .masters-container {
   background-color: $primary-color;
   position: relative;
-
 }
 
 .arrow-prev {
