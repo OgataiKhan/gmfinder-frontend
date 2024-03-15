@@ -15,9 +15,18 @@ export default {
         }
     },
     methods: {
-         formatDate(dateStr) {
-        return DateTime.fromISO(dateStr, { zone: 'Europe/Rome' }).toLocaleString(DateTime.DATETIME_MED);
-},
+  formatDate(dateStr) {
+    const dt = DateTime.fromISO(dateStr, { zone: 'Europe/Rome' });
+
+    // Format the time first
+    const timeFormat = dt.toLocaleString(DateTime.TIME_SIMPLE);
+
+    // Then format the date
+    const dateFormat = dt.toLocaleString(DateTime.DATE_MED);
+
+    // Joining time and date with a space
+    return `${timeFormat}, ${dateFormat}`;
+  },
 
         fetchReviews() {
             let url;
