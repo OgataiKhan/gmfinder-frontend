@@ -15,9 +15,9 @@ export default {
         }
     },
     methods: {
-        formatLocalDate(dateStr) {
-            return DateTime.fromISO(dateStr).toLocaleString(DateTime.DATE_MED);
-        },
+         formatDate(dateStr) {
+        return DateTime.fromISO(dateStr, { zone: 'Europe/Rome' }).toLocaleString(DateTime.DATETIME_MED);
+},
 
         fetchReviews() {
             let url;
@@ -75,7 +75,7 @@ export default {
             <li v-for="review in reviews" class="review card p-4 mb-4 ">
                 <div class="d-flex justify-content-between">
                     <h5 class="col-auto">{{ review.name }}</h5>
-                    <span>{{ formatLocalDate(review.created_at) }}</span>
+                    <span>{{ formatDate(review.created_at) }}</span>
                 </div>
                 <div class="card-body">
                     <p class="card-text">{{ review.text }}</p>
