@@ -55,7 +55,7 @@ export default {
           <div class="py-2">
             <label for="userName" class="form-label">Thy Name</label>
             <input type="text" class="form-control input-focus-orange" id="userName" placeholder="Enter your name"
-              v-model="formData.name" minlength="3" maxlength="100" required/>
+              v-model="formData.name" minlength="3" maxlength="100" required />
           </div>
           <div class="py-2">
             <label for="userEmailAddress" class="form-label">Raven-Email Address</label>
@@ -65,7 +65,8 @@ export default {
         </div>
         <div class="py-2">
           <label for="msgText" class="form-label">Thy Missive</label>
-          <textarea class="form-control input-focus-orange" id="msgText" rows="3" v-model="formData.text" required minlength="2"></textarea>
+          <textarea class="form-control input-focus-orange" id="msgText" rows="3" v-model="formData.text" required
+            minlength="2"></textarea>
         </div>
         <div class="py-3 d-flex">
           <button type="submit" class="mx-auto" @click.prevent="sendReview">
@@ -76,7 +77,7 @@ export default {
     </div>
     <!-- if message success is true -->
     <div class="col-8 mx-auto form-div" v-else>
-      <h3 class="text-center">Your message has been sent!</h3>
+      <h3 class="text-center">Your review has been sent!</h3>
       <div class="mt-4 d-flex justify-content-center">
         <button type="submit" @click="reviewReset">Send Another Review</button>
       </div>
