@@ -1,0 +1,57 @@
+.title {
+	background-color: $primary-color;
+	color: $light-color;
+}
+
+.nav-link {
+	cursor: pointer;
+}
+
+.masters-container {
+	background-color: $primary-color;
+	position: relative;
+}
+
+.arrow-prev {
+	position: absolute;
+	top: 50%;
+	left: 0;
+	transform: translateY(-50%);
+	z-index: 99;
+
+	button {
+		background-color: transparent;
+		border: none;
+		cursor: pointer;
+	}
+
+	.bi {
+		cursor: pointer;
+		z-index: 99;
+		color: $contrast-color;
+		font-size: 3.5rem;
+		font-weight: bold;
+	}
+}
+
+.arrow-next {
+	position: absolute;
+	top: 50%;
+	right: 0;
+	transform: translateY(-50%);
+	z-index: 99;
+
+	button {
+		background-color: transparent;
+		border: none;
+		cursor: pointer;
+	}
+
+	.bi {
+		cursor: pointer;
+		z-index: 99;
+		color: $contrast-color;
+		font-size: 3.5rem;
+		font-weight: bold;
+	}
+}

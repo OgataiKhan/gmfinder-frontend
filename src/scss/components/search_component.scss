@@ -1,0 +1,31 @@
+.validation-alert {
+	color: $danger-color;
+	font-size: 0.8rem;
+	margin: 0;
+	// position: absolute;
+	top: calc(50% + 17px);
+}
+
+.search-component-box {
+	position: relative;
+}
+
+.my-select {
+	width: 150%;
+}
+.min-reviews,
+.avg-rating {
+	width: 100%;
+}
+@media (min-width: 578px) {
+	.my-select {
+		width: 100%;
+	}
+}
+
+@media (min-width: 578px) {
+	.min-reviews,
+	.avg-rating {
+		width: 50%;
+	}
+}

@@ -1,0 +1,32 @@
+.card {
+	background-color: $light-color-card;
+
+	a {
+		@include primary-button($contrast-color, $light-color, $light-color);
+
+		&:hover {
+			border-color: $contrast-color !important;
+		}
+	}
+
+	li {
+		background-color: $light-color-card;
+
+		button {
+			@include primary-button(
+				$contrast-color,
+				$light-color,
+				$light-color
+			);
+
+			&:hover {
+				border-color: $contrast-color !important;
+			}
+		}
+	}
+}
+
+.feed-header {
+	background-color: $primary-color;
+	color: $light-color;
+}

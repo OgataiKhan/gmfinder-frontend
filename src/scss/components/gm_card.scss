@@ -1,0 +1,65 @@
+.card {
+	background-color: $light-color-card;
+
+	.card-header {
+		background-color: transparent;
+
+		.card-img-top {
+			border-radius: 3%;
+		}
+
+		@media (min-width: 768px) {
+			.card-img-top {
+				width: 12rem;
+				height: 12rem;
+				object-fit: cover;
+			}
+		}
+
+		@media (min-width: 992px) {
+			.card-img-top {
+				width: 300px;
+				height: 300px;
+			}
+		}
+	}
+
+	.gm-icons {
+		color: $contrast-color;
+		cursor: pointer;
+	}
+
+	.bi-stars {
+		color: #38bebe;
+	}
+
+	.shield-rating {
+		font-size: 1.5em;
+		color: #800020;
+	}
+
+	.icon-container {
+		cursor: pointer;
+		border-radius: 5px;
+
+		&:hover {
+			background-color: #f1f0eb;
+			color: $primary-color;
+		}
+	}
+
+	.msg-send {
+		cursor: pointer;
+
+		&:hover {
+			color: $primary-color;
+			background-color: #f1f0eb;
+			border-radius: 5px;
+		}
+	}
+}
+
+.rating-count {
+	font-size: 0.8em;
+	color: $primary-color;
+}

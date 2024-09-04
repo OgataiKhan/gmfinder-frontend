@@ -1,0 +1,90 @@
+footer {
+	background-color: $primary-color;
+	padding: 10px 0;
+	width: 100%;
+	color: $light-color;
+	margin-top: auto;
+}
+
+.logo {
+	width: 65px;
+	height: 65px;
+}
+
+.logo img {
+	width: 100%;
+}
+
+button {
+	background-color: $contrast-color;
+	color: $light-color;
+	border: 1px solid $contrast-color;
+	border-radius: 5px;
+	cursor: pointer;
+	transition: background-color 0.3s;
+}
+
+button:hover {
+	background-color: $light-color;
+	color: $contrast-color;
+	border-color: $contrast-color;
+}
+
+a {
+	text-decoration: none;
+	color: white;
+}
+
+a:hover {
+	color: $contrast-color;
+}
+
+.email {
+	background-color: $light-color;
+}
+
+button {
+	background-color: $contrast-color;
+	color: $light-color;
+	border: 1px solid $contrast-color;
+	border-radius: 5px;
+	cursor: pointer;
+	transition: background-color 0.3s;
+}
+
+button:hover {
+	background-color: $light-color;
+	color: $contrast-color;
+	border-color: $contrast-color;
+}
+
+hr {
+	border: 1px solid white;
+}
+
+// email input
+
+.news-email {
+	border-radius: 5px;
+	border: 1px solid $contrast-color;
+	width: 100%;
+	transition: border-color 0.3s;
+
+	//media query, tablet width is 75%
+	@media (max-width: 768px) {
+		width: 75%;
+	}
+}
+
+//footer ul titles
+h5 {
+	font-size: 16px;
+}
+
+ul {
+	list-style: none;
+
+	li {
+		font-size: 14px;
+	}
+}

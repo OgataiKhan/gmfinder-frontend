@@ -1,0 +1,80 @@
+.card {
+	background-color: $light-color-card;
+
+	.card-header {
+		background-color: transparent;
+
+		.card-img-top {
+			border-radius: 3%;
+		}
+
+		@media (min-width: 768px) {
+			.card-img-top {
+				width: 12rem;
+				height: 12rem;
+				object-fit: cover;
+			}
+		}
+
+		@media (min-width: 992px) {
+			.card-img-top {
+				width: 300px;
+				height: 300px;
+			}
+		}
+	}
+}
+
+#advanced-search-top {
+	background-image: url(../../assets/img/jumbotron-image.jpeg);
+	background-position: center;
+	background-size: cover;
+	color: $primary-color;
+	margin-top: 20px;
+	padding: 50px;
+	border-radius: 10px;
+	box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
+}
+
+.search-component {
+	background-color: rgba(255, 255, 255, 0.6);
+	padding: 3rem 1rem 4rem;
+	border-radius: 10px;
+}
+
+.card.promotedGm {
+	background-color: #fcebd6;
+	//give golden box shadow
+	box-shadow: 0 0 15px #e4a96b;
+}
+
+.card:hover {
+	border: 1px solid $contrast-color;
+	cursor: pointer;
+	transition: border 0.2s;
+	transition: transform 0.2s;
+	//border shadow
+	box-shadow: 0 0 10px $contrast-color;
+	//make bigger
+	transform: scale(1.02);
+}
+
+button {
+	background-color: $contrast-color;
+	color: $light-color;
+	border: 1px solid $contrast-color;
+	border-radius: 5px;
+	cursor: pointer;
+	transition: background-color 0.3s;
+	padding: 5px 20px;
+}
+
+button:hover {
+	background-color: $light-color;
+	color: $contrast-color;
+	border-color: $contrast-color;
+}
+
+h6 {
+	font-weight: bold;
+}
